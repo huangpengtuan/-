@@ -1,0 +1,95 @@
+<!--我发布的场地详情-->
+<div class="PlaceDetails">
+	<div class="CNavigation">
+		<i class="icon-direction-right CNfloat-left" ng-click='goback()'>&nbsp;&nbsp;详情</i>
+	</div>	
+	<!--场地信息-->
+	<div class="PlaceTable">
+		<div class="PlaceHeader" ng-if='PlaceDetail.rent_status == 0'>
+			<img ng-src="{{PlaceDetail.member_headimg}}" alt="" class="OtherHeader"/>
+			<div class="PlaceName">&nbsp;&nbsp;&nbsp;{{PlaceDetail.member_name}}</div>		
+		</div>
+		<div class="PlaceDatalist">
+			<div class="PlaceDatalist_L">场地费</div>
+			<div class="PlaceDatalist_R">{{PlaceDetail.rent_money}}/小时</div>
+		</div>
+		<div class="PlaceDatalist">
+			<div class="PlaceDatalist_L">面积</div>
+			<div class="PlaceDatalist_R">{{PlaceDetail.rent_area_size}}平方</div>
+		</div>
+		<div class="PlaceDatalist">
+			<div class="PlaceDatalist_L">地址</div>
+			<div class="PlaceDatalist_R">{{PlaceDetail.address}}</div>
+		</div>	    		
+		<div class="PlaceDatalist">
+			<div class="PlaceDatalist_L">发布时间</div>
+			<div class="PlaceDatalist_R">{{PlaceDetail.insert_date  | date:'yyyy-MM-dd  hh:mm'}}</div>
+		</div>
+		<div class="PlaceBooth">
+			<img ng-src="{{imageKey.image_key}}" alt="" class="BoothImg" ng-repeat='imageKey in PlaceDetail.imageKey' data-imageKeyId = "{{imageKey.id}}"/>
+		</div>
+	</div>	
+
+	<div class="PurchaseTime" ng-if='PlaceDetail.rent_status == 0'>
+		<div class="float-left">购买时长&nbsp;{{PlaceDetail.rentOrder.count}}</div>
+		<div class="float-right">
+			<div class="PlaceSold_Total" >总金额</div>			
+			<div class="PlaceSold_Number">￥{{PlaceDetail.rentOrder.amount}}</div>
+		</div>
+	</div>
+
+	<div class="landlord">
+		<div class="PlaceDatalist">
+			<div class="PlaceDatalist_L">房东姓名</div>
+			<div class="PlaceDatalist_R">{{PlaceDetail.name}}</div>
+		</div>
+		<div class="PlaceDatalist">
+			<div class="PlaceDatalist_L">房东电话</div>
+			<div class="PlaceDatalist_R">{{PlaceDetail.phone}}</div>
+		</div>		
+
+	</div>	
+	
+	<div class="Prompt" ng-if='PlaceDetail.rent_status == 0'>
+		<i class="icon-yuan29 Cozy_i"></i>	
+		<div class="Cozy_text01">温馨提示</div>
+		<div class="Cozy_text02">以上信息已经过平台审核请放心购买</div>
+		<div class="clearfix"></div>
+	</div>	
+	
+	
+</div>	
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

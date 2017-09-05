@@ -1,0 +1,73 @@
+<!--初次评价界面--> 
+
+<div class="assIni">
+	<div class="assA">
+		<ul>
+			<li class="grade">
+				<div class="gradeT " data-grade = "1">1分</div>
+				<div class="gradeI"><img class="gradeImg" src="img/icon_score_empty.png" alt="" /></div>
+			</li>
+			<li class="grade">
+				<div class="gradeT" data-grade = "2">2分</div>
+				<div class="gradeI"><img class="gradeImg" src="img/icon_score_empty.png" alt="" /></div>
+			</li>
+			<li class="grade">
+				<div class="gradeT" data-grade = "3">3分</div>
+				<div class="gradeI"><img class="gradeImg" src="img/icon_score_empty.png" alt="" /></div>
+			</li>
+			<li class="grade">
+				<div class="gradeT" data-grade = "4">4分</div>
+				<div class="gradeI"><img class="gradeImg" src="img/icon_score_empty.png" alt="" /></div>
+			</li>
+			<li class="grade">
+				<div class="gradeT activeG" data-grade = "5">5分</div>
+				<div class="gradeI"><img class="gradeImg" src="img/icon_score_empty.png" alt="" /></div>
+			</li>
+			<div class="clearfix"></div>
+		</ul>
+	</div>
+	<div class="assB">
+		<ul>
+			<li class="StarD" ng-if='starD == 0'>
+				给老师打个分吧~
+			</li>			
+			<li class="StarD" ng-if='starD == 1'>
+				不满意
+			</li>
+			<li class="StarD" ng-if='starD == 2'>
+				很一般
+			</li>
+			<li class="StarD" ng-if='starD == 3'>
+				比较不错
+			</li>
+			<li class="StarD" ng-if='starD == 4'>
+				非常满意
+			</li>
+			<li class="StarD" ng-if='starD == 5'>
+				强烈推荐
+			</li>
+		</ul>
+	</div>
+	<div class="assC">
+		<div class="assCTab">写评论</div>
+		<textarea name="" rows="6"  class="assCText" placeholder="对老师的服务还满意吗？客观评价一下老师吧~"></textarea>
+	</div>
+	<div class="kedanSubmit" >
+		<a href="" ng-click='assSubmit()'>
+			<button type="button" class="btn btnred">提交</button>
+		</a>	
+	</div>	
+	
+	
+	
+</div>
+
+
+
+
+
+
+
+
+
+

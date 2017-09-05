@@ -1,0 +1,39 @@
+<!--支付成功中转界面-->
+<div class="PaySuccess">
+	<div class="CNavigation">
+		<i class="icon-direction-right CNfloat-left" ng-click='goback()'>&nbsp;&nbsp;支付成功</i>
+	</div>	
+	<div class="PaySuccess_top">
+		<i class="icon-yuan23 PaySuccess_ioc"></i>
+		<div class="PaySuccess_text">支付成功</div>
+	</div>
+	<div class="PaySuccess_center">
+		<div class="PaySuccessList">
+			<div class="float-left">支付金额</div>
+			<div class="float-right">￥{{OrderDetail.amount}}</div>
+		</div>
+		<div class="PaySuccessList">
+			<div class="float-left">创建时间</div>
+			<div class="float-right">{{OrderDetail.insert_date | date:'yyyy-MM-dd  hh:mm'}}</div>
+		</div>
+		<div class="PaySuccessList">
+			<div class="float-left">付款时间</div>
+			<div class="float-right">{{OrderDetail.pay_time | date:'yyyy-MM-dd  hh:mm'}}</div>
+		</div>			
+	</div>
+	
+	
+	
+
+	
+	<div class="PDBBtn">
+		<!--订单ID--OrderDetail.id-->
+		<a class="PaySuccessBtn01">查看订单</a>
+		<a class="PaySuccessBtn02" href="#/home/">返回首页</a>
+	</div>	
+	
+	
+</div>	
+	
+	
+	

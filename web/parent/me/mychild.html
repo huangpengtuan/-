@@ -1,0 +1,47 @@
+<!--我的子女-->
+<div id="mychilds">
+    <!-- 头部tab -->
+    <ul class="nav Admin-tabs" >
+	    <li ><a href="#/mychild/0/0" class="Admintabs activeFind">子女管理</a></li>
+	    <li ><a href="/api/mall/myAddress?type=1" class="Admintabs ">收货地址</a></li>
+	    <li ><a href="/api/mall/myAddress?type=2" class="Admintabs ">报名信息</a></li>
+    </ul>	
+	
+	<a class="CramStateDetail" href="" ng-if='ishavechild'>
+		<i class="icon-comment CurriState-Ic"></i>
+		<div class="CramState-Title">
+			暂无子女信息			
+		</div>
+	</a>
+	
+	
+    <div class="Mychilds-list" ng-repeat='childlists in Mychildlist' on-finish-render>
+        <div class="Mychilds-container">
+        	<div class="MCList-data" >					
+        		<div class="MCList-data-T" ng-click='ChoiceChilds(childlists.id)'>
+        			<div class="MCList-data-T01">子女姓名：{{childlists.name}}</div>
+        			<div class="MCList-data-T01">手机号：{{childlists.mobile}}</div>
+        			<i class="icon-default default-Active" ng-if='childlists.default == 1'></i>
+        		</div>
+        		<div class="MCList-data-B">
+        			<a class="MCdata-edit" href="#/modifyChild/{{childlists.id}}">
+        				<i class="icon-edit"></i>
+        				编辑
+        			</a>
+         			<div class="MCdata-Default" ng-click='thisDefaults($index,childlists.id)' ng-if='childlists.default == 0'>
+        				<i class="icon-Uncheck" ></i>
+        				设为默认
+        			</div>       			
+        		</div>
+        	</div>
+        	<div class="Mychilds-delete" ng-click='deletechilds(childlists.id)'>
+        		<i class="icon-delete"></i>
+        		删除
+        	</div>
+        </div>
+    </div>
+    
+    
+	<div class="bottomsekuai">&nbsp;</div>
+	<div ng-click='goEdit()' class="CfixedBottom">添加子女</div>
+</div>

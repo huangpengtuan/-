@@ -1,0 +1,79 @@
+
+<!--消息--查看课次--课次详情-->
+<div id="preview" class="margin-bottom100">
+	<div class="linetxt">课次详情</div>
+	<section>
+		<ul class="previewdata">
+			<li class="data-group">
+				<div class="float-left">
+					预计上课时长
+				</div>
+				<div class="float-right">
+					{{kecis.class_hour}}小时
+				</div>
+				<div class="clearfix"></div>
+			</li>
+			<li class="data-group">
+				<div class="float-left">
+					上课日期
+				</div>
+				<div class="float-right">
+					{{kecis.class_begin_date}}
+				</div>
+				<div class="clearfix"></div>
+			</li>
+			<li class="data-group">
+				<div class="float-left">
+					开课时间
+				</div>
+				<div class="float-right">
+					{{kecis.class_begin_time}}
+				</div>
+				<div class="clearfix"></div>
+			</li>			
+			<li class="data-group">
+				<div class="float-left">
+					结课时间
+				</div>
+				<div class="float-right">
+					{{kecis.class_over_time}}
+				</div>
+				<div class="clearfix"></div>
+			</li>		
+			
+			
+			
+			
+			<li class="data-group">
+				<div class="float-left">
+					上课地点
+				</div>
+				<div class="float-right">
+					{{kecis.placeText}}
+				</div>
+				<div class="clearfix"></div>
+				<div class="previewdata-are">详细地址：{{kecis.address}}</div>
+			</li>	
+								
+			<li class="data-group border-top10">
+				<div class="float-left detailed-Explain">
+					课程规划
+				</div>
+				<div class="clearfix"></div>
+				<div class="Explain-are">{{kecis.plan}}</div>
+			</li>
+			<li class="data-group-time">
+				<div class="float-right">
+					{{ kecis.in_time | date:'yyyy-MM-dd HH:mm' }}
+				</div>
+				<div class="clearfix"></div>
+			</li>
+										
+						
+		</ul>
+		
+	</section>
+	
+	
+	
+</div>

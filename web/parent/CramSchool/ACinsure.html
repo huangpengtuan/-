@@ -1,0 +1,49 @@
+<!--补习班支付确认界面-->
+<div class="ACinsure">
+	<div class="insure-number">
+		<div class="insure-number01">待支付</div>
+		<div>￥{{margin}}</div>
+	</div>
+	<div class="AC-biaoti">支付方式</div>	
+	<div class="insure-data">
+		
+		<div class="AC-Text02 AC-active" ng-click="applystateWaY(1)">
+			<div class="applystate-wy">
+				<i class="icon-Uncheck AC-check"></i>
+				微信支付
+			</div>
+			<div class="clearfix"></div>
+		</div>			
+		
+		<div class="AC-Text02 margin-bottom3" ng-click="applystateWaY(2)">
+			<div class="applystate-wy" >
+				<i class="icon-Uncheck"></i>
+				余额支付
+			</div>
+			<div class="AC-applystate">
+				钱包余额{{balance}}元
+			</div>
+			<div class="clearfix"></div>
+		</div>
+		
+		<!--ng-click='submitCrams(cram.id)'-->
+		<!--#/paySuccess/1-->
+		<div class="kedanSubmit AC-btn" >
+			<a>
+				<button type="button" class="btn btnred" ng-click='submitCrams()'>确认付款</button>
+			</a>	
+		</div>			
+	
+
+		<div class="bottomsekuai"></div>
+	</div>
+
+	
+</div>
+
+
+
+
+
+
+

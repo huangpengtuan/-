@@ -1,0 +1,350 @@
+
+
+
+<!--内容区-->
+<div>
+	<div class="teatherdetails">
+		<header class="teatherheadportrait">
+			<div class="jumbotron">
+			    <div class="teatherheadportrait-img"><img ng-src="{{avatar}}" alt="" /></div>
+		        <span class="teatherheadportrait-text"">
+		        	<span>{{name}}</span>
+		        	<i ng-if="sex == 1" class="grender"><img src="img/icon_gender_men.png" alt="" /></i>
+		        	<i ng-if="sex == 2" class="grender"><img src="img/icon_gender_woman.png" alt="" /></i>
+		        </span>
+		        <p class="teatherheadportrait-city">{{city}}</p>
+			    <p ng-if="isFriend"><a class="btn btn-md"  role="button">已添加</a></p>
+			    <p ng-if="!isFriend"><a class="btn btn-md bcolorred"  ng-click="AddTeather()" role="button">添&nbsp;&nbsp;&nbsp;加</a></p>
+			</div>					
+		</header>
+		<div class="teatherdata">				
+		    <ul class="nav nav-tabs teatherdata-line" id="tabs1">
+		    	<li class="presentation active">战绩</li>
+		    	<li class="presentation teatherdata-line3">评价</li>
+		    	<li class="presentation">资料</li>
+		    </ul>
+			 
+			<div class="tab-content teatherdata-neirong">
+			    <div class="tab-pane  margin-bottom100 active tabs1-teatherdata" id="zhanji">
+			    	<!--星级-->
+					<div class="media teatherxiangqing">
+					  <div class="media-left media-left-after">					
+					  		<div class="media-object-right">
+					  			<img class="media-object-img" ng-src="img/icon_starnb_small_{{starCount}}.png" alt="...">					  																
+					  		</div>									
+							<div class="xingji">星&nbsp;级</div>
+					  </div>
+					  <div class="media-body media-star">
+					    <span ng-repeat="i in redStar"><img src="img/icon_star_red.png"/></span>
+					    <span ng-repeat="i in blueStar"><img src="img/icon_star_blue.png"/></span>
+					    <span ng-repeat="i in blackStar"><img src="img/icon_star_black_empty.png"/></span>
+
+					  </div>
+					</div>
+					<!--成就-->
+					<div class="media border-top teatherxiangqing">
+					  <div class="media-left media-left-after01">									
+							<div class="chengjiu">成&nbsp;就</div>
+					  </div>
+					  <div class="media-body media-achieve">
+							<span class="bcolorblack" ng-if="memberStar.achieve0 == 1">全国名师</span>
+							<span class="bcolorblack" ng-if="memberStar.achieve1 == 1">世界名校</span>	
+							<span class="bcolorblack" ng-if="memberStar.achieve2 == 1">迷之存在</span>
+							<span class="bcolorblack" ng-if="memberStar.achieve3 == 1">德高望重</span>	
+							<span class="bcolorViolet" ng-if="memberStar.achieve4 == 1">长期稳定</span>
+							<span class="bcolorViolet" ng-if="memberStar.achieve5 == 1">国内名校</span>	
+							<span class="bcolorViolet" ng-if="memberStar.achieve6 == 1">城中名师</span>
+							<span class="bcolorViolet" ng-if="memberStar.achieve7 == 1">乐于奉献</span>	
+							<span class="bcolorred" ng-if="memberStar.achieve8 == 1">百里挑一</span>
+							<span class="bcolorblue" ng-if="memberStar.achieve9 == 1">海外归来</span>	
+							<span class="bcolorgreed" ng-if="memberStar.achieve10 == 1">家教联盟</span>
+							<span class="bcolorgreed" ng-if="memberStar.achieve11 == 1">开拓之星</span>	
+		      	      
+					  </div>
+					</div>
+					<!--排名-->
+					<div class="media border-top10 teatherxiangqing" ng-if="ranking.no_see == 0">
+					  <div class="media-left media-left-after01">									
+							<div class="chengjiu">排&nbsp;名</div>
+					  </div>
+					  <div class="media-body media-paiming">
+							<span >全国第{{ranking.nationwide}}名</span>
+							<span class="media-paiming-line">{{ranking.cityRanking}}第{{ranking.city_ranking}}名</span>					      	      
+					  </div>
+					</div>	
+					<!--教龄-->
+					<div class="media border-top10 teatherxiangqing ">
+					  <div class="media-left">									
+							<div class="jiaolong">教&nbsp;龄</div>
+					  </div>
+					  <div class="media-body">									
+							<div class="text-right">{{experience}}</div>
+					  </div>
+					</div>	
+					<!--师德-->
+					<div class="media border-top teatherxiangqing ">
+					  <div class="media-left">									
+							<div class="jiaolong">师&nbsp;德</div>
+					  </div>
+					  <div class="media-body">									
+							<div class="text-right">{{teacher_score}}</div>
+					  </div>
+					</div>	
+					<!--学员数-->
+					<div class="media border-top10 teatherxiangqing ">
+					  <div class="media-left">									
+							<div class="xueyuanshu">学员数</div>
+					  </div>
+					  <div class="media-body">									
+							<div class="text-right">8545</div>
+					  </div>
+					</div>	
+					<!--平均分-->
+					<div class="media border-top teatherxiangqing">
+					  <div class="media-left">									
+							<div class="xueyuanshu">家教平均分</div>
+					  </div>
+					  <div class="media-body">									
+							<div class="text-right">{{average}}</div>
+					  </div>
+					</div>							
+					
+					
+					
+					
+			    </div>
+			    
+			    
+			    
+			    <!--评论-->
+			    <div class="tab-pane margin-bottom100 tabs1-teatherdata" id="pingjia">
+					<div>
+					
+						<!-- 评论区tabs -->
+						<ul class="nav nav-tabs" id="pingjia-tabs">
+						    <li  class=""><a>平均分&nbsp;<span class="textcolorred">{{average}}</span></a></li>
+						    <li class="presentation1 active" ng-click='getorderass("")'><a>全部({{count}})</a></li>
+						    <li class="presentation1" ng-click='getorderass("parent_score desc")'><a>从高到低</a></li>
+						    <li class="presentation1" ng-click='getorderass("parent_score")'><a>从低到高</a></li>
+						</ul>
+						
+						  <!--评论区panes -->
+						<div class="tab-content">
+						    <div class="tab-pane active presentation11" id="discuss1">
+						    	
+								<div class="media discuss-data" ng-repeat='assL in asselist track by $index'>
+							      <div class="media-left discuss-data1">										       
+						             <img class="media-object" ng-src="{{assL.avatar}}" alt="...">										        
+							      </div>
+								  <div class="media-body discuss-data2 border-top">
+								    <div class="media-heading">
+								    	{{assL.name}}
+								    	<span class="jiazhang bcolorblue">{{assL.memberType}}</span>
+								    	<span class="dingdankeshi">订单课时：{{assL.classCount
+}}</span>
+								    	<span class="score">
+								    		<span ng-if="assL.parent_score >= 1"><img src="img/icon_score.png"/></span>
+								    		<span ng-if="assL.parent_score >= 2"><img src="img/icon_score.png"/></span>
+								    		<span ng-if="assL.parent_score >= 3"><img src="img/icon_score.png"/></span>
+								    		<span ng-if="assL.parent_score >= 4"><img src="img/icon_score.png"/></span>
+								    		<span ng-if="assL.parent_score >= 5"><img src="img/icon_score.png"/></span>
+								    		<span ng-if="assL.parent_score < 1"><img src="img/icon_score_empty.png"/></span>
+								    		<span ng-if="assL.parent_score < 2"><img src="img/icon_score_empty.png"/></span>
+								    		<span ng-if="assL.parent_score < 3"><img src="img/icon_score_empty.png"/></span>
+								    		<span ng-if="assL.parent_score < 4"><img src="img/icon_score_empty.png"/></span>
+								    		<span ng-if="assL.parent_score < 5"><img src="img/icon_score_empty.png"/></span>
+								    	</span>
+								    </div>
+								    <p>评论：{{assL.content}}</p>
+								    <div class="discuss-time">
+								    	{{assL.in_time | date:'yyyy-MM-dd HH:mm'}}
+								    </div>
+								  </div>
+								</div>								    	
+						    		
+						    </div>
+						    
+						    
+						    
+						    
+						    
+						    
+						    
+						    
+						    <div class="tab-pane presentation11" id="discuss2">
+						    	
+								<div class="media discuss-data" ng-repeat='assL in asselist track by $index'>
+							      <div class="media-left discuss-data1">										       
+						             <img class="media-object" ng-src="{{assL.avatar}}" alt="...">										        
+							      </div>
+								  <div class="media-body discuss-data2 border-top">
+								    <div class="media-heading">
+								    	{{assL.name}}
+								    	<span class="jiazhang bcolorblue">{{assL.memberType}}</span>
+								    	<span class="dingdankeshi">订单课时：{{assL.classCount
+}}</span>
+								    	<span class="score">
+								    		<span><img src="img/icon_score.png"/></span>
+								    		<span><img src="img/icon_score.png"/></span>
+								    		<span><img src="img/icon_score.png"/></span>
+								    		<span><img src="img/icon_score.png"/></span>
+								    		<span><img src="img/icon_score_empty.png"/></span>
+								    	</span>
+								    </div>
+								    <p>评论：{{assL.content}}</p>
+								    <div class="discuss-time">
+								    	{{assL.in_time | date:'yyyy-MM-dd HH:mm'}}
+								    </div>
+								  </div>
+								</div>								    	
+						    	
+						    </div>
+						    
+						    
+						    
+						    <div class="tab-pane presentation11" id="discuss3">
+						    	
+								<div class="media discuss-data" ng-repeat='assL in asselist track by $index'>
+							      <div class="media-left discuss-data1">										       
+						             <img class="media-object" ng-src="{{assL.avatar}}" alt="...">										        
+							      </div>
+								  <div class="media-body discuss-data2 border-top">
+								    <div class="media-heading">
+								    	{{assL.name}}
+								    	<span class="jiazhang bcolorblue">{{assL.memberType}}</span>
+								    	<span class="dingdankeshi">订单课时：{{assL.classCount
+}}</span>
+								    	<span class="score">
+								    		<span><img src="img/icon_score.png"/></span>
+								    		<span><img src="img/icon_score.png"/></span>
+								    		<span><img src="img/icon_score.png"/></span>
+								    		<span><img src="img/icon_score.png"/></span>
+								    		<span><img src="img/icon_score_empty.png"/></span>
+								    	</span>
+								    </div>
+								    <p>评论：{{assL.content}}</p>
+								    <div class="discuss-time">
+								    	{{assL.in_time | date:'yyyy-MM-dd HH:mm'}}
+								    </div>
+								  </div>
+								</div>									    	
+						    	
+						    </div>
+						</div>
+					
+					</div>						    	
+			    </div>
+			    
+			    
+			    <!--资料-->
+			    <div class="tab-pane margin-bottom100 tabs1-teatherdata" id="ziliao">
+			    	<!--自我描述-->
+			    	<div class="linetxt bgc-hui">自我描述</div>											
+				 	<div class="media-body">									
+						<div class="guowangjingli">{{self_description}}</div>
+				  	</div>
+									    	
+			    	
+			    	<!--过往经历-->
+			    	<div class="linetxt bgc-hui ">过往经历</div>							
+				  	<div class="media-body">									
+						<div class="guowangjingli">{{resume}}</div>
+				  	</div>
+		    	
+			    	<!--基本信息-->
+			    	<div class="linetxt bgc-hui ">基本信息</div>							
+				  	<div class="media-body">									
+						<!--昵称-->
+						<div class="media teatherxiangqing">
+						  <div class="media-left">									
+								<div class="xueyuanshu">昵称</div>
+						  </div>
+						  <div class="media-body">									
+								<div class="text-right">{{name}}</div>
+						  </div>
+						</div>	
+						<!--性别-->
+						<div class="media border-top teatherxiangqing">
+						  <div class="media-left">									
+								<div class="xueyuanshu">性别</div>
+						  </div>
+						  <div class="media-body">									
+								<div class="text-right" ng-if="sex == 1">男</div>
+								<div class="text-right" ng-if="sex == 2">女</div>
+						  </div>
+						</div>	
+						<!--学历-->
+						<div class="media border-top teatherxiangqing ">
+						  <div class="media-left">									
+								<div class="xueyuanshu">学历</div>
+						  </div>
+						  <div class="media-body">									
+								<div class="text-right">{{education}}</div>
+						  </div>
+						</div>
+						<!--毕业院校-->
+						<div class="media border-top teatherxiangqing">
+						  <div class="media-left">									
+								<div class="xueyuanshu">毕业院校</div>
+						  </div>
+						  <div class="media-body">									
+								<div class="text-right"><span class="bcolorblue zhuyao" ng-if='graduate_school'>已认证</span>{{graduate_school}}</div>
+						  </div>
+						</div>									
+						<!--教学经验-->
+						<div class="media border-top teatherxiangqing">
+						  <div class="media-left">									
+								<div class="xueyuanshu">教学经验</div>
+						  </div>
+						  <div class="media-body">									
+								<div class="text-right">{{experience}}</div>
+						  </div>
+						</div>	
+					 
+					</div>						    	
+			    	
+			    	<!--服务年纪/科目-->
+			    	<div class="linetxt bgc-hui">服务年级/科目</div>
+			    	<!--<div class="media"></div>-->
+					<div class="media border-top teatherxiangqing " ng-repeat="kemu in subjects">
+					  	<div class="media-left">
+					  		
+							<div class="xueyuanshu">{{kemu.full_name}}</div>
+					 	 </div>
+					</div>	
+					
+					<div class="media border-top teatherxiangqing " ng-if="!subjects">				  
+							<div class="ServiceAccount">该老师暂无服务年级/科目</div>
+					</div>					
+					
+					<!--<div class="media border-top"></div>-->	
+					
+			    	<!--服务区域-->
+			    	<div class="linetxt bgc-hui ">服务区域</div>				    	
+					<div class="media border-top teatherxiangqing fuwudizhi" ng-repeat="fuwuquyu in myAreas">
+					  	<div class="media-body">									
+							<div class="">
+								<span class="">{{fuwuquyu.full_name}}</span>
+							</div>
+					 	</div>
+					  	<div class="media-right" ng-if="fuwuquyu.isMain == 1">									
+							<div class="fuzhidizhi1">
+								<span class="zhuyao bcolorblue ">主要</span>
+							</div>
+					 	</div>							 	
+					</div>				    	
+					<div class="media border-top teatherxiangqing " ng-if="!myAreas">				  
+							<div class="ServiceAccount">该老师暂无服务区域</div>
+					</div>										
+					
+			    	
+			    </div>					   
+			</div>
+		
+		</div>
+		
+	</div>
+</div>
+
+
+

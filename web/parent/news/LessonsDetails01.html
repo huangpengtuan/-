@@ -1,0 +1,91 @@
+<!--课次详情--上课中--状态01-->
+<div class="LessonsDet">
+	<div class="CNavigation">
+		<i class="icon-direction-right CNfloat-left"></i>
+		<div class="CNfloat-left-Text" ng-click='goback(cramLessonDetail.order_item_id)'>返回</div>
+	</div>
+	<div class="linetxt">课次详情</div>
+	<section>
+		<ul class="previewdata">
+			<li class="data-group">
+				<div class="float-left">
+					预计上课时长
+				</div>
+				<div class="float-right">
+					{{cramLessonDetail.attend_class_hour}}小时
+				</div>
+				<div class="clearfix"></div>
+			</li>
+			<li class="data-group">
+				<div class="float-left">
+					预计上课日期
+				</div>
+				<div class="float-right">
+					{{cramLessonDetail.course_date}}
+				</div>
+				<div class="clearfix"></div>
+			</li>
+			<li class="data-group">
+				<div class="float-left">
+					开课时间
+				</div>
+				<div class="float-right">
+					{{cramLessonDetail.course_time}}
+				</div>
+				<div class="clearfix"></div>
+			</li>			
+			<li class="data-group">
+				<div class="float-left">
+					结课时间
+				</div>
+				<div class="float-right">
+					{{cramLessonDetail.over_time}}
+				</div>
+				<div class="clearfix"></div>
+			</li>		
+
+			<li class="data-group">
+				<div class="float-left">
+					上课地点
+				</div>
+				<div class="clearfix"></div>
+				<div class="previewdata-are">详细地址：{{cramLessonDetail.address}}</div>
+			</li>	
+								
+			<li class="data-group border-top10">
+				<div class="float-left detailed-Explain">
+					课程规划
+				</div>
+				<div class="clearfix"></div>
+				<div class="Explain-are">{{cramLessonDetail.plan}}</div>
+			</li>
+			<li class="data-group-time">
+				<div class="float-right">
+					{{ cramLessonDetail.in_time | date:'yyyy-MM-dd HH:mm' }}
+				</div>
+				<div class="clearfix"></div>
+			</li>
+										
+						
+		</ul>		
+		<div class="bottomsekuai"></div>
+	</section>	
+
+</div>	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,128 @@
+<!--创建课程-->
+<div class="CreateLesson">
+	<div class="CNavigation">
+		<i class="icon-direction-right CNfloat-left" ng-click='goback()'>&nbsp;&nbsp;创建课程</i>		
+	</div>	
+	<form>
+		<div class="YYList01 border-bottom1">
+			<div class="YYList_L">课程名称</div>
+			<input type="text" name="course_name" id="course_name" value="" class="YYList_R" placeholder="填写你的课程名称" maxlength="15"/>
+		</div>	
+		
+		<div class="YYList01 border-bottom1">
+			<div class="YYList_L">课程类型</div>
+			
+			<i class="icon-yuan27 CreateLesson_Rimg"></i>
+			<select name="school_type_id" id="school_type_id" class="CreateLesson_RList">
+				<option value="{{schoolType.id}}" ng-repeat='schoolType in schoolTypeList'>{{schoolType.name}}</option>
+			</select>
+		</div>
+		
+		<div class="YYList01 border-bottom1">
+			<div class="YYList_L">总课时</div>
+			
+			<div class="CreateLesson_Company">小时</div>
+			<input type="number" name="course_hour" id="course_hour" value="" class="YYList_R02" placeholder="填写总课时" ng-model="mhours" onkeyup="this.value=this.value.replace(/[^0-9]/g,'')" min="0"/>
+		</div>
+		
+		<div class="YYList01 border-bottom1">
+			<div class="YYList_L">每小时收费</div>
+			
+			<div class="CreateLesson_Company">元</div>
+			<input type="number" name="hour_price" id="hour_price" value="" class="YYList_R02" placeholder="填写每小时费用" ng-model="monek"  onkeyup="this.value=this.value.replace(/[^0-9]/g,'')"/>
+		</div>
+		
+		<div class="YYList01 border-bottom1">
+			<div class="YYList_L">总费用</div>
+			
+			<div class="CreateLesson_Company">元</div>
+			<input type="number" readonly="readonly" name="" value="{{mhours * monek || 0}}" class="YYList_R02" placeholder="总费用"/>
+		</div>
+		
+		<div class="xian05"></div>
+		<div class="YYList06">		
+			<div class="border-bottom1">简介</div>
+		</div>
+		<div class="brief">
+			<textarea class="brief_child" id="introduction" placeholder="填写你的课程简介"></textarea>
+		</div>	
+		
+		<div class="xian05"></div>
+		<div class="YYList01 border-bottom1" ng-click='CSCardfadeIn()'>
+			<div class="YYList_L">课程表</div>			
+			<i class="icon-direction-left CreateLesson_Company"></i>
+		</div>		
+		
+		<div class="xian05"></div>
+		<div class="YYList06">		
+			<div class="border-bottom1">优惠活动</div>
+		</div>
+		<div class="Discount-activity">
+			<div class="activitylist" >
+				<i class="icon-yuan06 activityImg" id="mianfei"></i>
+				平台会员免费试听
+			</div>
+			<div class="activitylist" >
+				<i class="icon-yuan06 activityImg" id="zhe"></i>
+				打折优惠
+			</div>		
+			<div class="Discount-number">
+				<input type="number" name="" id="zhenumber" value="" class="number_input" placeholder="输入你的折扣" onkeyup="limitInput(this)" ng-model="zhekou"/>
+				折				
+				<div class="number_text">￥{{mhours * monek * zhekou/10 || 0}}</div>
+				<div class="number_title">折后总价</div>
+			</div>
+		</div>			
+		
+		
+		
+	</form>	
+	
+
+	<button ng-click='PublishLesson(lessionDetail.id)' class="yuanyuanBTN01">发&nbsp;&nbsp;布</button>
+</div>	
+	
+	
+	
+	
+	
+	
+<!--课程表-->	
+<div id="ClassScheduleCard">
+	<div class="CNavigation">
+		<i class="icon-direction-right CNfloat-left" ng-click='CSCardfadeOut()'>&nbsp;&nbsp;课程表</i>		
+	</div>	
+	<section class="CSCard">
+		<div class="CSCard_header">
+			<div class="CSCard_header_T">时段&nbsp;{{Schedule.msg}}</div>
+			<div class="CSCard_header_Title">
+				<div class="timeList">时间</div>
+				<div class="timeList">上午</div>
+				<div class="timeList">下午</div>
+				<div class="timeList">晚上</div>
+			</div>			
+		</div>
+		<!--列表-->
+		<div class="CSCard_data">
+			<!--一条列表信息--timeData-active为选择状态-->
+			<div class="CSCard_header_Title" ng-repeat='itemList in Schedule.object track by $index' on-finish-render>
+				<div class="timeData">{{itemList[0].weekDay}}<br />{{itemList[0].dateTiem}}</div>
+				<div ng-class="{'timeData':true,'selectToggle':true,'timeData-active':itemList[0].selected == 1}"  data-startTime='{{itemList[0].start_time}}'></div>
+				<div ng-class="{'timeData':true,'selectToggle':true,'timeData-active':itemList[1].selected == 1}" data-startTime='{{itemList[1].start_time}}'></div>
+				<div ng-class="{'timeData':true,'selectToggle':true,'timeData-active':itemList[2].selected == 1}" data-startTime='{{itemList[2].start_time}}'></div>
+			</div>
+
+			<div class="clearfix"></div>
+		</div>	
+		
+	</section>
+		
+	<button ng-click='Determine()' class="yuanyuanBTN01">确&nbsp;&nbsp;定</button>
+</div>	
+	
+	
+	
+	
+	
+
+

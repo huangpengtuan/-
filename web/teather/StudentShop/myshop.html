@@ -1,0 +1,86 @@
+<!--我的店铺-->
+<div class="myshop">
+	<div class="CNavigation">
+		<i class="icon-direction-right CNfloat-left" ng-click='goback()'>&nbsp;&nbsp;我的店铺</i>
+		<div class="CNfloat-right" ng-click='OffTheShelf(ShopInfo.id)'>下架课程</div>
+	</div>		
+	<a class="myshop_A" href="#/shopDetails/{{ShopInfo.id}}">
+		<div class="myshop_A_L">
+			<img ng-src="{{ShopInfo.class_avatar}}" alt="" class="myshop_A_Limg"/>
+		</div>
+		<div class="myshop_A_R">
+			<div class="myshop_name">{{ShopInfo.class_name}}</div>
+			<div class="myshop_stars">
+				<img ng-if='ShopInfo.eva_star >= 1' src="img/star.png" alt="" class="starslist"/>
+				<img ng-if='ShopInfo.eva_star >= 2' src="img/star.png" alt="" class="starslist"/>
+				<img ng-if='ShopInfo.eva_star >= 3' src="img/star.png" alt="" class="starslist"/>
+				<img ng-if='ShopInfo.eva_star >= 4' src="img/star.png" alt="" class="starslist"/>
+				<img ng-if='ShopInfo.eva_star >= 5' src="img/star.png" alt="" class="starslist"/>
+				<img ng-if='ShopInfo.eva_star < 1' src="img/star-hollow.png" alt="" class="starslist"/>
+				<img ng-if='ShopInfo.eva_star < 2' src="img/star-hollow.png" alt="" class="starslist"/>
+				<img ng-if='ShopInfo.eva_star < 3' src="img/star-hollow.png" alt="" class="starslist"/>
+				<img ng-if='ShopInfo.eva_star < 4' src="img/star-hollow.png" alt="" class="starslist"/>
+				<img ng-if='ShopInfo.eva_star < 5' src="img/star-hollow.png" alt="" class="starslist"/>
+			</div>
+			<div class="myshop_abstract">简介：{{ShopInfo.about}}</div>
+			<div class="myshop_abstract">地址：{{ShopInfo.address}}</div>
+		</div>
+		<i class="icon-yuan26 Right-Direction"></i>
+	</a>		
+	<section>
+		<!--tab-->
+	    <ul class="nav YYtabA">
+		    <li ><a class="YY_tabA YYtabA-active">课程</a></li>
+		    <li ><a class="YY_tabA " >评论</a></li>
+	    </ul>			
+		<!--内容区panes -->
+		<div class="xian05"></div>
+	    <div class="tab-content">	
+	    	<!--课程-->
+		    <div class="tab-pane YY_tabA01 active">
+		    	<!--审批状态-->
+		    	<div class="nocomment" ng-if='ishavecram'>{{cramStatetext}}</div>
+		    	<!--一条课程列表-->
+				<div class="culumList" ng-repeat='CramCourse in CramCourseList' on-finish-render>
+					<div class="culumList01">
+						<div class="culumname">{{CramCourse.course_name}}</div>
+						<div class="moreOperation">
+							更多
+							<i class="icon-yuan27 Bottom-Direction"></i>
+						</div>
+						<div class="OperationList">
+							<div class="OperationList01">编辑</div>
+							<div class="OperationList02" ng-click='getdownLession(CramCourse.id)'>下架</div>
+							<div class="triangle-up"></div>
+						</div>
+					</div>
+					<div class="culumList02">
+						{{CramCourse.preferential_price}}
+						<span class="textcolorgray">/{{CramCourse.course_hour}}课时</span>
+					</div>
+					<div class="culumList03">
+						已报&nbsp;{{CramCourse.sales}}/999				
+					</div>
+					<a class="floltleft" href="#/LessionDetails/{{CramCourse.id}}"></a>
+				</div>
+				
+				
+				
+			</div>
+	    	<!--评论-->
+		    <div class="tab-pane YY_tabA01">		
+				<div class="nocomment">暂无评论...</div>
+			</div>	
+			
+		</div>
+		
+	</section>
+	
+	
+	<button ng-click='CreateLesson(ShopInfo.id)' class="yuanyuanBTN01" ng-if='isShow'>创建课程</button>
+	
+	
+	
+	
+	
+</div>	

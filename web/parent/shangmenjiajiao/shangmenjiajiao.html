@@ -1,0 +1,253 @@
+<!--上门家教-->
+<div id="zone">
+
+	
+	<div class="shangmenjiajiao" id="shangmenjiajiao">
+
+		<header class="homehead">
+			<a class="homehead-L a1-01s">
+			 	<div class="homeZones" id='area' onclick="areaShow('#zone','#zoneinfo')" ng-bind='ifAreasname'></div>
+			 	<i class="icon-smjj-b"></i>
+				<input type="hidden" class="" id="area_id" value="{{ifAreas}}">			 	
+			 	<div class="clearfix"></div>
+			</a>
+			<div class="a1-01sin">
+				<input type="text" placeholder="输入老师姓名或手机"  class="a1-01sinput" ng-model="searchinput"/>	
+			</div>			
+			<div class="dise" ng-click="search(searchinput)">
+				<div class="a1-01siimg">
+					<i class="icon-search"></i>
+				</div>
+			</div>
+			<div class="clearfix"></div>
+		</header>
+
+
+		<div class="demoteather">
+			  <!-- 上门家教tabs -->
+			<ul class="shangmenjiajiao-tab" >
+			    <li class="shangmenjiajiao-tab1 shangmenjiajiao-tablist">
+			    	
+			    						        
+    				<div class="smjj-change">
+						<div>
+							<span id='area01' onclick="areaShowfenzhi()">区域</span>
+							<i class="icon-smjj-l"></i>
+							<input type="hidden" class="form-control smjj-change" id="area_id01" name="area">
+						</div>										
+					</div>
+			    					    	
+
+			    </li>
+			    <li class="shangmenjiajiao-tablist shangmenjiajiao-tab2" id="subject" >
+					<select class="smjj-change" name="subject" ng-change="selectarea()" ng-model="subjectlist">
+			            <option value="" >年级科目</option>
+			            <option value="2">小学全科</option>
+			            <option value="3">小学语文</option>
+			            <option value="4">小学数学</option>
+			            <option value="5">小学英语</option>
+			            <option value="7">初中全科</option>
+			            <option value="8">初中语文</option>
+			            <option value="9">初中数学</option>
+			            <option value="10">初中英语</option>
+			            <option value="11">初中物理</option>
+						<option value="12">初中地理</option>                   
+			            <option value="13">初中生物</option>
+			            <option value="14">初中化学</option>
+			            <option value="15">初中历史</option>
+			            <option value="16">初中政治</option>
+			            <option value="18">高中全科</option>
+			            <option value="19">高中语文</option>
+			            <option value="20">高中数学</option>
+			            <option value="21">高中英语</option>
+			            <option value="22">高中物理</option>
+			            <option value="23">高中地理</option>
+			            <option value="24">高中生物</option>
+			            <option value="25">高中化学</option>
+			            <option value="26">高中历史</option>
+			            <option value="27">高中政治</option>
+			        </select>	
+		            <i class="icon-smjj-l"></i> 	    
+			    </li>
+			    <li class="shangmenjiajiao-tablist">
+					<select class="smjj-change" name="star" ng-change="selectarea()" ng-model="starlist">
+			            <option value="">筛选</option>
+			            <option value="1" >星级</option>
+			            <option value="2">价格</option>
+			        </select>	
+		            <i class="icon-smjj-l"></i>		    	
+			    	
+			    	
+			    </li>
+			    <li class="shangmenjiajiao-tablist">
+			    	
+					<select class="smjj-change" name="gender" ng-change="selectarea()" ng-model="sexlist">
+			            <option value="">性别</option>
+			            <option value="1">男</option>
+			            <option value="2">女</option>
+			        </select>	
+		            <i class="icon-smjj-l"></i>	
+		            
+			    </li>		    
+			    <div class="clearfix"></div>
+			  </ul>		 
+		</div>				    	
+	</div>	
+
+	<!--上门家教列表区 -->
+	<section class="search-center">
+		<ul class="media-list" id="search-list">
+	   		
+		</ul>
+	</section>
+	
+	<div class="spinner">
+	  <div class="bounce1"></div>
+	  <div class="bounce2"></div>
+	  <div class="bounce3"></div>
+	</div>
+
+
+</div>
+
+
+
+ 
+ 
+<!--上门家教地址区域类传2--> 
+<div id="zoneinfo" class="zoneinfo KX">
+	<div class="zone-now">
+		<div id="areashange">您选择的地址是：</div>
+		<div id='areanames'>
+			<span id="areanames01" data-CID = ""></span>
+			<span id="areanames02" data-CID = ""></span>
+			<span id="areanames03" data-CID = ""></span>
+			<span id="areanames04" data-CID = ""></span>
+		</div>
+		<!--<div class="citysearch">搜索</div>-->
+		<div class="clearfix"></div>
+	</div>
+   	<div class="zone-tabs" id="areaHtml">
+    	
+		<!--地址选项卡-->
+	    <div class="nav zonelistTabs">
+	        <li class="zonehide01"><a class="zoneBody tabItemactive">热门城市</a></li>
+	        <li class="zonehide02"><a class="zoneBody border-noleft">省份</a></li>
+	        <li class="zonehide03"><a class="zoneBody border-noleft">城市</a></li>
+	        <li class="zonehide04"><a class="zoneBody border-noleft">区县</a></li>
+	        <li class="zonehide05"><a class="zoneBody border-noleft">街道</a></li>
+	        <div class="clearfix"></div>
+	    </div>
+	    <div class="tab-content zonelistDe">
+	        <div class="tab-pane zoneBody01 active">
+	            <ul class="citylists">
+	            	<li class="citys" onclick="gethotcity(event,2)"  data-cityid = "110100">
+	            		北京
+	            	</li>
+	            	<li class="citys" onclick="gethotcity(event,2)" data-cityid = "310100">
+	            		上海
+	            	</li>
+	            	<li class="citys" onclick="gethotcity(event,2)" data-cityid = "440100">
+	            		广州
+	            	</li>	
+	            	<li class="citys" onclick="gethotcity(event,2)" data-cityid = "440300">
+	            		深圳
+	            	</li>
+	            	<li class="citys" onclick="gethotcity(event,2)" data-cityid = "120100">
+	            		天津
+	            	</li>	            	
+	            	<li class="citys" onclick="gethotcity(event,2)" data-cityid = "330100">
+	            		杭州
+	            	</li>	            	
+	            	<li class="citys" onclick="gethotcity(event,2)" data-cityid = "420100">
+	            		武汉
+	            	</li>	  	            	
+	            	<li class="citys" onclick="gethotcity(event,2)" data-cityid = "320100">
+	            		南京
+	            	</li>	  	            	
+	            	<li class="citys" onclick="gethotcity(event,2)" data-cityid = "610100">
+	            		西安
+	            	</li>	  	            	
+	  	            <div class="clearfix"></div>	
+	            </ul>
+	        </div>
+	        <div class="tab-pane zoneBody01">
+	            <dl class="provinceslists">
+				    <dt class="cityLetter">A-G</dt>
+				    <dd class="provinces" onclick="getcityid(event,2)" data-cityid = "340000" >安徽</dd>
+				    <dd class="provinces" onclick="getcityid(event,2)" data-cityid = "110000">北京</dd>
+				    <dd class="provinces" onclick="getcityid(event,2)" data-cityid = "500000">重庆</dd>
+				    <dd class="provinces" onclick="getcityid(event,2)" data-cityid = "350000">福建</dd>
+				    <dd class="provinces" onclick="getcityid(event,2)" data-cityid = "620000">甘肃</dd>
+				    <dd class="provinces" onclick="getcityid(event,2)" data-cityid = "450000">广西</dd>
+				    <dd class="provinces" onclick="getcityid(event,2)" data-cityid = "520000">贵州</dd>
+				    <dd class="provinces" onclick="getcityid(event,2)" data-cityid = "440000">广东</dd>				             
+	  	            <div class="clearfix"></div>	
+	            </dl>
+	            <dl class="provinceslists">
+				    <dt class="cityLetter">H-K</dt>
+				    <dd class="provinces" onclick="getcityid(event,2)" data-cityid = "460000">海南</dd>
+				    <dd class="provinces" onclick="getcityid(event,2)" data-cityid = "230000">黑龙江</dd>
+				    <dd class="provinces" onclick="getcityid(event,2)" data-cityid = "410000">河南</dd>
+				    <dd class="provinces" onclick="getcityid(event,2)" data-cityid = "130000">河北</dd>
+				    <dd class="provinces" onclick="getcityid(event,2)" data-cityid = "420000">湖北</dd>
+				    <dd class="provinces" onclick="getcityid(event,2)" data-cityid = "430000">湖南</dd>
+				    <dd class="provinces" onclick="getcityid(event,2)" data-cityid = "150000">内蒙古</dd>
+				    <dd class="provinces" onclick="getcityid(event,2)" data-cityid = "360000">江西</dd>	
+				    <dd class="provinces" onclick="getcityid(event,2)" data-cityid = "220000">吉林</dd>
+				    <dd class="provinces" onclick="getcityid(event,2)" data-cityid = "320000">江苏</dd>					    
+	  	            <div class="clearfix"></div>	
+	            </dl>
+	            <dl class="provinceslists">
+				    <dt class="cityLetter">L-S</dt>
+				    <dd class="provinces" onclick="getcityid(event,2)" data-cityid = "310000">上海</dd>
+				    <dd class="provinces" onclick="getcityid(event,2)" data-cityid = "210000">辽宁</dd>
+				    <dd class="provinces" onclick="getcityid(event,2)" data-cityid = "640000">宁夏</dd>
+				    <dd class="provinces" onclick="getcityid(event,2)" data-cityid = "630000">青海</dd>
+				    <dd class="provinces" onclick="getcityid(event,2)" data-cityid = "140000">山西</dd>
+				    <dd class="provinces" onclick="getcityid(event,2)" data-cityid = "370000">山东</dd>
+				    <dd class="provinces" onclick="getcityid(event,2)" data-cityid = "610000">陕西</dd>
+				    <dd class="provinces" onclick="getcityid(event,2)" data-cityid = "510000">四川</dd>			  	            
+	  	            <div class="clearfix"></div>	
+	            </dl>
+	            <dl class="provinceslists">
+				    <dt class="cityLetter">Q-Z</dt>
+				    <dd class="provinces" onclick="getcityid(event,2)" data-cityid = "120000">天津</dd>
+				    <dd class="provinces" onclick="getcityid(event,2)" data-cityid = "120000">天津</dd>
+				    <dd class="provinces" onclick="getcityid(event,2)" data-cityid = "540000">西藏</dd>
+				    <dd class="provinces" onclick="getcityid(event,2)" data-cityid = "650000">新疆</dd>
+				    <dd class="provinces" onclick="getcityid(event,2)" data-cityid = "530000">云南</dd>
+				    <dd class="provinces" onclick="getcityid(event,2)" data-cityid = "330000">浙江</dd>		  	            
+	  	            <div class="clearfix"></div>	
+	            </dl>	            
+	        </div>
+	        <div class="tab-pane zoneBody01">
+	            <ul class="citylists" id="city01">
+	            	<li class="provincesNone">您还没有选择省!</li>	  	            	
+	  	            <div class="clearfix"></div>	
+	            </ul>
+	        </div>
+	        <div class="tab-pane zoneBody01">
+	            <ul class="citylists" id="city02">
+	            	<li class="provincesNone">您还没有选择市!</li> 	            	  	            	
+	  	            <div class="clearfix"></div>	
+	            </ul>
+	        </div>
+	        <div class="tab-pane zoneBody01">
+	            <ul class="citylists" id="city03">
+	            	<li class="provincesNone">您还没有选择县!</li>
+	  	            <div class="clearfix"></div>	
+	            </ul>
+	        </div>
+	    </div>
+			  		
+    		
+    		
+    	  		
+    </div>
+   	
+</div> 
+
+
+
+

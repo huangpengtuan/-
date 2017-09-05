@@ -1,0 +1,130 @@
+<!--合伙人申请-->
+<div class="CNavigation">
+	<i class="icon-direction-right CNfloat-left" ng-click='goback()'></i>
+	<span class="Partner-title">返回</span>
+	<div class="CNfloat-right" ng-click='goguize()'>规则</div>
+</div>
+<div class="applyPartner">
+	<div class="hehuoren-explain">
+		<p>
+			<i class="icon-gantanhao"></i>
+			合伙人是家长参与平台经营并获得收益的合作机制。平台每年将限量开放新的合伙人资格供有意愿的家长参与。如有意向，请填写以下资料。详情咨询：400-2293-398。
+		</p>
+	</div>
+	<div class="applyPartner-data">
+	    <!-- 申请表头部tab -->
+	    <ul class="nav applyPartner-tabs" >
+		    <li ><a class="applyPartnertabs applyPartneractive">1.填写申请</a></li>
+		    <li ><a class="applyPartnertabs ">2.结果通知</a></li>
+	    </ul>
+		<!--内容panes -->
+	    <div class="tab-content">
+			<!--1填写申请-->
+		    <div class="tab-pane  active applyPartnertabs1">	    	
+	    		<div class="APData">
+	    			<div class="APData_left">
+	    				您的姓名
+	    			</div>
+	    			<input class="APData_right" type="text" name="names" id="names" value="{{ApplyPartnerDatas.name}}" placeholder="请输入"/>
+	    			<div class="clearfix"></div>	    			
+	    		</div>
+	    		<div class="APData">
+	    			<div class="APData_left">
+	    				您的电话
+	    			</div>
+	    			<input class="APData_right" type="text" name="mobile" id="mobile" value="{{ApplyPartnerDatas.mobile}}" placeholder="请输入"/>
+	    			<div class="clearfix"></div>	    			
+	    		</div>	    	
+	    		<!-- <div class="APData">
+	    			<div class="APData_left">
+	    				验证码
+	    			</div>
+	    			<input class="APData_yzm" type="tel" name="verCode" id="verCode" value="" onkeyup="this.value=this.value.replace(/\D/g,'')"  onafterpaste="this.value=this.value.replace(/\D/g,'')"/>
+	    			<div class="getYZM" ng-click='getYZM()'>获取验证码</div>
+	    			<div class="clearfix"></div>	    			
+	    		</div> -->
+	    		<div class="APData">
+	    			<div class="APData_left textcolorgray">
+	    				选择开通类型
+	    			</div>
+	    			<div class="clearfix"></div>	    			
+	    		</div>	    		    	
+	    		<div class="APData APData_check PartnerActive">
+	    			<i class="icon-Uncheck checksActive" data-NeedMoney='{{partnerCost}}' data-partnerType='1'></i>
+	    			<div class="APData_left">
+	    				合伙人
+	    			</div>
+	    			<div class="APData_right ">
+	    				￥{{partnerCost}}
+	    			</div>
+	    			<div class="clearfix"></div>	    			
+	    		</div>	    	
+	    		<div class="APData APData_check ">
+	    			<i class="icon-Uncheck " data-NeedMoney='{{superPartnerCost}}' data-partnerType='2'></i>
+	    			<div class="APData_left">
+	    				超级合伙人
+	    			</div>
+	    			<div class="APData_right ">
+	    				￥{{superPartnerCost}}
+	    			</div>
+	    			<div class="clearfix"></div>	    			
+	    		</div>	    	
+				<div class="zhifu-bottom">
+					<button ng-click="submitpay()" type="button" class="btn newbtn">下一步</button>
+				</div>
+	    	</div>
+	    	
+	    	
+	    	
+			<!--2.结果通知-->
+		    <div class="tab-pane   applyPartnertabs1">	    	
+				<!--空状态-->
+				<div class="MOnoneState">
+					<i class="{{ApplyPstatesImg}}"></i>
+					<div class="CramState-Title">
+						{{ApplyStateText}}<br/>
+						<span class="ApplyStateText01">{{ApplyStateText01}}</span>												
+					</div>
+				</div>
+		    </div>	    	
+	    	
+	    	
+	    </div>
+		
+		
+		
+		
+		
+		
+		
+		
+	</div>
+	
+	
+
+	
+	
+	
+</div>	
+	
+	
+	
+	
+	
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

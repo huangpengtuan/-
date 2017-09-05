@@ -1,0 +1,98 @@
+<!--补习班支付确认界面-->
+<div class="PartnerPay">
+	<div class="CNavigation">
+		<i class="icon-direction-right CNfloat-left" ng-click='goback()'></i>
+		<span class="Partner-title">返回</span>
+		<div class="CNfloat-right" ng-click='goguize()'>规则</div>
+	</div>	
+	<div class="hehuoren-explain">
+		<p>
+			<i class="icon-gantanhao"></i>
+			请支付足额款项，或将款项打致对公账户。经确认后，合伙人资格正式开通。详情咨询：400-2293-398。
+		</p>
+	</div>	
+	<div class="insure-number">
+		<div class="insure-number01">待支付</div>
+		<div>￥{{needpaymoney}}</div>
+	</div>
+	<div class="AC-biaoti">支付方式</div>	
+	<div class="insure-data">
+		
+		<div class="AC-Text02 AC-active" ng-click="applystateWaY(1)" data-paystyle='1'>
+			<div class="applystate-wy">
+				<i class="icon-Uncheck AC-check"></i>
+				银行转账
+			</div>
+			<div class="clearfix"></div>
+		</div>	
+		
+		<div class="AC-Text02" ng-click="applystateWaY(1)" data-paystyle='2'>
+			<div class="applystate-wy">
+				<i class="icon-Uncheck "></i>
+				微信支付
+			</div>
+			<div class="clearfix"></div>
+		</div>			
+		
+		<div class="AC-Text02 margin-bottom3" ng-click="applystateWaY(2)" data-paystyle='3'>
+			<div class="applystate-wy" >
+				<i class="icon-Uncheck"></i>
+				余额支付
+			</div>
+			<div class="clearfix"></div>
+		</div>
+
+		<div class="kedanSubmit AC-btn" >
+			<a>
+				<button type="button" class="btn btnred" ng-click='submitPay()'>确认付款</button>
+			</a>	
+		</div>			
+	
+	</div>
+
+	
+</div>
+
+
+<!--银行转账膜态框-->
+<div class="TransferAccounts">
+	<div class="CNavigation">
+		<i class="icon-direction-right CNfloat-left" ng-click='goback()'></i>
+		<span class="Partner-title">返回</span>
+	</div>
+	<ul >
+		<li class="zhuanzhang">
+			<div class="media">
+			  	<div class="media-left col-xs-3 col-sm-3 col-md-3">
+					户名
+			  	</div>
+			  	<div class="media-right col-xs-9 col-sm-9 col-md-9">
+					深圳市第壹快乐教育文化有限公司
+			 	</div>
+			</div>
+			<div class="media">
+				<div class="media-left col-xs-3 col-sm-3 col-md-3">
+						账号
+				</div>
+				<div class="media-right col-xs-9 col-sm-9 col-md-9">
+						4000029819200263376
+				</div>
+			</div>
+			<div class="media">
+				<div class="media-left col-xs-3 col-sm-3 col-md-3">
+						银行
+				</div>
+				<div class="media-right col-xs-9 col-sm-9 col-md-9">
+						中国工商银行
+				</div>
+			</div>						
+		</li>
+		<li class="zhifu-bottom">
+			<button ng-click="BankpayfadeOut()" type="button" class="btn newbtn">我已转账</button>
+		</li>
+	</ul>	
+</div>
+
+
+
+

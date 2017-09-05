@@ -1,0 +1,31 @@
+<div>
+	<ul class="wallet-top">
+		<li class="wallet-top1 border-bottom10">
+			<div class="float-left">
+				<span class="wallet-number textcolorred fontws">￥{{users.balanceTotal}}</span>
+				<span>余额</span>
+			</div>
+			<div class="float-right FlowingWater">
+				<a href="#/FWater/" class="textcolorblue">查看流水</a>
+			</div>
+			<div class="clearfix"></div>
+		</li>
+		<li class="wallet-top2">
+			<div class="float-left ">
+				现&nbsp;&nbsp;&nbsp;金&nbsp;:&nbsp;{{users.balance}}
+			</div>
+			<div class="float-right border-left1">
+				平台金&nbsp;:&nbsp;{{users.partnerCapital}}
+			</div>
+			<span class="clearfix"></span>
+		</li>		
+	</ul>
+	<span class="instruction">
+		<i class="icon-gantanhao"></i>
+		平台金只限平台内业务使用，不可用作提现。
+	</span>
+	<div class="wallet-top3">
+		<a href="#/recharge/"><button type="button" class="btn newbtn">充值</button></a>		
+		<a href="" ng-click='Withdrawalss()'><button type="button" class="btn btngray">提现</button></a>
+	</div>
+</div>

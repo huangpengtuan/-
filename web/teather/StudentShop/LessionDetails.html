@@ -1,0 +1,163 @@
+<!--课程详情-->
+<div class="LessionDetails">
+	<div class="CNavigation">
+		<i class="icon-direction-right CNfloat-left" ng-click='goback()'>&nbsp;&nbsp;课程详情</i>
+		<!--<div class="CNfloat-right">编辑</div>-->
+	</div>	
+	
+	<div class="xian05"></div>
+	<section class="LessionDetails_A">
+		<div class="LessionDetails_A_name">
+			{{lessionDetail.course_name}}
+			<div class="Surplus">￥{{lessionDetail.preferential_price}}</div>
+		</div>
+		<div class="LessionDetails_A_Label">
+			<div class="LessionLabel" ng-if='lessionDetail.try_out == 1'>免费试课</div>
+			<div class="LessionLabel" ng-if='lessionDetail.discount != null'>优惠课程</div>
+		</div>
+		<div class="LessionDetails_A_text">
+			共{{lessionDetail.course_hour}}个课时
+			<div class="Surplus">剩余{{lessionDetail.introduction}}课时</div>
+		</div>
+	</section>
+	
+	<div class="YYList06">		
+		<div class="border-bottom1">课程简介</div>
+	</div>
+	<div class="brief">
+		<p class="brief_child">
+			{{lessionDetail.introduction}}
+		</p>
+	</div>	
+	
+	<div class="xian05"></div>
+	<div class="YYList01 border-bottom1" ng-click='CSCardfadeIn()'>
+		<div class="YYList_L">课程表</div>			
+		<i class="icon-direction-left CreateLesson_Company"></i>
+	</div>	
+	
+	<div class="xian05"></div>
+	<div class="YYList06" ng-click="studentListShow('.StudentList')">		
+		<div class="float-left">学员信息</div>
+		<i class="icon-direction-left" id="student_info"></i>
+		<div class="float-right textcolorgray">共{{lessionDetail.studentCout}}位学员</div>
+	</div>	
+	<div class="StudentList">
+		<div class="border-top">
+			<!--一个学员-->
+			<div class="Student" ng-repeat='student in lessionDetail.studentList'>
+				<img src="img/hebenT.png" alt="" class="StudentPortrait"/>
+				<div class="StudentName">{{student.children_name}}&nbsp;&nbsp;男</div>
+			</div>			
+					
+			
+		</div>
+	</div>	
+	
+	<div class="xian05"></div>
+	<div class="YYList06" ng-click="studentListShow('.StudentList01')">		
+		<div class="float-left">课程评价</div>
+		<i class="icon-direction-left" id="student_info"></i>
+		<div class="float-right textcolorgray">共26条</div>
+	</div>	
+	<div class="StudentList01">
+		<div class="">
+			<!--一个条评论-->
+			<div class="CommentList border-top">
+				<div class="HeadPortrait">
+					<img src="img/hebenT.png" alt="" class="PortraitImg"/>
+				</div>
+				<div class="CommentData">
+					<div class="CommentData_A">
+						<div class="CommentName">汪洋明</div>
+						<div class="CommentTime">2017/08/18 10:01</div>
+						<div class="clearfix"></div>
+					</div>
+					<div class="CommentData_B">
+						站酷评论站酷评论站酷评论站酷评论站酷评论站酷评论站酷评论站酷评论站酷评论站酷评论站酷评论站酷评论站酷评论站酷评论站酷评论站酷评论站酷评论站酷评论
+					</div>
+				</div>
+				<div class="clearfix"></div>				
+			</div>
+			
+			<!--一个条评论-->
+			<div class="CommentList border-top">
+				<div class="HeadPortrait">
+					<img src="img/hebenT.png" alt="" class="PortraitImg"/>
+				</div>
+				<div class="CommentData">
+					<div class="CommentData_A">
+						<div class="CommentName">汪洋明</div>
+						<div class="CommentTime">2017/08/18 10:01</div>
+						<div class="clearfix"></div>
+					</div>
+					<div class="CommentData_B">
+						站酷评论站酷评论站酷评论站酷评论站酷评论站酷评论站酷评论站酷评论站酷评论站酷评论站酷评论站酷评论站酷评论站酷评论站酷评论站酷评论站酷评论站酷评论
+					</div>
+				</div>
+				<div class="clearfix"></div>				
+			</div>			
+			
+			
+		</div>
+
+		
+	</div>		
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+</div>
+
+
+
+
+
+<!--课程表-->	
+<div id="ClassScheduleCard">
+	<div class="CNavigation">
+		<i class="icon-direction-right CNfloat-left" ng-click='CSCardfadeOut()'>&nbsp;&nbsp;课程表</i>		
+	</div>	
+	<section class="CSCard">
+		<div class="CSCard_header">
+			<div class="CSCard_header_T">时段&nbsp;{{Schedule.msg}}</div>
+			<div class="CSCard_header_Title">
+				<div class="timeList">时间</div>
+				<div class="timeList">上午</div>
+				<div class="timeList">下午</div>
+				<div class="timeList">晚上</div>
+			</div>			
+		</div>
+		<!--列表-->
+		<div class="CSCard_data">
+			<!--一条列表信息--timeData-active为选择状态-->
+			<div class="CSCard_header_Title" ng-repeat='itemList in Schedule.object track by $index' on-finish-render>
+				<div class="timeData">{{itemList[0].weekDay}}<br />{{itemList[0].dateTiem}}</div>
+				<div ng-class="{'timeData':true,'selectToggle':true,'timeData-active':itemList[0].selected == 1}"  data-startTime='{{itemList[0].start_time}}'></div>
+				<div ng-class="{'timeData':true,'selectToggle':true,'timeData-active':itemList[1].selected == 1}" data-startTime='{{itemList[1].start_time}}'></div>
+				<div ng-class="{'timeData':true,'selectToggle':true,'timeData-active':itemList[2].selected == 1}" data-startTime='{{itemList[2].start_time}}'></div>
+			</div>
+
+			<div class="clearfix"></div>
+		</div>	
+		
+	</section>
+		
+	<button ng-click='Determine()' class="yuanyuanBTN01">确&nbsp;&nbsp;定</button>
+</div>
+
+
+
+
+
+
+
+

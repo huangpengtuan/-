@@ -1,0 +1,129 @@
+<!--老师--发起结课-->
+<div class="margin-bottom100">
+	<div class="linetxt">发起结课</div>
+	<section class="kedantag">
+		<form class="">	
+			<ul>
+				<li class="kedantag-group ">
+		    		<span class="group-left-text">实际收费时长(小时)</span>
+		        	<select name="classHour" class="group-right-sele">
+		        		<option value="" class="textcolorgray">点击选择</option>
+		        		<option value="1" ng-if="class_hour >= 1">1（小时）</option>	
+		        		<option value="2" ng-if="class_hour >= 2">2（小时）</option>
+		        		<option value="3" ng-if="class_hour >= 3">3（小时）</option>
+		        		<option value="4" ng-if="class_hour >= 4">4（小时）</option>
+		        		<option value="5" ng-if="class_hour >= 5">5（小时）</option>
+		        		<option value="6" ng-if="class_hour >= 6">6（小时）</option>
+		        		<option value="7" ng-if="class_hour >= 7">7（小时）</option>
+		        		<option value="8" ng-if="class_hour >= 8">8（小时）</option>
+		        		<option value="9" ng-if="class_hour >= 9">9（小时）</option>
+		        		<option value="10" ng-if="class_hour >= 10">10（小时）</option>
+		        		<option value="11" ng-if="class_hour >= 11">11（小时）</option>
+		        		<option value="12" ng-if="class_hour >= 12">12（小时）</option>
+		        		<option value="13" ng-if="class_hour >= 13">13（小时）</option>
+		        		<option value="14" ng-if="class_hour >= 14">14（小时）</option>
+		        		<option value="15" ng-if="class_hour >= 15">15（小时）</option>
+		        		<option value="16" ng-if="class_hour >= 16">16（小时）</option>
+		        		<option value="17" ng-if="class_hour >= 17">17（小时）</option>
+		        		<option value="18" ng-if="class_hour >= 18">18（小时）</option>
+		        		<option value="19" ng-if="class_hour >= 19">19（小时）</option>
+		        		<option value="20" ng-if="class_hour >= 20">20（小时）</option>
+		        	</select>
+		        	<i class="icon-direction-left"></i>
+		        	<div class="clearfix"></div>			        	
+	    		</li>	
+	    		
+				<li class="kedantag-group" id="selectDateYear">
+		    		<span class="group-left-text">实际上课日期</span>			        
+		        	<input class="group-right-sele sele-time" name="appDate" id="appDate" placeholder="点击选择"/>
+		        	<i class="icon-direction-left"></i>
+		        	<div class="clearfix"></div>			        	
+	    		</li>	
+	    		
+				<li class="kedantag-group" id="selectDateStart">
+		    		<span class="group-left-text">实际开课时间</span>			        
+					<input class="group-right-sele sele-time" name="TimeStard" id="TimeStard" placeholder="点击选择"/>
+		        	<i class="icon-direction-left"></i>
+		        	<div class="clearfix"></div>			        	
+	    		</li>
+	    		
+				<li class="kedantag-group" id="selectDateEnd">
+		    		<span class="group-left-text">实际结课时间</span>			        
+		        	<input class="group-right-sele sele-time" name="TimeEnd" id="TimeEnd" placeholder="点击选择"/>
+		        	<i class="icon-direction-left"></i>
+		        	<div class="clearfix"></div>			        	
+	    		</li>
+
+				<li class="data-group border-top10">
+					<div class="float-left detailed-Explain">
+						课程报告
+					</div>
+					<div class="clearfix"></div>
+					<textarea class="RequestClass-are" rows="4" placeholder="课程报告..." name='report'></textarea>
+				</li>	    		
+	    		
+
+		
+			</ul>			
+		</form>	
+	</section>
+	<div class="kedanSubmit">
+		<a href="#/CEndPre/{{classId}}" ng-click='SCEnd()'>
+			<button type="button" class="btn btnred">生成结课报告</button>
+		</a>	
+	</div>
+	
+	
+	
+	
+	
+</div>
+
+
+
+
+<!--时间控件-->
+<script src="js/time/mobiscroll.core-2.5.2.js" type="text/javascript"></script>
+<script src="js/time/mobiscroll.core-2.5.2-zh.js" type="text/javascript"></script>
+<script src="js/time/mobiscroll.datetime-2.5.1.js" type="text/javascript"></script>
+<script src="js/time/mobiscroll.datetime-2.5.1-zh.js" type="text/javascript"></script>
+<script src="js/time/mobiscroll.android-ics-2.5.2.js" type="text/javascript"></script>
+<!--时间控件初始化-->
+<script type="text/javascript">
+	
+	 $(document).ready(function(){
+		
+				var currYear = (new Date()).getFullYear();
+				var opt = {};
+				opt.date = {
+					preset: 'date'
+				};
+
+				opt.datetime = {
+					preset: 'datetime'
+				};
+				opt.time = {
+					preset: 'time'
+				};
+				opt.default = {
+					theme: 'wp light', //皮肤样式
+					display: 'modal', //显示方式 
+					mode: 'scroller', //日期选择模式
+					lang: 'zh',
+					startYear: currYear - 10, //开始年份
+					endYear: currYear + 10 //结束年份
+				};   
+				
+				
+				$("#appDate").val('').scroller('destroy').scroller($.extend(opt['date'], opt['default']));
+				var optDateTime = $.extend(opt['datetime'], opt['default']);
+				var optTime = $.extend(opt['time'], opt['default']);
+
+				$("#TimeEnd").mobiscroll(optTime).time(optTime); 
+				$("#TimeStard").mobiscroll(optTime).time(optTime);
+
+			});   
+    
+</script>
+
+	

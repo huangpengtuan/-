@@ -1,0 +1,93 @@
+<!--申请退款-->
+<div class="refundApply">
+	<form>
+		<div class="RAlist">
+			<div class="float-left">处理方式</div>
+			<i class="icon-direction-left float-right textcolorgray"></i>
+			<input ng-click='HFframe01fadeIn()'  readonly="readonly" type="text" value="" class="float-right " placeholder="请选择" id="chulistate"/>			
+		</div>
+		<div class="RAlist">
+			<div class="float-left">退款金额</div>
+			<i class="float-right">&nbsp;&nbsp;&nbsp;&nbsp;</i>
+			<input type="text" value="" class="float-right " placeholder="￥0"/>
+		</div>	
+		<div class="RAlist">
+			<div class="float-left">退款原因</div>
+			<i class="icon-direction-left float-right textcolorgray"></i>
+			<input ng-click='HFframe02fadeIn()'  readonly="readonly" type="text" value="" class="float-right " placeholder="请选择" id="tuikuanR"/>			
+		</div>
+		<div class="RAreason">
+			退款说明
+		</div>
+		<div class="RAreasonText">
+			<textarea name="" rows="6" cols="" class="RAreasonTextIn" placeholder="请输入..."></textarea>
+		</div>
+		<div class="ODCreateTime">
+			<div class="ODCTimebox">
+				订单如有疑问，可拨打机构电话进行沟通：13522564562</br>	
+				官方客服电话：422-152-625
+			</div>
+		</div>
+	</form>
+	<!--处理方式膜态框-->
+	<div class="HandleState01">
+		<div class="cancalText">
+			<div class="cancalTitle">请选择处理方式</div>
+			<div class="HandFilmframe01">
+				<div class="float-left HSC01-text">退还未上课部分金额</div>
+				<i class="icon-Uncheck HSC01 float-right"></i>
+			</div>
+			<div class="HandFilmframe01" style="border-bottom: none;">
+				<div class="float-left HSC01-text">自定义退款金额</div>
+				<i class="icon-Uncheck HSC01 float-right"></i>
+			</div>
+		</div>
+	</div>			
+	<!--选择原因膜态框-->
+	<div class="HandleState02">
+		<div class="cancalText">
+			<div class="cancalTitle">请选择退款原因</div>
+			<div class="HandFilmframe02">
+				<div class="float-left HSC02-text">不想要了</div>
+				<i class="icon-Uncheck HSC02 float-right"></i>
+			</div>
+			<div class="HandFilmframe02">
+				<div class="float-left HSC02-text">多拍/拍错</div>
+				<i class="icon-Uncheck HSC02 float-right"></i>
+			</div>
+			<div class="HandFilmframe02">
+				<div class="float-left HSC02-text">没有效果</div>
+				<i class="icon-Uncheck HSC02 float-right"></i>
+			</div>			
+			<div class="HandFilmframe02" style="border-bottom: none;">
+				<div class="float-left HSC02-text">其他</div>
+				<i class="icon-Uncheck HSC02 float-right"></i>
+			</div>	
+			<div class="cancalButton">
+				<button class="float-left" ng-click='HFframe02fadeOut()'>取消</button>
+				<button class="float-right" ng-click='HFframe02fadeOutR()'>确认</button>
+			</div>
+		</div>
+	</div>	
+	
+	
+	<!--底部按钮-->	
+	<div class="ODpayOrders">
+		<div class="float-right">
+			<button class="MO-Button01">&nbsp;&nbsp;&nbsp;取消&nbsp;&nbsp;&nbsp;</button>
+			<button class="MO-Button02">提交申请</button>
+		</div>		
+	</div>	
+	
+</div>	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	

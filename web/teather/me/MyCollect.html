@@ -1,0 +1,36 @@
+<!--我的收藏-->
+<div class="MyCollect">
+	<div class="CNavigation">
+		<i class="icon-direction-right CNfloat-left" ng-click='goback()'>&nbsp;&nbsp;我的收藏</i>
+	</div>
+	
+    <div class="MyCollect-list" ng-repeat='Collects in CollectList' on-finish-render>
+        <div class="MyCollect-container">
+        	<a class="MyCollect-data" ng-href="{{Collects.url}}">					       		
+				<img src="{{Collects.image}}" alt="" class="MyCollect-img"/>
+				<div class="MyCollect-text">
+					<div class="MyCollect-name01">{{Collects.title}}</div>
+					<div class="MyCollect-name02" ng-if='Collects.type == 1 || Collects.type == 2 || Collects.type == 3'>￥{{Collects.price}}</div>
+					<div class="MyCollect-name03" ng-if='Collects.type == 4'>{{Collects.title}}</div>
+				</div>
+				<div class="positionT">{{Collects.typeText}}</div>
+				<div class="positionB">{{Collects.in_time | date:'yyyy-MM-dd'}}</div>
+        	</a>
+        	<div class="Mychilds-delete" ng-click='CollectDelete(Collects.id)'>
+        		<i class="icon-delete"></i>
+        		删除
+        	</div>
+        </div>
+    </div>
+	
+
+		
+</div>
+
+
+
+
+
+
+
+

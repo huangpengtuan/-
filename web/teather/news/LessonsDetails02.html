@@ -1,0 +1,183 @@
+<!--课次详情--待结课/待确认--状态02-->
+<div class="LessonsDet">
+	<div class="CNavigation">
+		<i class="icon-direction-right CNfloat-left"></i>
+		<div class="CNfloat-left-Text" ng-click='goback(cramLessondata.courser_id)'>返回</div>
+	</div>
+	<div class="linetxt">课次详情</div>
+	<section>
+		<ul class="previewdata">
+			<li class="data-group">
+				<div class="float-left">
+					发起结课人数
+				</div>
+				<div class="float-right">
+					{{cramLessondata.studentCount}}人
+				</div>
+				<div class="clearfix"></div>
+			</li>
+			
+			
+			<li class="kedantag-group ">
+	    		<span class="group-left-text">未确认人数</span>
+	        	<input class="group-right-sele sele-time" name="" id="sele-students" placeholder="{{cramLessondata.waitConfirmedCount}}人" ng-click='Sestudents()' readonly="readonly"/>
+	        	<i class="icon-direction-left"></i>
+	        	<div class="clearfix"></div>			        	
+    		</li>
+    		
+    		
+			<li class="kedantag-group ">
+	    		<span class="group-left-text">已拒绝结课人数</span>
+	        	<input class="group-right-sele sele-time" name="" id="sele-students" placeholder="{{cramLessondata.rejectCount}}人" ng-click='Sestudents01()' readonly="readonly"/>
+	        	<i class="icon-direction-left"></i>
+	        	<div class="clearfix"></div>			        	
+    		</li>   
+    		
+    		
+			<li class="data-group">
+				<div class="float-left">
+					预计上课时长
+				</div>
+				<div class="float-right">
+					{{cramLessondata.attend_class_hour}}小时
+				</div>
+				<div class="clearfix"></div>
+			</li>
+			<li class="data-group">
+				<div class="float-left">
+					预计上课日期
+				</div>
+				<div class="float-right">
+					{{cramLessondata.course_date}}
+				</div>
+				<div class="clearfix"></div>
+			</li>
+			<li class="data-group">
+				<div class="float-left">
+					开课时间
+				</div>
+				<div class="float-right">
+					{{cramLessondata.course_time}}
+				</div>
+				<div class="clearfix"></div>
+			</li>			
+			<li class="data-group">
+				<div class="float-left">
+					结课时间
+				</div>
+				<div class="float-right">
+					{{cramLessondata.over_time}}
+				</div>
+				<div class="clearfix"></div>
+			</li>		
+			
+			
+			
+			
+			<li class="data-group">
+				<div class="float-left">
+					上课地点
+				</div>
+				<div class="clearfix"></div>
+				<div class="previewdata-are">详细地址：{{cramLessondata.address}}</div>
+			</li>	
+								
+			<li class="data-group border-top10">
+				<div class="float-left detailed-Explain">
+					课程规划
+				</div>
+				<div class="clearfix"></div>
+				<div class="Explain-are">{{cramLessondata.plan}}</div>
+			</li>
+			<li class="data-group-time">
+				<div class="float-right">
+					{{ cramLessondata.in_time | date:'yyyy-MM-dd  HH:mm'}}
+				</div>
+				<div class="clearfix"></div>
+			</li>
+										
+						
+		</ul>		
+		<div class="bottomsekuai"></div>
+	</section>	
+	
+	
+	
+</div>
+
+
+
+<!--未确认学生膜态框-->
+<div id="Sestudents">
+	<div class="CNavigation">
+		<i class="icon-direction-right CNfloat-left"></i>
+		<div class="CNfloat-left-Text" ng-click='cancelSelect()'>返回</div>
+	</div>
+	<div class="Ses-tabs">
+		<div class="Ses-tabs-L">未确认学员</div>
+	</div>	
+	<ul>
+		<!--一个学生信息-->
+		<li class="BC-listTop BC-active" ng-repeat='Student in UnconfirmedStudent'>
+			<img ng-src="{{Student.avatar}}" alt="" class="BC-listTopIMG"/>
+			<div class="BC-listTopName">
+				{{Student.name}}				
+			</div>
+		</li>
+		
+		<li class="BC-listTop-tishi">
+			72小时后系统自动确认结课
+		</li>		
+	</ul>
+</div>
+
+
+
+<!--拒绝确认学生膜态框-->
+<div id="Sestudents01">
+	<div class="CNavigation">
+		<i class="icon-direction-right CNfloat-left"></i>
+		<div class="CNfloat-left-Text" ng-click='cancelSelect()'>取消</div>
+	</div>
+	<div class="Ses-tabs">
+		<div class="Ses-tabs-L">拒绝结课学员</div>
+	</div>
+	<ul>
+		<!--一个学生信息-->
+		<li class="RS-listTop" ng-repeat='Student in rejectStudent' on-finish-render>
+			<img ng-src="{{Student.avatar}}" alt="" class="BC-listTopIMG"/>
+			<div class="refuStudents">
+				<div class="refuStudents-top">
+					{{Student.name}}
+					<a href="tel:{{Student.phone}}" class="icon-cramDe-t RS-call"></a>
+				</div>
+				<div class="refuStudents-bottom">
+					{{Student.reasons_refusal}}
+				</div>
+				<div class="refuStudents-bottom" ng-if='!Student.reasons_refusal'>
+					该家长没有填写拒绝理由，如有疑问，请咨询该家长。
+				</div>
+			</div>
+			<i class="icon-Uncheck BC-check01" data-RStudentId='{{Student.id}}'></i>
+		</li>
+		
+		
+		<li class="bottomsekuai"></li>	
+	</ul>
+	<div class="RSBottom">
+		<a class="GuitarAgain" ng-click='GuitarAgain(cramLessondata.id)'>重新发起结课</a>
+	</div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+

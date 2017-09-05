@@ -1,0 +1,30 @@
+
+<!--评价展示-->
+<div class="assShow">
+	<div class="assST">
+		<!--<div class="textcolorgray">追评&nbsp;：</div>-->
+		<span class="fontw textcolorred">{{comments.parent_score}}分</span>
+		<span>{{comments.content}}</span>
+		<span class="textcolorgray assSTime">{{comments.in_time | date:'yyyy-MM-dd HH:mm'}}</span>
+	</div>
+	
+	<div class="assST" ng-if='comments.add_content'>
+		<div class="textcolorgray">追评&nbsp;：</div>
+		<span>{{comments.add_content}}</span>
+		<span class="textcolorgray assSTime">{{comments.add_content_time | date:'yyyy-MM-dd HH:mm'}}</span>
+	</div>	
+	
+	
+	<div class="kedanSubmit" ng-if='!comments.add_content'>
+		<a href="#/assAgain/{{teatherId}}/{{currId}}" >
+			<button type="button" class="btn btnred">修改评价</button>
+		</a>	
+	</div>	
+</div>	
+	
+	
+	
+	
+	
+	
+	

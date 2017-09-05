@@ -1,0 +1,58 @@
+<!--补习班详情之补习班资料详情-->
+<div class="DDetails">
+	<!--头部-->
+	<div class="DDetailsTop">
+		<div class="CDTopD">
+			<a href="#/DDetails/{{CramData.id}}" class="listTOP">				
+				<div class="listleft">
+					<div class="cramWidth">
+						<img ng-src="{{CramData.class_avatar}}" alt="" />
+					</div>										
+				</div>
+			
+				<div class="listright">
+					<div class="listright01">
+						<div class="listright01-L" ng-bind='CramData.class_name'></div>						
+						<div class="clearfix"></div>
+					</div>
+					<div class="listright02">
+						<div class="listright02-start">
+							<span ng-if="CramData.eva_star >= 1"><img src="img/start10.png"/></span>
+				    		<span ng-if="CramData.eva_star >= 2"><img src="img/start10.png"/></span>
+				    		<span ng-if="CramData.eva_star >= 3"><img src="img/start10.png"/></span>
+				    		<span ng-if="CramData.eva_star >= 4"><img src="img/start10.png"/></span>
+				    		<span><img ng-src="{{stars}}"/></span>			    		
+				    		<span ng-if="CramData.eva_star < 1"><img src="img/start0.png"/></span>
+				    		<span ng-if="CramData.eva_star < 2"><img src="img/start0.png"/></span>
+				    		<span ng-if="CramData.eva_star < 3"><img src="img/start0.png"/></span>
+				    		<span ng-if="CramData.eva_star < 4"><img src="img/start0.png"/></span>
+						</div>
+						<div class="listright02-grade">&nbsp;&nbsp;{{CramData.eva_star}}</div>
+						<div class="clearfix"></div>
+					</div>
+				</div>
+				<div class="clearfix"></div>			
+			</a>		
+		</div>
+	</div>
+	
+	<div class="DDetailsCenter">
+		<h4>业务介绍</h4>
+		<div ng-bind='CramData.about'></div>
+		
+	</div>
+	
+	<div class="DDetailsCenter">
+		<h4 class="">地址</h4>
+		<div ng-bind='CramData.address'></div>
+	</div>	
+	
+	<div class="DDetailsCenter">
+		<h4 class="">联系方式</h4>
+		<div>{{CramData.teacher_phone}}&nbsp;&nbsp;&nbsp;&nbsp;{{CramData.teacher_name}}</div>
+	</div>	
+</div>
+
+
+
+

@@ -1,0 +1,352 @@
+<script src="js/plugins/swiper.min.js"></script>
+
+<!--发现主界面(老师)-->
+	
+<div class="margin-bottom50" id='finds'>
+	<div>		
+	    <!-- 头部tab -->
+	    <ul class="nav find-tabs" >
+	    	<li ><a class="findtabs activeFind">商城</a></li>
+	    	<li ><a href="/t/hot" class="findtabs">找生源</a></li>		   
+		    <li ><a class="findtabs ">会员</a></li>
+	    </ul>
+
+		<header>
+			 <!-- Swiper -->
+		    <div class=" swiper-container">
+		        <div class="swiper-wrapper">
+		            <a ng-repeat='banner in inderBanner track by $index' href="{{banner.image_url}}" class="swiper-slide" on-finish-render><img ng-src="{{banner.image_key}}"/></a>
+		        </div>
+		        <!-- Add Pagination -->
+				 <div class="swiper-pagination"></div>
+			</div>
+		</header>
+
+		<!--内容panes -->
+	    <div class="tab-content">
+	    	
+	    	
+			<!--商城模块-->
+		    <div class="tab-pane active findtabs1 border-bottom10">			    	
+				<!--学习-->
+				<!--<ul class="home-center">
+					<li class="FSD-child">
+						<ul>
+							<li class="Mall">
+								<a href="" >								
+									<div class="">
+										<img class="Mall-img"  src="img/s08.png"/>
+									</div>
+									<div class="MallName">学习</div>
+								</a>
+							</li>
+							<li class="Mall">
+								<a href="" >								
+									<div class="">
+										<img class="Mall-img"  src="img/s09.png"/>
+									</div>
+									<div class="MallName">生活</div>
+								</a>
+							</li>
+							<li class="Mall">
+								<a href="" >								
+									<div class="">
+										<img class="Mall-img"  src="img/s10.png"/>
+									</div>
+									<div class="MallName">运动</div>
+								</a>
+							</li>
+							<li class="Mall">
+								<a href="" >								
+									<div class="">
+										<img class="Mall-img"  src="img/s11.png"/>
+									</div>
+									<div class="MallName">健康</div>
+								</a>
+							</li>							
+							<div class="clearfix"></div>
+						</ul>
+					</li>				
+				</ul>-->
+				<!--教育前线-->
+				<ul class="home-center border-top">
+					<li class="FSD">
+						<a href="">
+							<div class="float-left jyzx">教育<br>前线</div>
+							<div class="float-left jyzx02">
+								<a href="/api/mall/toutiaoDetail?id={{newslist.toutiao[0].id}}" class="hornGes">
+									<i class="icon-horn"></i>
+									{{newslist.toutiao[0].title}}
+								</a>
+								<a href="/api/mall/toutiaoDetail?id={{newslist.toutiao[1].id}}" class="hornGes">
+									<i class="icon-gesture"></i>
+									{{newslist.toutiao[1].title}}
+								</a>							
+							</div>
+							<div class="rightop FSD-rightimg">
+								<i class="icon-direction-left textcolorgray"></i>
+							</div>
+							<div class="clearfix"></div>
+						</a>
+
+					</li>
+				</ul>				
+				<!--办公用品-->
+				<ul class="home-center border-top10">
+					<!--<li class="FSD">
+						<div class="float-left">办公用品</div>
+						<a class="float-right FSD-rightimg">
+							<i class="icon-direction-left textcolorgray"></i>
+						</a>
+						<div class="clearfix"></div>
+					</li>-->
+					<li class="Hot-activity">
+						<div>
+							<a href="/api/mall/goodsDetail?id={{mallGoods.id}}&goodsCode={{mallGoods.goods_code}}" class="goods" ng-repeat='mallGoods  in newslist.mallGoods'>
+								<img class="goodsImg" ng-src="{{mallGoods.cover_image_key}}" alt="" />
+								<div class="goodsText">
+									<span class="textcolorred02 float-left">￥{{mallGoods.sale_price}}</span>
+									<span class="textcolorgray float-right goodsMan">{{mallGoods.sale_nums}}人购买</span>
+									<div class="clearfix"></div>
+								</div>
+								<div class="goodsName">{{mallGoods.goods_name}}</div>
+							</a>	
+	
+							<div class="clearfix"></div>
+						</div>
+					</li>			
+				</ul>				
+				<!--旅行必备-->
+				<!--<ul class="home-center">
+					<li class="FSD">
+						<div class="float-left">旅行必备</div>
+						<a class="float-right FSD-rightimg">
+							<i class="icon-direction-left textcolorgray"></i>
+						</a>
+						<div class="clearfix"></div>
+					</li>
+					<li class="Hot-activity">
+						<div>
+							<a class="goods float-left">
+								<img class="goodsImg" src="img/s04.png" alt="" />
+								<div class="goodsText">
+									<span class="textcolorred2 float-left">￥13</span>
+									<span class="textcolorgray float-right goodsMan">2622人购买</span>
+									<div class="clearfix"></div>
+								</div>
+								<div class="goodsName">牙刷杯套装</div>
+							</a>	
+							<a class="goods float-right">
+								<img class="goodsImg" src="img/s05.png" alt="" />
+								<div class="goodsText">
+									<span class="textcolorred2 float-left">￥58</span>
+									<span class="textcolorgray float-right goodsMan">1522人购买</span>
+									<div class="clearfix"></div>
+								</div>
+								<div class="goodsName">密封衣袋</div>
+							</a>	
+							<div class="clearfix"></div>
+						</div>
+					</li>			
+				</ul>				-->
+				<!--礼品套装-->
+				<!--<ul class="home-center">
+					<li class="FSD">
+						<div class="float-left">礼品套装</div>
+						<a class="float-right FSD-rightimg">
+							<i class="icon-direction-left textcolorgray"></i>
+						</a>
+						<div class="clearfix"></div>
+					</li>
+					<li class="Hot-activity">
+						<div>
+							<a class="goods float-left">
+								<img class="goodsImg" src="img/s06.png" alt="" />
+								<div class="goodsText">
+									<span class="textcolorred2 float-left">￥80</span>
+									<span class="textcolorgray float-right goodsMan">2622人购买</span>
+									<div class="clearfix"></div>
+								</div>
+								<div class="goodsName">喜字茶具套装</div>
+							</a>	
+							<a class="goods float-right">
+								<img class="goodsImg" src="img/s07.png" alt="" />
+								<div class="goodsText">
+									<span class="textcolorred2 float-left">￥158</span>
+									<span class="textcolorgray float-right goodsMan">1522人购买</span>
+									<div class="clearfix"></div>
+								</div>
+								<div class="goodsName">伴手回礼</div>
+							</a>	
+							<div class="clearfix"></div>
+						</div>
+					</li>			
+				</ul>				-->
+		    </div>		    	
+	    	
+	    	
+	    	<!--找生源-->
+	    	<div class="tab-pane findtabs1 border-bottom10">
+	    		
+	    		
+	    		
+	    	</div>	    	
+	    	
+	    	
+	    	<!--会员专享内容-->
+		    <div class="tab-pane  findtabs1 border-bottom10">		    	
+				<!--精选-->
+				<ul class="home-center ">
+					<li class="FSD">
+						<div class="float-left">精选</div>
+						<a class="float-right FSD-rightimg">
+							<i class="icon-direction-left textcolorgray"></i>
+						</a>
+						<div class="clearfix"></div>
+					</li>
+					<li class="FSD-child">
+						<ul>
+							<li class="FSD-child01">
+								<a href="">
+									
+									<img class="FSD-child01-img"  src="img/f03.png"/>
+								</a>
+							</li>
+							<li class="FSD-child01">
+								<a href="">
+									
+									<img class="FSD-child01-img" src="img/f04.png"/>
+								</a>
+							</li>
+							<li class="FSD-child01">
+								<a href="">
+									
+									<img class="FSD-child01-img" src="img/f05.png"/>
+								</a>
+							</li>						
+							<div class="clearfix"></div>
+						</ul>
+					</li>
+				</ul>			
+	
+				<!--线下活动-->
+				<ul class="home-center ">
+					<li class="FSD">
+						<div class="float-left">线下活动</div>
+						<a class="float-right FSD-rightimg">
+							<i class="icon-direction-left textcolorgray"></i>
+						</a>
+						<div class="clearfix"></div>
+					</li>
+					<li class="Hot-activity">
+						<ul>
+							<li class="">
+								<a href="">								
+									<img class="FSD-child01-img"  src="img/f06.png"/>
+								</a>
+							</li>
+	
+						</ul>
+					</li>
+					<li class="Hot-activity">
+						<ul>
+							<li class="">
+								<a href="">								
+									<img class="FSD-child01-img"  src="img/f07.png"/>
+								</a>
+							</li>
+	
+						</ul>
+					</li>				
+				</ul>
+				<!--师资交流-->
+				<ul class="home-center">
+					<li class="FSD">
+						<div class="float-left">师资交流</div>
+						<a class="float-right FSD-rightimg">
+							<i class="icon-direction-left textcolorgray"></i>
+						</a>
+						<div class="clearfix"></div>
+					</li>
+					<li class="FSD-child">
+						<ul>
+							<li class="FSD-child01">
+								<a href="" class="child04">								
+									<div class="child01rgba">
+										<img class="FSD-child04-img"  src="img/f08.png"/>
+									</div>
+									<div class="child01Name">李大怡</div>
+									<div class="child01Bus">课单交易量:2654单</div>	
+									<div class="heads">
+										<div class="headscity">北京</div>
+										<img src="img/heads01.jpg" alt="" />
+									</div>
+								</a>
+							</li>
+							<li class="FSD-child01">
+								<a href="" class="child04">								
+									<div class="child01rgba">
+										<img class="FSD-child04-img"  src="img/f10.png"/>
+									</div>
+									<div class="child01Name">陈小香</div>
+									<div class="child01Bus">课单交易量:1694单</div>	
+									<div class="heads">
+										<div class="headscity">上海</div>
+										<img src="img/heads02.jpg" alt="" />
+									</div>
+								</a>
+							</li>
+							<li class="FSD-child01">
+								<a href="" class="child04">								
+									<div class="child01rgba">
+										<img class="FSD-child04-img"  src="img/f09.png"/>
+									</div>
+									<div class="child01Name">宋大慧</div>
+									<div class="child01Bus">课单交易量:3654单</div>	
+									<div class="heads">
+										<div class="headscity">广州</div>
+										<img src="img/heads03.jpg" alt="" />
+									</div>
+								</a>
+							</li>						
+							<div class="clearfix"></div>
+						</ul>
+					</li>				
+				</ul>
+				<!--精选文章-->
+				<ul class="home-center ">
+					<li class="FSD">
+						<div class="float-left">精选文章</div>
+						<a class="float-right FSD-rightimg">
+							<i class="icon-direction-left textcolorgray"></i>
+						</a>
+						<div class="clearfix"></div>
+					</li>
+					<li class="Hot-activity">
+						<ul>
+							<li class="">
+								<a href="">								
+									<img class="FSD-child01-img"  src="img/f11.png"/>
+								</a>
+							</li>
+	
+						</ul>
+					</li>
+					<li class="Hot-activity">
+						<ul>
+							<li class="">
+								<h4 class="fsdheard">是什么成了老师水平提高的绊脚石</h4>
+								<p>一支粉笔，三尺讲台简单的道具和简单而单一的生活，工作模式。许多教师穷其一生的时间，经历埋头教书，结果，虽然或多或少...</p>
+							</li>
+	
+						</ul>
+					</li>				
+				</ul>					    							    	
+			</div>
+	    	    
+		</div>	
+	</div>						    	
+</div>
+
+
+

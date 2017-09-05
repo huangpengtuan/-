@@ -1,0 +1,48 @@
+<!--下架课程列表-->
+<div class="OffTheShelf">
+	<div class="CNavigation">
+		<i class="icon-direction-right CNfloat-left" ng-click='goback()'>&nbsp;&nbsp;下架课程列表</i>
+	</div>	
+	<div class="xian05"></div>
+	
+	<a class="LessionDetails_A" href="#/AgainTheShelves/{{TheShelves.id}}" ng-repeat='TheShelves in TheShelfList'>
+		<div class="LessionDetails_A_name">
+			{{TheShelves.course_name}}
+			<div class="Surplus">￥{{TheShelves.preferential_price}}</div>
+		</div>
+		<div class="LessionDetails_A_Label">
+			<div class="LessionLabel" ng-if='TheShelves.try_out == 1'>免费试课</div>
+			<div class="LessionLabel" ng-if='TheShelves.discount != null'>优惠课程</div>
+		</div>
+		<div class="LessionDetails_A_text">
+			共{{TheShelves.course_hour}}个课时
+			<div class="Surplus">剩余{{TheShelves.course_hour}}课时</div>
+		</div>
+	</a>
+	
+	
+	
+	
+</div>	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,83 @@
+<!--课单详情-->
+<div class="SingleClassDetail margin-bottom50">
+	<div class="CNavigation">
+		<i class="icon-direction-right CNfloat-left"></i>
+		<div class="CNfloat-left-Text" ng-click='goback()'>返回</div>
+	</div>	
+	<div class="insure-number">
+		<div class="insure-number01">课程总价</div>
+		<div>￥{{SingleClassinfo.preferential_price}}</div>
+	</div>
+	<div class="insure-data">	
+		<div class="AC-Text01">
+			<div class="AC-TextTabs">课程名称</div>
+			<input type="text" class="AC-Textinout" placeholder="{{SingleClassinfo.course_name}}" disabled="true"　readOnly="true"/>
+			<div class="clearfix"></div>
+		</div>
+		<div class="AC-Text01">
+			<div class="AC-TextTabs">补习班</div>
+			<input type="text" class="AC-Textinout" placeholder="{{SingleClassinfo.schoolName}}" disabled="true"　readOnly="true"/>
+			<div class="clearfix"></div>
+		</div>
+		<div class="AC-Text01">
+			<div class="AC-TextTabs">班主任电话</div>
+			<input type="text" class="AC-Textinout" placeholder="{{SingleClassinfo.teacherPhone}}" disabled="true"　readOnly="true"/>
+			<div class="clearfix"></div>
+		</div>	
+		<div class="AC-Text01">
+			<div class="AC-TextTabs">每小时收费</div>
+			<input type="text" class="AC-Textinout" placeholder="{{SingleClassinfo.hour_price}}元" disabled="true"　readOnly="true"/>
+			<div class="clearfix"></div>
+		</div>		
+		<div class="AC-Text01">
+			<div class="AC-TextTabs">本订单总课时</div>
+			<input type="text" class="AC-Textinout" placeholder="{{SingleClassinfo.course_hour}}小时" disabled="true"　readOnly="true"/>
+			<div class="clearfix"></div>
+		</div>		
+		<div class="AC-Text01">
+			<div class="AC-TextTabs">课单违约金</div>
+			<input type="text" class="AC-Textinout" placeholder="{{SingleClassinfo.penaltyAmount}}元" disabled="true"　readOnly="true"/>
+			<div class="clearfix"></div>
+		</div>	
+		<div class="data-group border-top">
+			<div class="float-left">
+				授课地点
+			</div>
+			<div class="clearfix"></div>
+			<div class="previewdata-are">详细地址：{{SingleClassinfo.areaText}}{{SingleClassinfo.address}}</div>
+		</div>		
+		<div class="data-group border-top10">
+			<div class="float-left detailed-Explain">
+				课程简介
+			</div>
+			<div class="clearfix"></div>
+			<div class="Explain-are">{{SingleClassinfo.introduction}}</div>
+		</div>			
+		<div class="data-group border-top10">
+			<div class="float-left">
+				折扣信息
+			</div>
+			<div class="float-right" ng-if='SingleClassinfo.try_out == 0 && SingleClassinfo.discount == 0'>
+				无
+			</div>
+			<div class="float-right" ng-if='SingleClassinfo.try_out == 1 || SingleClassinfo.discount > 0'>
+				<div class="SCDImg" ng-if='SingleClassinfo.discount'>
+					<span class="CSmian">折</span>
+					&nbsp;{{SingleClassinfo.discount}}折特惠
+				</div>
+				<div class="SCDImg" ng-if='SingleClassinfo.try_out == 1'>
+					<span class="CSmian">免</span>
+					&nbsp;免费试听
+				</div>
+			</div>
+			<div class="clearfix"></div>
+		</div>
+
+
+
+	</div>
+	
+
+	
+</div>	
+	

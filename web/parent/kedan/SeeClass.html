@@ -1,0 +1,66 @@
+
+<!--消息界面点击查看课次进入的--查看课次（老师视野）-->
+<div class="margin-bottom100">
+	<div class="linetxt">查看课次</div>
+	
+	<!--课单展开详情-->
+	<ul class="SClist">
+		
+		<li class="SClist1 borderGreen" ng-repeat='keci in keciList track by keci.id'>
+			<a href="#/SCDetail/{{keci.id}}" class="K1 textcolorblue">课次详情</a>
+			<a href="" class="SClist-Case">
+				<ul>
+					<li class="SClist11">
+						课次{{keci.id}}						
+					</li>
+					<li class="SClist13 border-top">
+						<span>课时-{{keci.class_hour}}小时</span>
+					</li>
+									
+					<li class="SClist13">
+						<span>上课时间：{{keci.class_begin_date}}&nbsp;{{keci.class_begin_time}}~{{keci.class_over_time}}</span>
+					</li>
+					
+					<!--各种状态-->
+					<li class="SClist13 " ng-if='keci.state == 1'>
+						<span class="textcoloryellow">状态：等待上课</span>
+					</li>
+					<li class="SClist13 " ng-if='keci.state == 2'>
+						<span class="textcolorgreen">状态：老师发起结课，待确认</span>
+					</li>	
+					<li class="SClist13 " ng-if='keci.state == 3'>
+						<span class="textcolorred">状态：已确认结课</span>
+					</li>
+					<li class="SClist13 " ng-if='keci.state == 4'>
+						<span class="textcolorgreen" >状态：我拒绝结课</span>
+					</li>
+				</ul>
+					
+							
+			</a>
+			<!--各种按钮-->
+			<div class="previewSubmit" ng-if='keci.state == 2'>
+				<a href="" ng-click='responseClass(keci.id,3)'>
+					<button type="button" class="btn btnred float-left">确认</button>
+				</a>									
+				<a href="" ng-click='responseClass(keci.id,4)'>
+					<button type="button" class="btn btnred float-right">拒绝</button>
+				</a>
+				<div class="clearfix"></div>
+			</div>
+		</li>	
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+			    						    			
+	</ul>	
+
+	
+</div>

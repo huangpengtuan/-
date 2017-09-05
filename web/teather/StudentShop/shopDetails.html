@@ -1,0 +1,70 @@
+<!--店铺信息-->
+<div class="shopDetails">
+	<div class="CNavigation">
+		<i class="icon-direction-right CNfloat-left" ng-click='goback()'>&nbsp;&nbsp;店铺信息</i>
+		<!--<div class="CNfloat-right">编辑</div>-->
+	</div>	
+	<header class="shopDetails_A">
+		<div class="me_A_01">
+			<img ng-src="{{ShopInfo.class_avatar}}" alt="" class="me_A_01_img"/>
+		</div>
+		<div class="me_A_02">
+			{{ShopInfo.class_name}}
+		</div>
+		<div class="shopDetails_A_culum">
+			<span ng-repeat='schoolType in ShopInfo.schoolTypeList'>&nbsp;{{schoolType.name}}&nbsp;</span>
+		</div>
+		<div class="shopDetails_A_stars">
+			<img ng-if='ShopInfo.eva_star >= 1' src="img/star.png" alt="" class="starslist"/>
+			<img ng-if='ShopInfo.eva_star >= 2' src="img/star.png" alt="" class="starslist"/>
+			<img ng-if='ShopInfo.eva_star >= 3' src="img/star.png" alt="" class="starslist"/>
+			<img ng-if='ShopInfo.eva_star >= 4' src="img/star.png" alt="" class="starslist"/>
+			<img ng-if='ShopInfo.eva_star >= 5' src="img/star.png" alt="" class="starslist"/>
+			<img ng-if='ShopInfo.eva_star < 1' src="img/star-hollow.png" alt="" class="starslist"/>
+			<img ng-if='ShopInfo.eva_star < 2' src="img/star-hollow.png" alt="" class="starslist"/>
+			<img ng-if='ShopInfo.eva_star < 3' src="img/star-hollow.png" alt="" class="starslist"/>
+			<img ng-if='ShopInfo.eva_star < 4' src="img/star-hollow.png" alt="" class="starslist"/>
+			<img ng-if='ShopInfo.eva_star < 5' src="img/star-hollow.png" alt="" class="starslist"/>			
+		</div>
+	</header>
+	<div class="xian05"></div>
+	<div class="YYList06">		
+		<div class="border-bottom1">简介</div>
+	</div>
+	<div class="brief">
+		<p class="brief_child">
+			{{ShopInfo.about}}
+		</p>
+	</div>	
+	<div class="xian05"></div>	
+	<div class="YYList01 border-bottom1">
+		<div class="YYList_L">联系人</div>
+		<div class="shopDetails_B_name">{{ShopInfo.teacher_name}}</div>
+	</div>	
+	<div class="YYList01 border-bottom1">
+		<div class="YYList_L">联系电话</div>
+		<div class="shopDetails_B_name">{{ShopInfo.teacher_phone}}</div>
+	</div>		
+	<div class="YYList01 border-bottom1">
+		<div class="YYList_L">地址</div>
+		<div class="shopDetails_B_name">{{ShopInfo.address}}</div>
+	</div>		
+	
+	
+
+	
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+

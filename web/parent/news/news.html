@@ -1,0 +1,195 @@
+
+<!--消息（家长视野）-->
+<div class="margin-bottom50" id="news">
+	<div>		
+	    <!-- 头部tab -->
+	    <ul class="nav news-tabs" >
+		    <li class="newstabs active"><a>消息</a></li>
+		    <li class="newstabs "><a>联系人</a></li>
+	    </ul>		
+		<!--评论区panes -->
+	    <div class="tab-content">
+	    	<!--消息内容-->
+		    <div class="tab-pane active newstabs1 border-bottom10">			    	
+				<div class="news-list border-top" ng-repeat="itemnews in newslist">
+					<a href="/t/chat_with?cid={{itemnews.id}}&type={{itemnews.type}}" class="" >
+						<div class="news-list-left">
+							<img ng-if="itemnews.type == 1" class="" src="img/icon_remind.png" alt="..." />
+							<img ng-if="itemnews.type == 3" class="" src="img/icon_notice.png" alt="..." />
+							<img ng-if="itemnews.type == 2" class="" src="img/icon_system.png" alt="..." />
+							<img ng-if="itemnews.type == 0" class="" ng-src="{{itemnews.avatar}}" alt="..." />
+							<span class="Unread bcolorred" ng-if="itemnews.msgCount > 0">{{itemnews.msgCount}}</span>
+						</div>
+						
+						<div class="news-list-right">
+							<ul>
+								<li>{{itemnews.name}}</li>
+								<li class="textcolorgray">{{itemnews.time}}</li>
+								<li class="clearfix"></li>
+							</ul>
+							<div class="newstextdata textcolorgray">{{itemnews.lastMsg}}</div>
+						</div>
+						<div class="clearfix"></div>
+					</a>
+						
+		    	</div>						    	
+				
+		    </div>
+		    
+		    
+		    <!--老师内容-->
+		    <div class="tab-pane newstabs1 ">
+		    	<ul>
+		    		<!--一条老师信息-->
+		    		<li class="SingleClass border-bottom10" ng-repeat="teather in teatherlist track by  $index" on-finish-render>
+						<div  class="SingleClass-left">
+							<a class="SingleClass-list-left">
+								<img class="" ng-src="{{teather.avatar}}" alt="..." />
+							</a>
+							
+							<div class="SingleClass-list-body">
+								<ul>
+									<li class="SingleClass-list-body-name">
+										{{teather.name}}							      	    
+							      	    <i ng-if="teather.sex == 1"><img src="img/icon_gender_men.png" alt="" /></i>
+							      	    <i ng-if="teather.sex == 2"><img src="img/icon_gender_woman.png" alt="" /></i>										
+									</li>
+									<li class="Telephone">
+										<i class="icon-tel textcolorgreen"></i>
+										<a href="tel:13522597694">{{teather.mobile}}</a>										
+									</li>									
+								</ul>								
+							</div>					
+							<div class="clearfix"></div>
+						</div>
+						
+						<!--课单开关-->
+						<div class="SingleClass-right">							
+							<div class="showorhide" ng-click="kedanshow(teather.target_id)">
+								<div class="showorhide-show" >
+									<span class="onoroff-open opentxt">
+										<span>展开课单</span>
+										<i class="icon-open"></i>										
+									</span>
+									<span class="onoroff-Close">
+										<span>收起课单</span>
+										<i class="icon-Close"></i>										
+									</span>
+								</div>
+							</div>
+							
+						</div>					
+		    			<div class="clearfix"></div>
+		    			
+		    			
+			    		<!--课单展开详情-->
+			    		<div class="SingleDetails">
+							
+							<div class="SingleDetails1" ng-repeat='kedans in kedanlist track by  kedans.id'>
+								<ul>
+									<li class="SingleDetails11">
+										<span class="float-left">编号：{{kedans.id}}</span>
+										<span class="textcolorblue float-right">
+											<div class="textcolorblue float-right">
+												<a href="#/SeeClass/{{kedans.id}}" class="textcolorblue float-right">查看课次</a>
+												<span class="textcolorgray float-right  Single-space">|</span>
+												
+												<a href="#/kedanDetails/{{kedans.id}}" class="textcolorblue float-right">课单详情</a>
+											</div>
+										</span>
+										<div class="clearfix"></div>
+									</li>
+									<li class="SingleDetails12 border-top">
+										<span class="float-left">科目：{{kedans.subjectText}}</span>
+										
+										<!--右侧各种状态-->
+										<!--红色-->
+										<span class="textcolorred float-right" ng-if='kedans.state == 1'>待支付</span>
+										<span class="textcolorred float-right" ng-if='kedans.state == 10'>已完结</span>
+										<span class="textcolorred float-right" ng-if='kedans.state == 17'>对方强制中止课单</span>
+										<span class="textcolorred float-right" ng-if='kedans.state == 12'>同意对方协商中止课单</span>
+										<span class="textcolorred float-right" ng-if='kedans.state == 18'>我强制中止课单</span>
+										<span class="textcolorred float-right" ng-if='kedans.state == 15'>对方同意协商中止课单</span>										
+										
+										<!--黄色-->
+										<span class="textcoloryellow float-right" ng-if='kedans.state == 2'>待上课</span>
+										<span class="textcoloryellow float-right" ng-if='kedans.state == 3'>进行中</span>
+										<span class="textcoloryellow float-right" ng-if='kedans.state == 4'>待结课</span>
+										<span class="textcoloryellow float-right" ng-if='kedans.state == 5'>待确认</span>									
+										<span class="textcoloryellow float-right" ng-if='kedans.state == 11'>对方协商中止课单</span>
+										<span class="textcoloryellow float-right" ng-if='kedans.state == 13'>拒绝对方协商中止课单</span>
+										<span class="textcoloryellow float-right" ng-if='kedans.state == 14'>我协商中止课单</span>										
+										<span class="textcoloryellow float-right" ng-if='kedans.state == 16'>对方拒绝协商中止课单</span>
+										<div class="clearfix"></div>
+									</li>
+									<li class="SingleDetails13">
+										<span>总时长：{{kedans.total_hours}}课时</span>
+									</li>
+									<li class="SingleDetails13">
+										<span>剩余时长：{{kedans.surplusHouer}}课时</span>
+									</li>
+									<li class="SingleDetails13 refuseReason" ng-if='kedans.stop_reason'>
+										<span>原因：{{kedans.stop_reason}}</span>
+									</li>
+									
+																
+								</ul>
+								
+								<div class="previewSubmit" ng-if='kedans.state == 1'>
+									<a href="#/payment/{{kedans.order_amount}}/{{kedans.id}}">
+										<button type="button" class="btn btnred float-left">支付{{kedans.order_amount}}元</button>
+									</a>									
+									<a href="" ng-click="refuse(kedans.id)">
+										<button type="button" class="btn btnred float-right">拒绝</button>
+									</a>
+									<div class="clearfix"></div>
+								</div>
+
+								<div class="previewSubmit" ng-if='kedans.state == 11'>
+									<a href="" ng-click='stateChange(kedans.id,12)'>
+										<button type="button" class="btn btnred float-left">同意</button>
+									</a>									
+									<a href="" ng-click='stateChange(kedans.id,13)'>
+										<button type="button" class="btn btnred float-right">拒绝</button>
+									</a>
+									<div class="clearfix"></div>
+								</div>
+
+
+
+								<div class="kedanSubmit" ng-if='kedans.state == 5'>
+									<a href="" ng-click='stateChange(kedans.id,10)'>
+										<button type="button" class="btn btnred">确认结课</button>
+									</a>	
+								</div>
+								
+								<div class="kedanSubmit" ng-if='kedans.state == 10 && kedans.is_add_comment == 0'>
+									<a ng-click='assess(kedans.teacher_id,kedans.id,kedans.is_comment,kedans.is_add_comment)'>
+										<button ng-if='kedans.is_comment == 0' type="button" class="btn btnred">评价</button>
+										<button ng-if='kedans.is_comment == 1' type="button" class="btn btnred">追评</button>
+									</a>	
+								</div>
+								
+							</div>			    			
+			    			
+			    			<div class="kedannone" ng-hide="!kedanlist.length == 0">
+								暂无课单
+							</div>
+			    			
+			    		</div>		    			
+		    		</li>
+		    		
+		    		
+		    	</ul>
+							    							    	
+		    </div>
+		    
+		    
+		</div>	
+	</div>						    	
+</div>
+
+
+
+
+

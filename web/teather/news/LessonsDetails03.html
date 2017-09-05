@@ -1,0 +1,100 @@
+<!--课次详情--已结课--状态03-->
+<div class="LessonsDet">
+	<div class="CNavigation">
+		<i class="icon-direction-right CNfloat-left"></i>
+		<div class="CNfloat-left-Text" ng-click='goback(cramLessondata.courser_id)'>返回</div>
+	</div>
+	<div class="linetxt">课次详情</div>
+	<section>
+		<ul class="previewdata">
+			<li class="data-group">
+				<div class="float-left">
+					发起结课人数
+				</div>
+				<div class="float-right">
+					{{cramLessondata.studentCount}}人
+				</div>
+				<div class="clearfix"></div>
+			</li>
+			<li class="data-group">
+				<div class="float-left">
+					未确认人数
+				</div>
+				<div class="float-right">
+					{{cramLessondata.waitConfirmedCount}}人
+				</div>
+				<div class="clearfix"></div>
+			</li>
+			<li class="data-group">
+				<div class="float-left">
+					拒绝结课人数
+				</div>
+				<div class="float-right">
+					{{cramLessondata.rejectCount}}人
+				</div>
+				<div class="clearfix"></div>
+			</li>
+			<li class="data-group">
+				<div class="float-left">
+					实际收费时长（小时）
+				</div>
+				<div class="float-right">
+					{{cramLessondata.attend_class_hour}}小时
+				</div>
+				<div class="clearfix"></div>
+			</li>			
+		
+			
+			<li class="data-group border-top10">
+				<div class="float-left detailed-Explain">
+					课程规划
+				</div>
+				<div class="clearfix"></div>
+				<div class="Explain-are">{{cramLessondata.plan}}</div>
+			</li>	
+								
+			<li class="data-group border-top10">
+				<div class="float-left detailed-Explain">
+					课程报告
+				</div>
+				<div class="clearfix"></div>
+				<div class="Explain-are">{{cramLessondata.report}}</div>
+			</li>
+			
+			<li class="data-group border-top10">
+				<div class="float-left">
+					上课日期
+				</div>
+				<div class="float-right">
+					{{cramLessondata.course_date}}
+				</div>
+				<div class="clearfix"></div>
+			</li>
+			<li class="data-group">
+				<div class="float-left">
+					开课时间
+				</div>
+				<div class="float-right">
+					{{cramLessondata.course_time}}
+				</div>
+				<div class="clearfix"></div>
+			</li>										
+			<li class="data-group">
+				<div class="float-left">
+					结课时间
+				</div>
+				<div class="float-right">
+					{{cramLessondata.over_time}}
+				</div>
+				<div class="clearfix"></div>
+			</li>
+			
+			
+		</ul>		
+		<div class="bottomsekuai"></div>
+	</section>	
+	
+	
+
+	
+</div>	

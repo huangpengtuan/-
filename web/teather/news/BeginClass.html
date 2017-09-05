@@ -1,0 +1,149 @@
+<!--开始上课-->
+<div class="BeginClass" id="BeginClass">
+	<div class="linetxt">发起上课</div>
+	<form class="BC-data" id='BC-data'>
+		<ul>
+			<li class="kedantag-group ">
+	    		<span class="group-left-text">本次上课学员</span>
+	        	<input class="group-right-sele sele-time" name="items_number" id="sele-students" placeholder="点击选择" ng-click='Sestudents()' value="{{items_number}}" readonly="readonly"/>
+	        	<i class="icon-direction-left"></i>
+	        	<div class="clearfix"></div>			        	
+    		</li>	
+			<li class="kedantag-group ">
+	    		<span class="group-left-text">预计上课时长</span>
+	        	<input type="tel" class="group-right-inp" placeholder="填写/小时" name='attend_class_hour' value="{{attend_class_hour}}" onkeyup="this.value=this.value.replace(/[^0-9]/g,'')" maxlength="5">	
+	        	<div class="clearfix"></div>			        	
+    		</li>
+  		
+			<li class="kedantag-group" id="selectDateYear">
+	    		<span class="group-left-text">上课日期</span>			        
+	        	<input class="group-right-sele sele-time" name="course_date" id="appDate" placeholder="点击选择" value="{{course_date}}"/>
+	        	<i class="icon-direction-left"></i>
+	        	<div class="clearfix"></div>			        	
+    		</li>	
+    		
+			<li class="kedantag-group" id="selectDateStart">
+	    		<span class="group-left-text">开课时间</span>			        
+				<input class="group-right-sele sele-time" name="course_time" id="TimeStard" placeholder="点击选择" value="{{course_time}}"/>
+	        	<i class="icon-direction-left"></i>
+	        	<div class="clearfix"></div>			        	
+    		</li>
+    		
+			<li class="kedantag-group" id="selectDateEnd">
+	    		<span class="group-left-text">结课时间</span>			        
+	        	<input class="group-right-sele sele-time" name="over_time" id="TimeEnd" placeholder="点击选择" value="{{over_time}}"/>
+	        	<i class="icon-direction-left"></i>
+	        	<div class="clearfix"></div>			        	
+    		</li>  			    		
+
+			<li class="kedantag-group ">
+	    		<span class="group-left-text">上课地点</span>
+	        	<input type="text" class="group-right-inp" placeholder="填写" name='address' value="{{address}}">	
+	        	<div class="clearfix"></div>			        	
+    		</li>	    		
+    		
+			<li class="data-group border-top10">
+				<div class="float-left detailed-Explain">
+					课程规划
+				</div>
+				<div class="clearfix"></div>
+				<textarea name="plan" class="RequestClass-are" rows="4" placeholder="课程规划...">{{plan}}</textarea>
+			</li>	    		
+ 		
+	
+		</ul>
+	</form>
+	<div class="BCSubmit" ng-click='generateLessons()'>
+		<a>
+			<button type="button" class="btn btnred">生成课次</button>
+		</a>	
+	</div>
+	<div class="bottomsekuai"></div>
+</div>
+
+
+
+<!--选择学生膜态框-->
+<div id="Sestudents">
+	<div class="CNavigation">
+		<i class="icon-direction-right CNfloat-left"></i>
+		<div class="CNfloat-left-Text" ng-click='cancelSelect()'>取消</div>
+		<div class="CNfloat-right-Text" ng-click='ensureSelect()'>确定</div>
+	</div>
+	<div class="Ses-tabs">
+		<div class="Ses-tabs-L">已选择{{checkmountStu}}人</div>
+		<div class="Ses-tabs-R">
+			<div class="Ses-All" ng-click='SeAllStudents()'>
+				全选
+				<i class="icon-Uncheck BC-checkAll"></i>
+			</div>
+			
+		</div>
+	</div>
+	<ul>
+		<!--一个学生信息-->
+		<li class="BC-listTop" ng-repeat='students in studentlist' on-finish-render>
+			<img ng-src="{{students.avatar}}" alt="" class="BC-listTopIMG"/>
+			<div class="BC-listTopName">
+				{{students.children_name}}				
+			</div>
+			<i class="icon-Uncheck BC-check01" data-studentID="{{students.student_id}}"></i>
+			
+		</li>
+						
+		
+	</ul>
+</div>
+
+
+
+
+
+
+
+
+
+<!--时间控件-->
+<script src="js/time/mobiscroll.core-2.5.2.js" type="text/javascript"></script>
+<script src="js/time/mobiscroll.core-2.5.2-zh.js" type="text/javascript"></script>
+<script src="js/time/mobiscroll.datetime-2.5.1.js" type="text/javascript"></script>
+<script src="js/time/mobiscroll.datetime-2.5.1-zh.js" type="text/javascript"></script>
+<script src="js/time/mobiscroll.android-ics-2.5.2.js" type="text/javascript"></script>
+<!--时间控件初始化-->
+<script type="text/javascript">
+	
+	 $(document).ready(function(){
+		
+				var currYear = (new Date()).getFullYear();
+				var opt = {};
+				opt.date = {
+					preset: 'date'
+				};
+
+				opt.datetime = {
+					preset: 'datetime'
+				};
+				opt.time = {
+					preset: 'time'
+				};
+				opt.default = {
+					theme: 'wp light', //皮肤样式
+					display: 'modal', //显示方式 
+					mode: 'scroller', //日期选择模式
+					lang: 'zh',
+					startYear: currYear - 10, //开始年份
+					endYear: currYear + 10 //结束年份
+				};   
+				
+				
+				$("#appDate").val('').scroller('destroy').scroller($.extend(opt['date'], opt['default']));
+				var optDateTime = $.extend(opt['datetime'], opt['default']);
+				var optTime = $.extend(opt['time'], opt['default']);
+
+				$("#TimeEnd").mobiscroll(optTime).time(optTime); 
+				$("#TimeStard").mobiscroll(optTime).time(optTime);
+
+			});   
+    
+</script>
+

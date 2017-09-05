@@ -1,0 +1,55 @@
+<!--提现界面-->
+<div>
+	<ul class="wallet-top">
+		<li class="wallet-top1 border-bottom10">
+			<div class="float-left">
+				<span class="wallet-number textcolorred fontws">￥{{usersInfo.balance}}</span>
+				<span>可提现余额</span>
+			</div>
+			<div class="float-right FlowingWater">
+				<a href="#/WDCRecord/" class="textcolorblue">提现记录</a>
+			</div>
+			<div class="clearfix"></div>
+		</li>
+		<li class="WDCash-top2 border-bottom10">
+			<div class="float-left withdrawCash-number">
+				<input class="MoneyNumber" type="text"   onkeyup="this.value=this.value.replace(/\D/g,'')"  onafterpaste="this.value=this.value.replace(/\D/g,'')" placeholder="请输入任意整数金额" name="amounts">
+			</div>
+			<div class="float-right MoneyNumber-right">
+				元
+			</div>
+			<span class="clearfix"></span>
+		</li>
+
+		<li class="WDCash-top3">
+			<div class="float-left Cash">
+				银行卡
+			</div>
+			<div class="float-left CashInfo">
+				<div class="float-left ">
+					<div class="blank">
+						{{cardInfo.bank_name}}						
+					</div>
+					<div class="fontw">
+						{{cardInfo.card_number}}						
+					</div>					
+				</div>
+				<a href="#/RCard/" class="float-left changeCash" >
+					<span class="textcolorblue">修改银行卡</span>
+					<i class="icon-direction-left textcolorgray"></i>
+				</a>
+				<span class="clearfix"></span>
+			</div>
+
+			<span class="clearfix"></span>
+		</li>
+		
+	</ul>
+	<span class="instruction">
+		<i class="icon-gantanhao"></i>
+		为了您资金的安全，提现前请先绑定手机号码和实名认证
+	</span>	
+	<div class="wallet-top3">
+		<a href="" ng-click='wDCmoney()'><button type="button" class="btn newbtn">提现</button></a>
+	</div>
+</div>

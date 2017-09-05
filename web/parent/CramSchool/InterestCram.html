@@ -1,0 +1,314 @@
+<!--兴趣班-->
+<div class="InterestCram" id="zone">
+	<div class="CNavigation">
+		<i class="icon-direction-right CNfloat-left" ng-click='goback()'>&nbsp;&nbsp;琴棋书画</i>
+		<div class="CNfloat-right" ng-click="SearchMask()">
+			<i class="icon-search Intsearch"></i>
+		</div>
+	</div>
+	<!--横向滚动条-->
+	<header class="IntHeader">
+		<div class="IntHeader_list IntHeader_Active" data-pfpx = "0" data-Project= "" ng-click="selectClass($event)">全部</div>
+		<div class="IntHeader_list" data-pfpx = "{{$index}}" data-Project= "{{Projects.id}}" ng-click='selectClass($event)' ng-repeat='Projects in CramProject' on-finish-render>{{Projects.name}}</div>
+		<input type="hidden" id="subjectId" class="form-control"  name="subjectId">
+		<div class="clearfix"></div>
+	</header>
+	<div class="clearfix"></div>
+	<!--热门课程-->
+	<div class="hotGroom">
+		<div class="hotGroom_Tab">热卖课程</div>
+		<a href="#/curriculum/{{getHotGroom[0].course_id}}" class="hotGroom_List">
+			<img ng-src="{{getHotGroom[0].class_avatar}}" alt="" class="hotGroom_img"/>
+			<div class="hotGroom_name">{{getHotGroom[0].course_name}}</div>
+			<div class="hotGroom_Price">￥{{getHotGroom[0].hour_price}}元/小时</div>
+		</a>
+		<a href="#/curriculum/{{getHotGroom[1].course_id}}" class="hotGroom_List hotGroom_List_C">
+			<img ng-src="{{getHotGroom[1].class_avatar}}" alt="" class="hotGroom_img"/>
+			<div class="hotGroom_name">{{getHotGroom[1].course_name}}</div>
+			<div class="hotGroom_Price">￥{{getHotGroom[1].hour_price}}元/小时</div>
+		</a>
+		<a href="#/curriculum/{{getHotGroom[2].course_id}}" class="hotGroom_List">
+			<img ng-src="{{getHotGroom[2].class_avatar}}" alt="" class="hotGroom_img"/>
+			<div class="hotGroom_name">{{getHotGroom[2].course_name}}</div>
+			<div class="hotGroom_Price">￥{{getHotGroom[2].hour_price}}元/小时</div>
+		</a>		
+		<div class="clearfix"></div>
+	</div>
+	<section class="IntSection">
+		
+		
+		<!--年级，价格，活动选项卡-->
+	    <ul class="nav njhTabs" id="IntTabs">	
+	    	<li>
+	    		<a class="njhBody">
+					<span class="njhBodyname"  id='area' onclick="areaShow('#zone','#zoneinfo',3)">区域</span>							
+					<input type="hidden" class="form-control smjj-change" id="area_id" name="areaId">
+					<i class="icon-smjj-l cstabimgb"></i>
+	    		</a>
+	    		
+	    	</li>
+	        <li>
+	        	<a class="njhBody">
+	        		<span class="njhBodyname">距离最近</span>
+	        		<input type="hidden" id="distanceRecent " class="form-control smjj-change"  name="distanceRecent" value="1">
+	        		<!--<i class="icon-smjj-l cstabimgb"></i>-->
+	        	</a>	        	
+	        </li>
+	        <li>
+	        	<a class="njhBody">
+	        		<span class="njhBodyname">综合排序</span>
+	        		<input type="hidden" id="order" class="form-control smjj-change"  name="order">
+	        		<i class="icon-smjj-l cstabimgb"></i>
+	        	</a>  
+	        </li>
+	        <li>
+	        	<a class="njhBody">	        		
+	        		<span class="njhBodyname">筛选</span>
+	        		<input type="hidden" id="teacherSex" class="form-control smjj-change"  name="teacherSex">
+	        		<input type="hidden" id="activity" class="form-control smjj-change"  name="activity">
+	        		<i class="icon-cram-select CramSele"></i>
+	        	</a>	        	
+	        </li>
+	        <div class="clearfix"></div>
+	    </ul>	
+	
+	    <!--筛选条件内容膜态框-->
+	    <div class="tab-content njhlistDe">
+	    	<!--01区域-->
+	    	<div class="tab-pane njhBody01"></div>
+			<!--02距离最近-->
+	        <div class="tab-pane njhBody01">
+	        	综合排序
+	        </div>
+	        <!--03综合排序-->
+	        <div class="tab-pane njhBody01">
+	            <ul class="citylists" >
+	            	<li class="sortactivity01" ng-click="njhscreen($event,2)"  data-cityid = "distance" data-name = "按距离">
+            		按距离排序
+            		</li>
+	            	<li class="sortactivity01" ng-click="njhscreen($event,2)"  data-cityid = "star" data-name = "按星级">
+	            		按星级排序
+	            	</li>
+	            	<li class="sortactivity01" ng-click="njhscreen($event,2)" data-cityid = "sales" data-name = "按销量">
+	            		按销量排序
+	            	</li>            	  	            	
+	  	            <div class="clearfix"></div>
+	            </ul>
+	        </div>
+	        <!--04筛选-->
+	        <div class="tab-pane njhBody01">
+	            <ul class="citylists">
+	            	<li class="screen">
+	            		<div class="screenList_Tab">优惠活动</div>
+	            		<div class="screenList01" ng-click='freeAx($event)' data-name = "1">
+	            			<span class="CSmian">免</span>
+	            			&nbsp;免费试听
+	            		</div>
+	            		<div class="screenList01" ng-click='freeAx($event)' data-name = "2">
+	            			<span class="CSmian">限</span>
+	            			&nbsp;限时折扣
+	            		</div>
+	            		<div class="clearfix"></div>
+	            	</li>
+	            	<li class="screen">
+	            		<div class="screenList_Tab">优惠活动</div>
+	            		<div class="screenList02" ng-click='SexAx($event)' data-name = "1">           			
+	            			<i><img src="img/icon_gender_men.png" alt=""/></i>
+	            			&nbsp;&nbsp;男
+	            		</div>
+	            		<div class="screenList02" ng-click='SexAx($event)' data-name = "2">
+	            			<i><img src="img/icon_gender_woman.png" alt="" /></i>
+	            			&nbsp;&nbsp;女
+	            		</div>           		
+	            		<div class="clearfix"></div>
+	            	</li> 
+	            	<li class="screenBtn">
+	            		<div class="screenBtn01" ng-click='EmptySX()'>清空</div>
+	            		<div class="screenBtn02" ng-click='GetSX()'>筛选</div>           		
+	            		<div class="clearfix"></div>
+	            	</li>            	
+	            	
+	  	            <div class="clearfix"></div>	
+	            </ul>
+	        </div>
+	
+	    </div>		
+		
+		
+		
+		<!--培训班列表-->
+		<ul class="CSchool" id="CSchools">
+	
+			
+		</ul>
+		<div id="getmorefalse">没有更多数据了...</div>
+		<!--加载动画-->
+		<div class="spinner">
+		  <div class="bounce1"></div>
+		  <div class="bounce2"></div>
+		  <div class="bounce3"></div>
+		</div>
+
+		
+	</section>
+	
+	
+
+</div>
+<!--搜索膜态框-->
+<div id="InterSearchMask">
+	<div class="searchHeader">
+		<i class="icon-direction-right CNfloat-left" ng-click='gobackfalse()'></i>
+		<input type="text" name="IntS_in" id="IntS_in" value="" placeholder="请输入课程和机构名称"/>
+		<div class="CNfloat-right" ng-click="goSearch()">搜索</div>
+	</div>
+	<div class="searchHistory">
+		历史搜索
+		<i class="icon-delete CNfloat-right" ng-click="DeleteSearch()"></i>
+	</div>	
+	<ul class="History_list">
+		<li class="HL01" ng-repeat='Historys in searchHistory' ng-click='HistorySearch($event)'>{{Historys}}</li>
+		<li class="clearfix"></li>
+	</ul>
+</div>
+
+
+
+
+
+
+<!--区域选择--补习班地址区域类传3--> 
+<div id="zoneinfo" class="zoneinfo KX">
+	<div class="zone-now">
+		<div id="areashange">您选择的地址是：</div>
+		<div id='areanames'>
+			<span id="areanames01" data-CID = ""></span>
+			<span id="areanames02" data-CID = ""></span>
+			<span id="areanames03" data-CID = ""></span>
+			<span id="areanames04" data-CID = ""></span>
+		</div>
+		<!--<div class="citysearch">搜索</div>-->
+		<div class="clearfix"></div>
+	</div>
+   	<div class="zone-tabs" id="areaHtml">
+    	
+		<!--地址选项卡-->
+	    <div class="nav zonelistTabs">
+	        <li class="zonehide01"><a class="zoneBody tabItemactive">热门城市</a></li>
+	        <li class="zonehide02"><a class="zoneBody border-noleft">省份</a></li>
+	        <li class="zonehide03"><a class="zoneBody border-noleft">城市</a></li>
+	        <li class="zonehide04"><a class="zoneBody border-noleft">区县</a></li>
+	        <li class="zonehide05"><a class="zoneBody border-noleft">街道</a></li>
+	        <div class="clearfix"></div>
+	    </div>
+	    <div class="tab-content zonelistDe">
+	        <div class="tab-pane zoneBody01 active">
+	            <ul class="citylists">
+	            	<li class="citys" onclick="gethotcity(event,4)"  data-cityid = "110100">
+	            		北京
+	            	</li>
+	            	<li class="citys" onclick="gethotcity(event,4)" data-cityid = "310100">
+	            		上海
+	            	</li>
+	            	<li class="citys" onclick="gethotcity(event,4)" data-cityid = "440100">
+	            		广州
+	            	</li>	
+	            	<li class="citys" onclick="gethotcity(event,4)" data-cityid = "440300">
+	            		深圳
+	            	</li>
+	            	<li class="citys" onclick="gethotcity(event,4)" data-cityid = "120100">
+	            		天津
+	            	</li>	            	
+	            	<li class="citys" onclick="gethotcity(event,4)" data-cityid = "330100">
+	            		杭州
+	            	</li>	            	
+	            	<li class="citys" onclick="gethotcity(event,4)" data-cityid = "420100">
+	            		武汉
+	            	</li>	  	            	
+	            	<li class="citys" onclick="gethotcity(event,4)" data-cityid = "320100">
+	            		南京
+	            	</li>	  	            	
+	            	<li class="citys" onclick="gethotcity(event,4)" data-cityid = "610100">
+	            		西安
+	            	</li>	  	            	
+	  	            <div class="clearfix"></div>	
+	            </ul>
+	        </div>
+	        <div class="tab-pane zoneBody01">
+	            <dl class="provinceslists">
+				    <dt class="cityLetter">A-G</dt>
+				    <dd class="provinces" onclick="getcityid(event,4)" data-cityid = "340000" >安徽</dd>
+				    <dd class="provinces" onclick="getcityid(event,4)" data-cityid = "110000">北京</dd>
+				    <dd class="provinces" onclick="getcityid(event,4)" data-cityid = "500000">重庆</dd>
+				    <dd class="provinces" onclick="getcityid(event,4)" data-cityid = "350000">福建</dd>
+				    <dd class="provinces" onclick="getcityid(event,4)" data-cityid = "620000">甘肃</dd>
+				    <dd class="provinces" onclick="getcityid(event,4)" data-cityid = "450000">广西</dd>
+				    <dd class="provinces" onclick="getcityid(event,4)" data-cityid = "520000">贵州</dd>
+				    <dd class="provinces" onclick="getcityid(event,4)" data-cityid = "440000">广东</dd>				             
+	  	            <div class="clearfix"></div>	
+	            </dl>
+	            <dl class="provinceslists">
+				    <dt class="cityLetter">H-K</dt>
+				    <dd class="provinces" onclick="getcityid(event,4)" data-cityid = "460000">海南</dd>
+				    <dd class="provinces" onclick="getcityid(event,4)" data-cityid = "230000">黑龙江</dd>
+				    <dd class="provinces" onclick="getcityid(event,4)" data-cityid = "410000">河南</dd>
+				    <dd class="provinces" onclick="getcityid(event,4)" data-cityid = "130000">河北</dd>
+				    <dd class="provinces" onclick="getcityid(event,4)" data-cityid = "420000">湖北</dd>
+				    <dd class="provinces" onclick="getcityid(event,4)" data-cityid = "430000">湖南</dd>
+				    <dd class="provinces" onclick="getcityid(event,4)" data-cityid = "150000">内蒙古</dd>
+				    <dd class="provinces" onclick="getcityid(event,4)" data-cityid = "360000">江西</dd>	
+				    <dd class="provinces" onclick="getcityid(event,4)" data-cityid = "220000">吉林</dd>
+				    <dd class="provinces" onclick="getcityid(event,4)" data-cityid = "320000">江苏</dd>					    
+	  	            <div class="clearfix"></div>	
+	            </dl>
+	            <dl class="provinceslists">
+				    <dt class="cityLetter">L-S</dt>
+				    <dd class="provinces" onclick="getcityid(event,4)" data-cityid = "310000">上海</dd>
+				    <dd class="provinces" onclick="getcityid(event,4)" data-cityid = "210000">辽宁</dd>
+				    <dd class="provinces" onclick="getcityid(event,4)" data-cityid = "640000">宁夏</dd>
+				    <dd class="provinces" onclick="getcityid(event,4)" data-cityid = "630000">青海</dd>
+				    <dd class="provinces" onclick="getcityid(event,4)" data-cityid = "140000">山西</dd>
+				    <dd class="provinces" onclick="getcityid(event,4)" data-cityid = "370000">山东</dd>
+				    <dd class="provinces" onclick="getcityid(event,4)" data-cityid = "610000">陕西</dd>
+				    <dd class="provinces" onclick="getcityid(event,4)" data-cityid = "510000">四川</dd>			  	            
+	  	            <div class="clearfix"></div>	
+	            </dl>
+	            <dl class="provinceslists">
+				    <dt class="cityLetter">Q-Z</dt>
+				    <dd class="provinces" onclick="getcityid(event,4)" data-cityid = "120000">天津</dd>
+				    <dd class="provinces" onclick="getcityid(event,4)" data-cityid = "120000">天津</dd>
+				    <dd class="provinces" onclick="getcityid(event,4)" data-cityid = "540000">西藏</dd>
+				    <dd class="provinces" onclick="getcityid(event,4)" data-cityid = "650000">新疆</dd>
+				    <dd class="provinces" onclick="getcityid(event,4)" data-cityid = "530000">云南</dd>
+				    <dd class="provinces" onclick="getcityid(event,4)" data-cityid = "330000">浙江</dd>		  	            
+	  	            <div class="clearfix"></div>	
+	            </dl>	            
+	        </div>
+	        <div class="tab-pane zoneBody01">
+	            <ul class="citylists" id="city01">
+	            	<li class="provincesNone">您还没有选择省!</li>	  	            	
+	  	            <div class="clearfix"></div>	
+	            </ul>
+	        </div>
+	        <div class="tab-pane zoneBody01">
+	            <ul class="citylists" id="city02">
+	            	<li class="provincesNone">您还没有选择市!</li>
+	  	            <div class="clearfix"></div>	
+	            </ul>
+	        </div>	        
+   	        <div class="tab-pane zoneBody01">
+	            <ul class="citylists" id="city03">
+	            	<li class="provincesNone">您还没有选择县!</li>
+	  	            <div class="clearfix"></div>
+	            </ul>
+	        </div> 
+	        
+	        
+	    </div>
+			  		
+    		
+    		
+    	  		
+    </div>
+   	
+</div>

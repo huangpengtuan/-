@@ -1,0 +1,55 @@
+
+<!--星币兑换内容区-->
+<div class="wagesExchange">
+	<div class="CNavigation">
+		<i class="icon-direction-right CNfloat-left" ng-click='goback()'></i>
+		<span class="Partner-title">返回</span>		
+	</div>	
+	<div class="AOI_title">
+		<div class="AOI_title_L float-left">我的工资</div>
+		<div class="AOI_title_R float-right">{{Pcontent.star_coins}}</div>
+		<div class="clearfix"></div>
+	</div>
+	<div class="WExchange">
+		<!--换成工资-->
+		<div class="WExchange_state ">
+			<div class="WExchange_stateTOP">
+				<i class="icon-Uncheck "></i>
+				<div class="wagesText">兑换成现金</div>
+				<div class="clearfix"></div>				
+			</div>
+
+			<div class="WExchange_Data">
+				使用
+				<input type="tel" ng-change="getSalary('balance',SalaryNumber)" ng-model="SalaryNumber" class="WEDataIn01" name="" id="" value="" placeholder="0" onkeyup="this.value=this.value.replace(/[^0-9]/g,'')"/>
+				工资&nbsp;&nbsp;兑换成&nbsp;现金{{Salarys}}元
+			</div>
+		</div>
+		<!--换成平台金-->
+		<div class="WExchange_state ">
+			<div class="WExchange_stateTOP">
+				<i class="icon-Uncheck "></i>
+				<div class="wagesText">兑换成平台金</div>
+				<div class="clearfix"></div>				
+			</div>
+
+			<div class="WExchange_Data">
+				使用
+				<input type="tel" ng-change="getSalary('platformGold',SalaryNumber)" ng-model="SalaryNumber" class="WEDataIn02"  name="platformGold" id="" value="" placeholder="0" onkeyup="this.value=this.value.replace(/[^0-9]/g,'')"/>
+				工资&nbsp;&nbsp;兑换成&nbsp;平台金{{Salarys}}元
+			</div>
+		</div>		
+	</div>
+	
+	<div class="kedanSubmit AC-btn" >
+		<a ng-click='submitExchange()'>
+			<button type="button" class="btn btnred" ng-click='submitPay()'>兑换</button>
+		</a>	
+	</div>
+	
+	
+	
+</div>
+
+
+

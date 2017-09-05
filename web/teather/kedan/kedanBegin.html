@@ -1,0 +1,163 @@
+
+
+
+	<!--发起课单-->
+	<div class="margin-bottom100 " id="KDBegin">
+		<div class="linetxt">发起课单</div>
+		<section class="kedantag" id="kedan">
+			<form class="">
+				<ul>
+					<li class="kedantag-group">
+			    		<span class="group-left-text">课程类型</span>			        				        
+			        	<select name="type" class="group-right-sele">
+			        		<option value="1">常规课程</option>			        		
+			        	</select>
+			        	<i class="icon-direction-left"></i>
+			        	<div class="clearfix"></div>			        	
+		    		</li>	
+		    		
+					<li class="kedantag-group ">
+			    		<span class="group-left-text">学员姓名</span>
+			        	<input type="text" name="studentName" class="group-right-inp" placeholder="填写" name=''>	
+			        	<div class="clearfix"></div>			        	
+		    		</li>				    	
+	
+					<li class="kedantag-group">
+			    		<span class="group-left-text">请选择年级段/科目</span>		        
+			        	<select name="subjectId" class="group-right-sele">
+				            <option value="">点击选择</option>				            
+				            <option value="2">小学/全科</option>
+				            <option value="3">小学/语文</option>
+				            <option value="4">小学/数学</option>
+				            <option value="5">小学/英语</option>
+				            <option value="7">初中/全科</option>
+				            <option value="8">初中/语文</option>
+				            <option value="9">初中/数学</option>
+				            <option value="10">初中/英语</option>
+				            <option value="11">初中/物理</option>
+							<option value="12">初中/地理</option>                   
+				            <option value="13">初中/生物</option>
+				            <option value="14">初中/化学</option>
+				            <option value="15">初中/历史</option>
+				            <option value="16">初中/政治</option>
+				            <option value="18">高中/全科</option>
+				            <option value="19">高中/语文</option>
+				            <option value="20">高中/数学</option>
+				            <option value="21">高中/英语</option>
+				            <option value="22">高中/物理</option>
+				            <option value="23">高中/地理</option>
+				            <option value="24">高中/生物</option>
+				            <option value="25">高中/化学</option>
+				            <option value="26">高中/历史</option>
+				            <option value="27">高中/政治</option>
+			        	</select>
+			        	<i class="icon-direction-left"></i>
+			        	<div class="clearfix"></div>			        	
+		    		</li>
+	
+					<li class="kedantag-group">
+			    		<span class="group-left-text">请选择年级</span>			        
+			        	<select name="grade" class="group-right-sele">
+			        		<option value="">点击选择</option>
+			        		<option value="一年级">一年级</option>
+			        		<option value="二年级">二年级</option>
+			        		<option value="三年级">三年级</option>
+			        		<option value="四年级">四年级</option>
+			        		<option value="五年级">五年级</option>
+			        		<option value="六年级">六年级</option>
+			        		<option value="初一">初一</option>
+			        		<option value="初二">初二</option>
+			        		<option value="初三">初三</option>
+			        		<option value="高一">高一</option>
+			        		<option value="高二">高二</option>
+			        		<option value="高三">高三</option>
+			        	</select>
+			        	<i class="icon-direction-left"></i>
+			        	<div class="clearfix"></div>			        	
+		    		</li>
+	
+					<li class="kedantag-group ">
+			    		<span class="group-left-text">每小时收费(元/小时)</span>
+			        	<input type="text" class="group-right-inp" placeholder="填写" name='hourSubsidy' onkeyup="this.value=this.value.replace(/\D/g,'')"  onafterpaste="this.value=this.value.replace(/\D/g,'')" maxlength="6">	
+			        	<div class="clearfix"></div>			        	
+		    		</li>
+	
+					<li class="kedantag-group ">
+			    		<span class="group-left-text">本订单总课时(小时)</span>
+			        	<input type="text" class="group-right-inp" placeholder="填写" name='totalHours' onkeyup="this.value=this.value.replace(/\D/g,'')"  onafterpaste="this.value=this.value.replace(/\D/g,'')" maxlength="6">	
+			        	<div class="clearfix"></div>			        	
+		    		</li>
+	
+					<li class="kedantag-group ">
+			    		<span class="group-left-text">预计上课次数</span>
+			        	<input type="text" class="group-right-inp" placeholder="填写" name='frequency' onkeyup="this.value=this.value.replace(/\D/g,'')"  onafterpaste="this.value=this.value.replace(/\D/g,'')" maxlength="6">	
+			        	<div class="clearfix"></div>			        	
+		    		</li>
+		    		
+					<li class="kedantag-group">
+			    		<span class="group-left-text">上课地点</span>			        
+			        	<select name="place" class="group-right-sele">
+			        		<option value="">点击选择</option>
+			        		<option value="1">学生家中</option>	
+			        		<option value="2">老师家中</option>
+			        		<option value="3">双方约定地点</option>
+			        	</select>
+			        	<i class="icon-direction-left"></i>
+			        	<div class="clearfix"></div>			        	
+		    		</li>	    		
+	
+					<li class="kedantag-group ">
+			    		<span class="group-left-text">上课详细地址</span>
+			        	<input type="text" class="group-right-inp" placeholder="填写" name='address'>	
+			        	<div class="clearfix"></div>			        	
+		    		</li>
+	
+					<li class="kedantag-group"> 
+			    		<span class="group-left-text">违约金</span>			        
+			        	<select name="penalty" class="group-right-sele">
+			        		<option value="0">点击选择</option>
+			        		<option value="0">无</option>
+			        		<option value="10">课单总金额的10%</option>
+			        		<option value="20">课单总金额的20%</option>
+			        		<option value="30">课单总金额的30%</option>
+			        	</select>
+			        	<i class="icon-direction-left"></i>
+			        	<div class="clearfix"></div>			        	
+		    		</li>	
+		    		
+					<li class="kedantag-are"> 
+			        	<textarea rows="4" placeholder="详细情况：课程规划、教学目标..." class="group-right-are" name="memo"></textarea>
+		    		</li>			    		
+	
+				</ul>
+			</form>
+			
+		</section>	
+		<div class="kedanSubmit">
+			<a href="#/kedanPreview/" ng-click="kedanStart()">
+				<button type="button" class="btn btnred">生成课单</button>
+			</a>	
+		</div>
+	
+	</div>
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

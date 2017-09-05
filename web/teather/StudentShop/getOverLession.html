@@ -1,0 +1,43 @@
+<!--发起结课-->
+<div class="getOverLession">
+	<div class="CNavigation">
+		<i class="icon-direction-right CNfloat-left" ng-click='goback()'>&nbsp;&nbsp;发起结课</i>
+	</div>	
+	
+	<div class="xian05"></div>
+	<div class="getOverL_list">
+		<div class="getOverL_list_header">
+			<div class="PlaceName">课程评价</div>				    
+		</div>
+		<textarea rows="4" type="text" name="le.report" id="lereport" value="" class="getOverL_input" placeholder="请填写你的课程评价"></textarea>		
+	</div>
+	
+	<div class="xian05"></div>
+	<div class="getOverL_list">
+		<div class="getOverL_list_header">
+			<div class="PlaceName">学员评价</div>				    
+		</div>
+		
+		<!--一个学员-->
+		<div class="Student" ng-repeat='student in studentsList'>
+			<img ng-src="{{student.avatar}}" alt="" class="StudentPortrait"/>
+			<div class="StudentName">{{student.children_name}}</div>
+			<input type="text" name="teacher_evaluation" id="" value="" class="getOverL_StudentR" placeholder="填写你的店铺名称" data-studentId = "{{student.id}}"/>
+		</div>	
+
+
+	</div>	
+
+	<button ng-click='submitOverData()' class="yuanyuanBTN01">提&nbsp;&nbsp;交</button>
+
+</div>
+
+
+
+
+
+
+
+
+
+

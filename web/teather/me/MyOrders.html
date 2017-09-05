@@ -1,0 +1,342 @@
+<!--我的订单-->
+<div class="MyOrders">
+    <ul class="nav SCarttabs" >
+		<li ><a class="SCart-tabs SCactive">课程</a></li>
+		<li ><a href="/api/mall/myOrder?type=1" class="SCart-tabs ">商城</a></li>
+    </ul>
+	<div class="tab-content">
+		<!--课程订单-->
+		<div class="tab-pane SCart-tabs01 active">			
+		    <ul class="nav MyOrders" >
+				<li ><a class="MyOrders-tabs MOactive">全部</a></li>
+				<li ><a class="MyOrders-tabs ">待支付</a></li>	
+				<li ><a class="MyOrders-tabs ">已支付</a></li>
+				<li ><a class="MyOrders-tabs ">待评价</a></li>
+				<li ><a class="MyOrders-tabs ">退款</a></li>
+		    </ul>
+			<div class="tab-content">
+				<!--膜态框-->
+				<div class="cancalState">
+					<div class="cancalText">
+						<div class="cancalTitle">请选择取消订单的理由</div>
+						<div class="cancalReason">
+							<div class="float-left">课程取消</div>
+							<i class="icon-Uncheck float-right"></i>
+						</div>
+						<div class="cancalReason">
+							<div class="float-left">学员已满</div>
+							<i class="icon-Uncheck float-right"></i>
+						</div>
+						<div class="cancalButton">
+							<button class="float-left" ng-click='cancalReasonFadeOut()'>取消</button>
+							<button class="float-right" ng-click='InsureDelete()'>确认</button>
+						</div>
+					</div>
+				</div>				
+				
+				<!--全部-->
+				<div class="tab-pane MyOrders-tabs01 active">
+					<!--空状态-->
+					<div class="MOnoneState MOnoneAll" ng-if='carmdAllLsits.length == 0'>
+						<i class="icon-comment"></i>
+						<div class="CramState-Title">
+							您还没有相关的订单							
+						</div>
+					</div>
+					<!--一条订单信息-->
+					<div ng-repeat='ALLcarms in carmdAllLsits track by $index' class="MOList">						
+						<div class="MO-listTop">
+							<img ng-src="{{ALLcarms.buyer_avatar}}" alt="" class="MO-listTopIMG"/>
+							<div class="MO-listTopName">
+								{{ALLcarms.buyer_name}}								
+							</div>
+							<div ng-if='ALLcarms.status == 0' class="MO-listTopState01">
+								待支付
+							</div>
+							<div ng-if='ALLcarms.status == 2' class="MO-listTopState02">
+								待评价
+							</div>
+							<div ng-if='ALLcarms.status == 1' class="MO-listTopState02">
+								已支付
+							</div>
+							<div ng-if='ALLcarms.status == 4' class="MO-listTopState02">
+								已取消
+							</div>
+							<div ng-if='ALLcarms.status == 3' class="MO-listTopState02">
+								已评价
+							</div>
+						</div>
+						<div ng-click='goOrderDetails(ALLcarms.status,ALLcarms.id)' class="MO-listData" ng-repeat='OItems in ALLcarms.orderItems'>
+							<div class="MO-listData01">
+								<div class="float-left">课程名称：{{OItems.course_name}}</div>
+								<div class="float-right">￥{{OItems.amount}}</div>
+								<div class="clearfix"></div>
+							</div>
+							<div class="MO-listData01">
+								<div class="float-left">子女：{{OItems.children_name}}</div>								
+								<div class="clearfix"></div>
+							</div>
+							<div class="MO-listData01">
+								<div class="float-left">总课时：{{OItems.class_hour}}课时</div>							
+								<div class="clearfix"></div>
+							</div>	
+							<div class="MO-listData01">
+								<div class="float-left">每小时收费：{{OItems.Class_fees}}元/小时</div>
+								<div class="float-right textcolorgray">折扣：-￥{{OItems.discount_amount}}</div>
+								<div class="clearfix"></div>
+							</div>							
+						</div>
+						<div class="MO-listBottom">
+							<div class="float-left">
+								合计:
+								<span class="textcolorred02">￥{{ALLcarms.amount}}</span>
+							</div>
+							<div class="float-right">
+								<button ng-if='ALLcarms.status == 0' class="MO-Button01" ng-click='cancalReasonFadein(ALLcarms.id)'>取消订单</button>
+								<a href="tel:{{ALLcarms.parentPhone}}" ng-if='ALLcarms.status == 0' class="MO-Button02">联系家长</a>
+								<button ng-if='ALLcarms.status == 4' class="MO-Button01">删除订单</button>																							
+							</div>
+						</div>												
+					</div>
+
+
+				</div>
+				<!--待支付0-->
+				<div class="tab-pane MyOrders-tabs01">
+					<!--空状态-->
+					<div class="MOnoneState MOnoneAll" ng-if='carmdAllLsits.length == 0'>
+						<i class="icon-comment"></i>
+						<div class="CramState-Title">
+							您还没有相关的订单							
+						</div>
+					</div>
+					<!--一条订单信息-->
+					<div ng-repeat='ALLcarms in carmdAllLsits track by $index' class="MOList">						
+						<div class="MO-listTop">
+							<img ng-src="{{ALLcarms.buyer_avatar}}" alt="" class="MO-listTopIMG"/>
+							<div class="MO-listTopName">
+								{{ALLcarms.buyer_name}}								
+							</div>
+							<div ng-if='ALLcarms.status == 0' class="MO-listTopState01">
+								待支付
+							</div>							
+						</div>
+						<div ng-click='goOrderDetails(ALLcarms.status,ALLcarms.id)' class="MO-listData" ng-repeat='OItems in ALLcarms.orderItems'>
+							<div class="MO-listData01">
+								<div class="float-left">课程名称：{{OItems.course_name}}</div>
+								<div class="float-right">￥{{OItems.amount}}</div>
+								<div class="clearfix"></div>
+							</div>
+							<div class="MO-listData01">
+								<div class="float-left">子女：{{OItems.children_name}}</div>								
+								<div class="clearfix"></div>
+							</div>
+							<div class="MO-listData01">
+								<div class="float-left">总课时：{{OItems.class_hour}}课时</div>							
+								<div class="clearfix"></div>
+							</div>	
+							<div class="MO-listData01">
+								<div class="float-left">每小时收费：{{OItems.Class_fees}}元/小时</div>
+								<div class="float-right textcolorgray">折扣：-￥{{OItems.discount_amount}}</div>
+								<div class="clearfix"></div>
+							</div>							
+						</div>
+						<div class="MO-listBottom">
+							<div class="float-left">
+								合计:
+								<span class="textcolorred02">￥{{ALLcarms.amount}}</span>
+							</div>
+							<div class="float-right">
+								<button ng-if='ALLcarms.status == 0' class="MO-Button01" ng-click='cancalReasonFadein(ALLcarms.id)'>取消订单</button>
+								<a href="tel:{{ALLcarms.parentPhone}}" ng-if='ALLcarms.status == 0' class="MO-Button02">联系家长</a>																
+							</div>
+						</div>												
+					</div>				
+					
+					
+					
+					
+				</div>
+				<!--已支付1-->
+				<div class="tab-pane MyOrders-tabs01">
+					<!--空状态-->
+					<div class="MOnoneState MOnoneAll" ng-if='carmdAllLsits.length == 0'>
+						<i class="icon-comment"></i>
+						<div class="CramState-Title">
+							您还没有相关的订单							
+						</div>
+					</div>
+					<!--一条订单信息-->
+					<div ng-repeat='ALLcarms in carmdAllLsits track by $index' class="MOList">						
+						<div class="MO-listTop">
+							<img ng-src="{{ALLcarms.buyer_avatar}}" alt="" class="MO-listTopIMG"/>
+							<div class="MO-listTopName">
+								{{ALLcarms.buyer_name}}
+							</div>
+							<div ng-if='ALLcarms.status == 1' class="MO-listTopState02">
+								已支付
+							</div>
+						</div>
+						<div ng-click='goOrderDetails(ALLcarms.status,ALLcarms.id)' class="MO-listData" ng-repeat='OItems in ALLcarms.orderItems'>
+							<div class="MO-listData01">
+								<div class="float-left">课程名称：{{OItems.course_name}}</div>
+								<div class="float-right">￥{{OItems.amount}}</div>
+								<div class="clearfix"></div>
+							</div>
+							<div class="MO-listData01">
+								<div class="float-left">子女：{{OItems.children_name}}</div>								
+								<div class="clearfix"></div>
+							</div>
+							<div class="MO-listData01">
+								<div class="float-left">总课时：{{OItems.class_hour}}课时</div>							
+								<div class="clearfix"></div>
+							</div>	
+							<div class="MO-listData01">
+								<div class="float-left">每小时收费：{{OItems.Class_fees}}元/小时</div>
+								<div class="float-right textcolorgray">折扣：-￥{{OItems.discount_amount}}</div>
+								<div class="clearfix"></div>
+							</div>							
+						</div>
+						<div class="MO-listBottom">
+							<div class="float-left">
+								合计:
+								<span class="textcolorred02">￥{{ALLcarms.amount}}</span>
+							</div>
+						</div>												
+					</div>
+					
+					
+				</div>
+				<!--待评价2-->
+				<div class="tab-pane MyOrders-tabs01">
+					<!--空状态-->
+					<div class="MOnoneState MOnoneAll" ng-if='carmdAllLsits.length == 0'>
+						<i class="icon-comment"></i>
+						<div class="CramState-Title">
+							您还没有相关的订单							
+						</div>
+					</div>
+					<!--一条订单信息-->
+					<div ng-repeat='ALLcarms in carmdAllLsits track by $index' class="MOList">						
+						<div class="MO-listTop">
+							<img ng-src="{{ALLcarms.buyer_avatar}}" alt="" class="MO-listTopIMG"/>
+							<div class="MO-listTopName">
+								{{ALLcarms.buyer_name}}							
+							</div>
+							<div ng-if='ALLcarms.status == 2' class="MO-listTopState02">
+								待评价
+							</div>
+						</div>
+						<div ng-click='goOrderDetails(ALLcarms.status,ALLcarms.id)' class="MO-listData" ng-repeat='OItems in ALLcarms.orderItems'>
+							<div class="MO-listData01">
+								<div class="float-left">课程名称：{{OItems.course_name}}</div>
+								<div class="float-right">￥{{OItems.amount}}</div>
+								<div class="clearfix"></div>
+							</div>
+							<div class="MO-listData01">
+								<div class="float-left">子女：{{OItems.children_name}}</div>								
+								<div class="clearfix"></div>
+							</div>
+							<div class="MO-listData01">
+								<div class="float-left">总课时：{{OItems.class_hour}}课时</div>							
+								<div class="clearfix"></div>
+							</div>	
+							<div class="MO-listData01">
+								<div class="float-left">每小时收费：{{OItems.Class_fees}}元/小时</div>
+								<div class="float-right textcolorgray">折扣：-￥{{OItems.discount_amount}}</div>
+								<div class="clearfix"></div>
+							</div>							
+						</div>
+						<div class="MO-listBottom">
+							<div class="float-left">
+								合计:
+								<span class="textcolorred02">￥{{ALLcarms.amount}}</span>
+							</div>
+						</div>												
+					</div>						
+					
+				</div>
+				<!--退款-->
+				<div class="tab-pane MyOrders-tabs01">
+					<!--空状态-->
+					<div class="MOnoneState">
+						<i class="icon-comment"></i>
+						<div class="CramState-Title">
+							您还没有相关的订单								
+						</div>
+					</div>					
+					<!--一条订单信息-->
+					<!--<div>
+						<div class="MO-listTop">
+							<img src="img/hebenT.png" alt="" class="MO-listTopIMG"/>
+							<div class="MO-listTopName">
+								明明德教育机构								
+							</div>
+							<div class="MO-listTopState02">
+								已退款
+							</div>
+							<div class="MO-listTopState01">
+								退款中...
+							</div>
+						</div>
+						<div ng-click='goOrderDetails(5,1)' class="MO-listData">
+							<div class="MO-listData01">
+								<div class="float-left">课程名称：小学语文</div>
+								<div class="float-right">￥1900</div>
+								<div class="clearfix"></div>
+							</div>
+							<div class="MO-listData01">
+								<div class="float-left">子女：jay</div>								
+								<div class="clearfix"></div>
+							</div>
+							<div class="MO-listData01">
+								<div class="float-left">总课时：20课时</div>							
+								<div class="clearfix"></div>
+							</div>	
+							<div class="MO-listData01">
+								<div class="float-left">每小时收费：100元/小时</div>
+								<div class="float-right textcolorgray">折扣：-￥50</div>
+								<div class="clearfix"></div>
+							</div>							
+						</div>
+						<div class="MO-listBottom">
+							<div class="float-left">
+								合计:
+								<span class="textcolorred02">￥3800</span>
+							</div>
+							<div class="float-right">
+								<a href="#/RefundDetails/1" class="MO-Button02">查看详情</a>
+							</div>
+						</div>
+					</div>	-->
+					
+				</div>
+			</div>			
+		</div>
+		<!--商城订单-->
+		<div class="tab-pane SCart-tabs01">
+			<!--空状态-->
+			<div class="MOnoneState">
+				<i class="icon-comment"></i>
+				<div class="CramState-Title">
+					您还没有相关的订单
+					<!--<a href="#/CSchool/" class="gofindscurri">发现课程</a>-->
+				</div>
+			</div>			
+			
+		</div>
+	</div>
+
+	<!--加载动画-->
+	<div class="spinner">
+	  <div class="bounce1"></div>
+	  <div class="bounce2"></div>
+	  <div class="bounce3"></div>
+	</div>
+
+</div>	
+	
+	
+	
+	
+	

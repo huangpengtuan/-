@@ -1,0 +1,42 @@
+
+<!--流水-->
+<header class="FlowingWater">
+	<dl>
+		<dt>
+			<ul>
+				<li class="FlowingWater-25">项目</li>
+				<li class="FlowingWater-25">收入</li>
+				<li class="FlowingWater-25">支出</li>
+				<li class="FlowingWater-25">余额</li>
+				<div class="clearfix"></div>
+			</ul>			
+		</dt>
+		<dd class="" ng-repeat='list in fwlists track by $index'>
+			<ul>
+				<li class="FlowingWater-25 FlowingWater-time">
+					<div class="FlowingWater-project fwpadingtop">{{list.memo}}</div>
+					<div class="FlowingWater-project textcolorgray">{{list.in_time | date:'yyyy-MM-dd HH:mm'}}</div>	
+				</li>
+				<li class="FlowingWater-25  textcolorred"><span ng-show='list.amount > 0'>{{list.amount}}</span></li>
+				<li class="FlowingWater-25  textcolorgreen"><span ng-show='list.amount < 0'>{{list.amount}}</span></li>
+				<li class="FlowingWater-25 ">{{list.balance}}</li>
+				<div class="clearfix"></div>
+			</ul>
+		</dd>
+		
+		
+		
+					
+	</dl>
+	<div class="clearfix"></div>
+</header>
+
+<!--没有记录界面-->
+<div class="noCard" ng-if='totalRow == 0'>
+	<i class="icon-noRecord noCardimg textcolorgray"></i>
+	<div>
+		<div class="noRecord textcolorgray">
+			您还没有记录哦&nbsp;&nbsp;&nbsp;
+		</div>
+	</div>
+</div>

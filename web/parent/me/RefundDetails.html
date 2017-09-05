@@ -1,0 +1,105 @@
+<!--退款详情-->
+<div class="RefundDetails">
+	<!--头部倒计时-->
+	<div class="RDSTate">
+		<!--<div class="RDSTate-childs">
+			<span class="textcolorred02 float-left">退款中...</span>			
+			<span class="float-right">剩余<span class="textcolorred02">72</span>小时系统自动同意退款</span>
+			<div class="clearfix"></div>
+		</div>-->
+		<div class="RDSTate-childs">
+			<span class="textcolorred02 float-left">退款成功</span>
+			<span class="float-right">退款去向：账户余额</span>
+			<div class="clearfix"></div>
+		</div>
+		<!--<div>
+			<div class="RDSTate-childs">
+				<span class="textcolorred02 float-left">退款失败</span>
+				<span class="float-right">老师拒绝退款</span>			
+				<div class="clearfix"></div>				
+			</div>
+			<div class="Refund-reasonData">
+				原因：纯属家长无理取闹，按照课程来上课，学生也没有异议。对课程反馈也很好。但是家长就是要以没什么效果为理由，退款不上课。这对学生和机构都会造成一定的损失。
+			</div>
+			<div class="clearfix"></div>
+		</div>		-->
+	</div>
+	<div class="RDLists">
+		<div class="RDLists_L">机构名称</div>
+		<div class="RDLists_R">
+			<div class="RDLR_img float-left">浪淘沙教育机构</div>
+			<a href="tel:15510665237" class="icon-cramDe-t float-left"></a>
+		</div>
+	</div>
+	<div class="RDLists">
+		<div class="RDLists_L">退款类型</div>
+		<div class="RDLists_R">按比例退款</div>
+	</div>	
+	<div class="RDLists">
+		<div class="RDLists_L">退款金额</div>
+		<div class="RDLists_R">￥3800</div>
+	</div>		
+	<div class="RDLists">
+		<div class="RDLists_L">退款原因</div>
+		<div class="RDLists_R">其他</div>
+	</div>	
+	<div class="RDLists-D">
+		退款说明
+	</div>
+	<div class="RDLists-P">
+		<p class="RAreasonShow">没有效果</p>
+	</div>
+	<div class="RDLists">
+		<div class="RDLists_L">申请退款时间</div>
+		<div class="RDLists_R">2017-05-06 21:55</div>
+	</div>	
+	<div class="RDLists">
+		<div class="RDLists_L">退款到账时间</div>
+		<div class="RDLists_R">2017-06-16 22:65</div>
+	</div>	
+	<div class="bottomsekuai"></div>
+	
+	<!--已成功中止膜态框-->
+	<div class="HandleState01" ng-click='successForceStop()'>
+		<div class="cancalText">
+			<div class="Refund-img">
+				<i class="icon-Uncheck"></i>
+			</div>
+			<div class="Refund-Title01">已成功中止订单</div>
+		</div>
+	</div>			
+	<!--强制中止膜态框-->
+	<div class="HandleState02">
+		<div class="cancalText">
+			<div class="Refund-Title02">强制中止订单，将按条约规定的比例从您的退款金额中扣除10%违约金，共200元。若退款金额不足以支付违约金，将扣除退款金额的全额。</div>
+			<div class="cancalButton">
+				<button class="float-left" ng-click='cancelForceStop()'>取消</button>
+				<button class="float-right" ng-click='insureForceStop()'>确认</button>
+			</div>
+		</div>
+	</div>
+	
+	
+	
+	<!--底部浮动按钮-->
+	<div class="RFDbutton">
+		<button class="RFDbutton01">同意该结果</button>
+		<button class="RFDbutton01">再次申请</button>
+		<button class="RFDbutton01" ng-click='forceStop()'>强制中止</button>
+	</div>
+</div>	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	

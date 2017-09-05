@@ -1,0 +1,58 @@
+<!--订单评价-->
+<div class="Evaluate">
+	<div class="CNavigation">
+		<i class="icon-direction-right CNfloat-left" ng-click="goback()"></i>
+		<div class="CNfloat-right" ng-click="ReleaseEva()">发布</div>
+	</div>	
+	
+	<div class="Evaluate_list">
+		<!--一条订单信息-->
+		<div class="Evaluate_list_C" ng-repeat='carmdAll in carmdAllLsits track by $index' on-finish-render>
+			<div class="MO-listTop" data-orderItemId='{{carmdAll.order_item_id}}'>
+				<div class="Ev-listTopName">
+					&nbsp;&nbsp;&nbsp;课程名称：{{carmdAll.course_name}}
+				</div>
+			</div>
+			<div class="MO-listData">
+				<div class="Ev-listData01">
+					<div class="float-left qualityScore">
+						<div class="float-left">课程质量：</div>
+						<div class="curriStart01" data-grade = "1.0"><img src="img/start10.png" class="Ev_Start01" alt=""  /></div>
+						<div class="curriStart01" data-grade = "2.0"><img src="img/start10.png" class="Ev_Start01" alt=""  /></div>
+						<div class="curriStart01" data-grade = "3.0"><img src="img/start10.png" class="Ev_Start01" alt=""  /></div>
+						<div class="curriStart01" data-grade = "4.0"><img src="img/start10.png" class="Ev_Start01" alt=""  /></div>
+						<div class="curriStart01" data-grade = "5.0"><img src="img/start10.png" class="Ev_Start01" alt=""  /></div>
+						<div class="curriStartgrad01">5.0</div>
+						<div class="clearfix"></div>
+					</div>				
+				</div>
+				<div class="Ev-listData01">
+					<div class="float-left serviceScore">
+						<div class="float-left">服务态度：</div>
+						<div class="curriStart02" data-grade = "1.0"><img src="img/start10.png" class="Ev_Start02" alt=""  /></div>
+						<div class="curriStart02" data-grade = "2.0"><img src="img/start10.png" class="Ev_Start02" alt=""  /></div>
+						<div class="curriStart02" data-grade = "3.0"><img src="img/start10.png" class="Ev_Start02" alt=""  /></div>
+						<div class="curriStart02" data-grade = "4.0"><img src="img/start10.png" class="Ev_Start02" alt=""  /></div>
+						<div class="curriStart02" data-grade = "5.0"><img src="img/start10.png" class="Ev_Start02" alt=""  /></div>
+						<div class="curriStartgrad02">5.0</div>
+						<div class="clearfix"></div>
+					</div>					
+				</div>	
+				<textarea class="Ev_textareaIn" rows="5" placeholder="这门课程怎么样？发表一下您的评价吧..."></textarea>
+			</div>
+		</div>	
+		
+		
+		</div>		
+		
+		<div class="bottomsekuai"></div>
+	</div>
+
+</div>
+
+
+
+
+
+
+

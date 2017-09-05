@@ -1,0 +1,80 @@
+<!--我的-->
+<div id="me">
+	<div class="CNavigation">
+		<i class="icon-direction-right CNfloat-left" ng-click='goback()'>&nbsp;&nbsp;我</i>
+		<div class="CNfloat-right">
+			编辑
+		</div>
+	</div>
+	<header class="me_A">
+		<div class="me_A_01">
+			<img ng-src="{{avatar}}" alt="" class="me_A_01_img"/>
+			<img ng-if='verify == 2' src="img/renzheng.png" alt="" class="Authentication"/>
+			<img ng-if='verify == 3' src="img/renzhengno.png" alt="" class="Authentication"/>
+			<img ng-if='verify == 1' src="img/renzhengno.png" alt="" class="Authentication"/>
+			<img ng-if='verify == 0' src="img/renzhengno.png" alt="" class="Authentication"/>
+		</div>
+		<div class="me_A_02">
+			{{name}}
+			<i ng-if="sex == 1" class="icon-yuan07 me_sex"></i>
+			<i ng-if="sex == 2" class="icon-yuan08 me_sex"></i>
+		</div>
+		<div class="me_A_03">
+			一年级
+			<i ng-if="parentVip == 2" class="icon-yuan01 vipyesred"></i>
+			<i ng-if="parentVip == 1" class="icon-yuan01 vipyesred"></i>
+			<i ng-if="parentVip == 0" class="icon-yuan01 vipno"></i>
+		</div>		
+	</header>
+	<section class="me_B">
+		<a class="me_B_list" href="#/wallet/">
+			<i class="icon-yuan09 me_B_list_01"></i>
+			<div class="me_B_list_02">钱包</div>
+			<i class="icon-yuan26 me_B_list_03"></i>
+			<div class="clearfix"></div>
+		</a>
+		<div class="xian05"></div>	
+		<a class="me_B_list" href="#/MyOrders/">
+			<i class="icon-yuan25 me_B_list_01"></i>
+			<div class="me_B_list_02 border-bottom1">我的订单</div>
+			<i class="icon-yuan26 me_B_list_03"></i>
+			<div class="clearfix"></div>
+		</a>
+		<a class="me_B_list" href="#/SCart/">
+			<i class="icon-yuan24 me_B_list_01"></i>
+			<div class="me_B_list_02 border-bottom1">购物车</div>
+			<i class="icon-yuan26 me_B_list_03"></i>
+			<div class="clearfix"></div>
+		</a>
+		<a class="me_B_list" href="#/vip/">
+			<i class="icon-yuan04 me_B_list_01"></i>
+			<div class="me_B_list_02 border-bottom1">会员中心</div>
+			<i class="icon-yuan26 me_B_list_03"></i>
+			<div class="clearfix"></div>
+		</a>
+		<a class="me_B_list" href="#/MyCollect/">
+			<i class="icon-yuan17 me_B_list_01"></i>
+			<div class="me_B_list_02">我的收藏</div>
+			<i class="icon-yuan26 me_B_list_03"></i>
+			<div class="clearfix"></div>
+		</a>
+		<div class="xian05"></div>	
+		<a class="me_B_list" href="/resetUserType?type=2">
+			<div class="me_B_list_04 border-bottom1">切换到老师身份</div>
+			<i class="icon-yuan26 me_B_list_03"></i>
+			<div class="clearfix"></div>
+		</a>	
+		<a class="me_B_list border-bottom1" href="#/feedback/">
+			<div class="me_B_list_04">意见反馈</div>
+			<i class="icon-yuan26 me_B_list_03"></i>
+			<div class="clearfix"></div>
+		</a>		
+	</section>
+	
+	
+	
+</div>
+
+
+
+

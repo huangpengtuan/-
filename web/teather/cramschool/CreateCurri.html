@@ -1,0 +1,290 @@
+<!--创建课程-->
+<div id="zone" class="margin-bottom50 CreateCurrisbody">
+	<div class="linetxt bgc-hui">基本信息(必填)</div>
+	<form id="CreateCu">
+		
+		
+		<div class="CreateCus">
+			<div class="CreateCus-L">课程分组</div>
+			<div class="CreateCus-R">
+				<select name="cram_course_group_id" class="CreateCus-fenzhu">
+					<option value="{{group.id}}" ng-repeat='group in Cramgroup track by $index'>{{group.groupName}}</option>
+				</select>
+				<i class="icon-smjj-b"></i>
+			</div>			
+			<div class="clearfix"></div>
+		</div>	
+		
+		<div class="CreateCus">
+			<div class="CreateCus-L">学科</div>
+			<div class="CreateCus-R">
+				<select name="subject_id" class="CreateCus-fenzhu">
+			            <option value="" >点击选择</option>
+			            <option value="{{kemus.id}}" ng-repeat='kemus in getKemu'>{{kemus.name}}</option>
+				</select>
+				<i class="icon-smjj-b"></i>
+			</div>			
+			<div class="clearfix"></div>
+		</div>		
+		
+		<div class="CreateCus border-top">
+			<div class="CreateCus-L">课程名称</div>
+			<div class="CreateCus-R">				
+				<input type="text" class="CreateCus-fenzhu" name="course_name" id="" value="" placeholder="输入" maxlength="15"/>				
+				<div class="clearfix"></div>
+			</div>			
+			<div class="clearfix"></div>
+		</div>		
+
+		<div class="CreateCus border-top">
+			<div class="CreateCus-L">总课时</div>
+			<div class="CreateCus-R">
+				<div class="CreateCus-RT">小时</div>
+				<input type="number" class="CreateCus-RI" name="course_hour" id="" value="" placeholder="输入" ng-model="mhours" onkeyup="this.value=this.value.replace(/[^0-9]/g,'')" min="0"/>
+				
+				<div class="clearfix"></div>
+			</div>			
+			<div class="clearfix"></div>
+		</div>
+
+		<div class="CreateCus border-top">
+			<div class="CreateCus-L">每小时收费</div>
+			<div class="CreateCus-R">
+				<div class="CreateCus-RT">元</div>
+				<input type="number" class="CreateCus-RI" name="hour_price" id="" value="" placeholder="输入" ng-model="monek"  onkeyup="this.value=this.value.replace(/[^0-9]/g,'')"/>
+				
+				<div class="clearfix"></div>
+			</div>			
+			<div class="clearfix"></div>
+		</div>
+		<div class="CreateCus border-top">
+			<div class="CreateCus-L">总费用</div>
+			<div class="CreateCus-R">
+				{{mhours * monek || 0}}元&nbsp;
+			</div>			
+			<div class="clearfix"></div>
+		</div>
+		
+		
+		<div class="CreateCus border-top">
+			<div class="CreateCus-L">违约金</div>
+			<div class="CreateCus-R">
+				<select name="penalty" class="CreateCus-fenzhu">
+					<option value="0">无</option>
+					<option value="10">总费用的10%</option>
+					<option value="20">总费用的20%</option>
+					<option value="20">总费用的30%</option>					
+				</select>
+				<i class="icon-smjj-b"></i>
+			</div>			
+			<div class="clearfix"></div>
+		</div>		
+		
+		
+		
+		
+		
+		<!--地址-->
+		<div class="CreateCus border-top">
+			<div class="CreateCus-L">授课地址</div>	
+			<div class="CreateCus-R">
+				<div class="CreateCus-Rarea cramkaike" id='area' onclick="areaShow('#zone','#zoneinfo')">请选择地址</div>
+			 	<i class="icon-smjj-b"></i>
+				<input type="hidden" class="" name="area_id" id="area_id" value="{{ifAreas}}">	
+			</div>					
+			<div class="clearfix"></div>		
+		</div>	
+		<div class="CreateCus">
+			<input type="text" class="CreateCus-area" name="address" id="" value="" placeholder="请输入详细地址"/>
+		</div>		
+
+		<!--简介-->
+		<div class="AC-Text border-top">
+			<div class="data-group HeadDetails">
+				<div class="float-left detailed-Explain">
+				简介
+				</div>
+				<div class="clearfix"></div>
+				<textarea class="Explain-are" name="introduction" value="" rows="4" placeholder="请输入课程简介"></textarea>
+		    </div>		
+		</div>		
+
+	</form>
+	<div class="linetxt bgc-hui">优惠活动(选填)</div>
+	<div class="Discount" id="mianfei" ng-click="applystateWaY(1)">
+		<div class="Discount-L">
+			<i class="icon-Uncheck"></i>
+			<span class="redimg">免</span>
+			平台会员免费试听
+		</div>
+		<div class="clearfix"></div>
+	</div>
+	<div class="Discount">
+		<div class="Discount-L">
+			<i class="icon-Uncheck"></i>
+			<span class="redimg">折</span>
+			打折特惠
+		</div>
+		<div class="Discount-R">
+			<div class="CreateCus-RT">折</div>
+			<input type="number" class="CreateCus-RI" placeholder="输入" name="discount" id="zhenumber" onkeyup="limitInput(this)" ng-model="zhekou"/>
+			
+			<div class="clearfix"></div>
+		</div>		
+		<div class="clearfix"></div>
+	</div>	
+	<div class="DPrice">		
+		折后价格为{{mhours * monek * zhekou/10 || 0}}元
+	</div>
+	
+	<!--提交按钮-->
+	<div class="kedanSubmit AC-btn" ng-click='CreateCurri()'>
+		<a href="">
+			<button type="button" class="btn btnred">保存并新建下一个课程</button>
+		</a>	
+	</div>	
+	
+	
+	
+	
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+<!--地址选择资源-->
+<div id="zoneinfo" class="zoneinfo">
+	<div class="zone-now">
+		<div id="areashange">您选择的地址是：</div>
+		<div id='areanames'>
+			<span id="areanames01" data-CID = ""></span>
+			<span id="areanames02" data-CID = ""></span>
+			<span id="areanames03" data-CID = ""></span>
+		</div>
+		<!--<div class="citysearch">搜索</div>-->
+		<div class="clearfix"></div>
+	</div>
+   	<div class="zone-tabs" id="areaHtml">
+    	
+		<!--地址选项卡-->
+	    <div class="nav zonelistTabs">
+	        <li><a class="zoneBody tabItemactive">热门城市</a></li>
+	        <li><a class="zoneBody border-noleft">省份</a></li>
+	        <li class="zonehide01"><a class="zoneBody border-noleft">城市</a></li>
+	        <li class="zonehide02"><a class="zoneBody border-noleft">区县</a></li>
+	        <div class="clearfix"></div>
+	    </div>
+	    <div class="tab-content zonelistDe">
+	        <div class="tab-pane zoneBody01 active">
+	            <ul class="citylists">
+	            	<li class="citys" onclick="gethotcity(event,1)"  data-cityid = "110100">
+	            		北京
+	            	</li>
+	            	<li class="citys" onclick="gethotcity(event,1)" data-cityid = "310100">
+	            		上海
+	            	</li>
+	            	<li class="citys" onclick="gethotcity(event,1)" data-cityid = "440100">
+	            		广州
+	            	</li>	
+	            	<li class="citys" onclick="gethotcity(event,1)" data-cityid = "440300">
+	            		深圳
+	            	</li>
+	            	<li class="citys" onclick="gethotcity(event,1)" data-cityid = "120100">
+	            		天津
+	            	</li>	            	
+	            	<li class="citys" onclick="gethotcity(event,1)" data-cityid = "330100">
+	            		杭州
+	            	</li>	            	
+	            	<li class="citys" onclick="gethotcity(event,1)" data-cityid = "420100">
+	            		武汉
+	            	</li>	  	            	
+	            	<li class="citys" onclick="gethotcity(event,1)" data-cityid = "320100">
+	            		南京
+	            	</li>	  	            	
+	            	<li class="citys" onclick="gethotcity(event,1)" data-cityid = "610100">
+	            		西安
+	            	</li>	  	            	
+	  	            <div class="clearfix"></div>	
+	            </ul>
+	        </div>
+	        <div class="tab-pane zoneBody01">
+	            <dl class="provinceslists">
+				    <dt class="cityLetter">A-G</dt>
+				    <dd class="provinces" onclick="getcityid(event,1)" data-cityid = "340000" >安徽</dd>
+				    <dd class="provinces" onclick="getcityid(event,1)" data-cityid = "110000">北京</dd>
+				    <dd class="provinces" onclick="getcityid(event,1)" data-cityid = "500000">重庆</dd>
+				    <dd class="provinces" onclick="getcityid(event,1)" data-cityid = "350000">福建</dd>
+				    <dd class="provinces" onclick="getcityid(event,1)" data-cityid = "620000">甘肃</dd>
+				    <dd class="provinces" onclick="getcityid(event,1)" data-cityid = "450000">广西</dd>
+				    <dd class="provinces" onclick="getcityid(event,1)" data-cityid = "520000">贵州</dd>
+				    <dd class="provinces" onclick="getcityid(event,1)" data-cityid = "440000">广东</dd>				             
+	  	            <div class="clearfix"></div>	
+	            </dl>
+	            <dl class="provinceslists">
+				    <dt class="cityLetter">H-K</dt>
+				    <dd class="provinces" onclick="getcityid(event,1)" data-cityid = "460000">海南</dd>
+				    <dd class="provinces" onclick="getcityid(event,1)" data-cityid = "230000">黑龙江</dd>
+				    <dd class="provinces" onclick="getcityid(event,1)" data-cityid = "410000">河南</dd>
+				    <dd class="provinces" onclick="getcityid(event,1)" data-cityid = "130000">河北</dd>
+				    <dd class="provinces" onclick="getcityid(event,1)" data-cityid = "420000">湖北</dd>
+				    <dd class="provinces" onclick="getcityid(event,1)" data-cityid = "430000">湖南</dd>
+				    <dd class="provinces" onclick="getcityid(event,1)" data-cityid = "150000">内蒙古</dd>
+				    <dd class="provinces" onclick="getcityid(event,1)" data-cityid = "360000">江西</dd>	
+				    <dd class="provinces" onclick="getcityid(event,1)" data-cityid = "220000">吉林</dd>
+				    <dd class="provinces" onclick="getcityid(event,1)" data-cityid = "320000">江苏</dd>					    
+	  	            <div class="clearfix"></div>	
+	            </dl>
+	            <dl class="provinceslists">
+				    <dt class="cityLetter">L-S</dt>
+				    <dd class="provinces" onclick="getcityid(event,1)" data-cityid = "310000">上海</dd>
+				    <dd class="provinces" onclick="getcityid(event,1)" data-cityid = "210000">辽宁</dd>
+				    <dd class="provinces" onclick="getcityid(event,1)" data-cityid = "640000">宁夏</dd>
+				    <dd class="provinces" onclick="getcityid(event,1)" data-cityid = "630000">青海</dd>
+				    <dd class="provinces" onclick="getcityid(event,1)" data-cityid = "140000">山西</dd>
+				    <dd class="provinces" onclick="getcityid(event,1)" data-cityid = "370000">山东</dd>
+				    <dd class="provinces" onclick="getcityid(event,1)" data-cityid = "610000">陕西</dd>
+				    <dd class="provinces" onclick="getcityid(event,1)" data-cityid = "510000">四川</dd>			  	            
+	  	            <div class="clearfix"></div>	
+	            </dl>
+	            <dl class="provinceslists">
+				    <dt class="cityLetter">Q-Z</dt>
+				    <dd class="provinces" onclick="getcityid(event,1)" data-cityid = "120000">天津</dd>
+				    <dd class="provinces" onclick="getcityid(event,1)" data-cityid = "120000">天津</dd>
+				    <dd class="provinces" onclick="getcityid(event,1)" data-cityid = "540000">西藏</dd>
+				    <dd class="provinces" onclick="getcityid(event,1)" data-cityid = "650000">新疆</dd>
+				    <dd class="provinces" onclick="getcityid(event,1)" data-cityid = "530000">云南</dd>
+				    <dd class="provinces" onclick="getcityid(event,1)" data-cityid = "330000">浙江</dd>		  	            
+	  	            <div class="clearfix"></div>	
+	            </dl>	            
+	        </div>
+	        <div class="tab-pane zoneBody01">
+	            <ul class="citylists" id="city01">
+	            	<li class="provincesNone">您还没有选择省!</li>	  	            	
+	  	            <div class="clearfix"></div>	
+	            </ul>
+	        </div>
+	        <div class="tab-pane zoneBody01">
+	            <ul class="citylists" id="city02">
+	            	<li class="provincesNone">您还没有选择市!</li> 	            	  	            	
+	  	            <div class="clearfix"></div>	
+	            </ul>
+	        </div>
+
+	    </div>
+			  		
+    		
+    		
+    	  		
+    </div>
+   	
+</div> 
+
+

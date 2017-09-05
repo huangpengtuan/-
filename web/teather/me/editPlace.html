@@ -1,0 +1,198 @@
+<!--编辑场地-->
+<div class="editPlace" id="ReleasePlace">
+	<div class="CNavigation">
+		<i class="icon-direction-right CNfloat-left" ng-click='goback()'>&nbsp;&nbsp;编辑场地</i>
+	</div>	
+	<form  id="formPlace" runat="server" method="post" enctype="multipart/form-data">
+		<div class="TableHeader">热单基本信息</div>
+		<div class="YYList01 border-bottom1">
+			<div class="YYList_L">标题</div>
+			<input type="text" name="rent_place.place_title" id="" value="{{PlaceDetails.place_title}}" class="YYList_R" placeholder="请填写"/>
+			<input type="hidden" name="rent_place.id" id="rent_place" value="{{PlaceId}}" data-id="0001" data-province-name="">
+		</div>
+		<div class="YYList01 border-bottom1">
+			<div class="YYList_L">场地费</div>			
+			<div class="CreateLesson_Company">元/小时</div>
+			<input type="number" name="rent_place.rent_money" id="" value="{{PlaceDetails.rent_money}}" class="YYList_R02" placeholder="请填写价格" onkeyup="this.value=this.value.replace(/[^0-9]/g,'')" min="0"/>
+		</div>
+		<div class="YYList01 border-bottom1">
+			<div class="YYList_L">场地面积</div>			
+			<div class="CreateLesson_Company">m2</div>
+			<input type="number" name="rent_place.rent_area_size" id="" value="{{PlaceDetails.rent_area_size}}" class="YYList_R02" placeholder="请填写价格" onkeyup="this.value=this.value.replace(/[^0-9]/g,'')" min="0"/>
+		</div>
+		<!--地址-->
+		<div class="YYList01 border-bottom1" id="select_contact">
+			<div class="YYList_L">店铺地址</div>
+	        <input type="hidden" name="contact_province_code" id="contact_province_code" value="" data-id="0001" data-province-name="">                
+	        <input type="hidden" name="rent_place.area_id" id="contact_city_code" value="{{PlaceDetails.area_id}}" data-city-name="">
+	        
+			<!--经度隐藏框-->
+			<input type="hidden" class="" id="lat" value="{{PlaceDetails.lat}}" name="rent_place.lat">
+			<!--纬度隐藏框-->
+			<input type="hidden" class="" id="lng" value="{{PlaceDetails.lng}}" name="rent_place.lng">	        
+	        
+			<i class="icon-direction-left YYList_Img"></i>
+			<div class="YYList_R textcolorgray" data-city-code="" data-province-code="" data-district-code="" id="show_contact">请选择</div>
+			<!--select_contact-->
+		</div>	
+		<!--腾讯地图膜态框-->
+		<div id="tencent">
+			<iframe id="mapPage" width="100%" height="100%" frameborder=0 
+			    src="http://apis.map.qq.com/tools/locpicker?search=1&type=1&key=6W5BZ-DI2KS-22LOE-6CGGS-MZI33-VKBQ4&referer=myapp">
+			</iframe>			
+		</div>		
+		<!--手动输入详细地址-->
+		<div class="YYList03">			
+			<textarea type="text" name="rent_place.address" id='address' value="" class="YYList_allin" placeholder="请填写详细地址，不少于5个字">{{PlaceDetails.address}}</textarea>
+		</div>
+		
+		<div class="YYList01 border-top">
+			<div class="YYList_L">店铺介绍</div>
+		</div>		
+		<div class="PhotoUp">			
+			<div class="PlacePhoto">
+		  		<div class="PPbtn">		  			
+		  			<i class="icon-yuan19 PPbtn_ioc"></i>
+		  			<div class="PPbtn_text">点击上传</div>		  			
+		  		</div> 
+		  		<img src="{{PlaceDetails.imageKey[0].image_key}}" class="PPbtn_img" id="PPbtn_img01"/>
+		  		<input type="file" name="file01" id="PPbtn01" value="{{PlaceDetails.imageKey[0].image_key}}" onchange="readFile0(this,'#PPbtn_img01')"/>		  		
+			</div>		
+
+			<div class="PlacePhoto">
+		  		<div class="PPbtn">		  			
+		  			<i class="icon-yuan19 PPbtn_ioc"></i>
+		  			<div class="PPbtn_text">点击上传</div>		  			
+		  		</div> 
+		  		<img src="{{PlaceDetails.imageKey[1].image_key}}" class="PPbtn_img" id="PPbtn_img02"/>
+		  		<input type="file" name="file02" id="PPbtn02" onchange="readFile0(this,'#PPbtn_img02')"/>		  		
+			</div>
+			
+			<div class="PlacePhoto">
+		  		<div class="PPbtn">		  			
+		  			<i class="icon-yuan19 PPbtn_ioc"></i>
+		  			<div class="PPbtn_text">点击上传</div>		  			
+		  		</div> 
+		  		<img src="{{PlaceDetails.imageKey[2].image_key}}" class="PPbtn_img" id="PPbtn_img03"/>
+		  		<input type="file" name="file03" id="PPbtn03" onchange="readFile0(this,'#PPbtn_img03')"/>		  		
+			</div>			
+		</div>
+		
+		<div class="xian05"></div>
+		<div class="TableHeader">房东信息</div>
+		<div class="YYList01 border-bottom1">
+			<div class="YYList_L">姓名</div>
+			<input type="text" name="rent_place.name" id="" value="{{PlaceDetails.name}}" class="YYList_R" placeholder="请填写"/>
+		</div>		
+		<div class="YYList01 border-bottom1">
+			<div class="YYList_L">手机</div>
+			<input type="tel" name="rent_place.phone" id="" value="{{PlaceDetails.phone}}" class="YYList_R" placeholder="请填写" onkeyup="this.value=this.value.replace(/[^0-9]/g,'')"  max="11"/>
+		</div>
+
+	</form>
+	
+	<button ng-click='Release()' class="yuanyuanBTN01">确&nbsp;&nbsp;定</button>
+	
+</div>
+
+
+
+
+
+
+<script type="text/javascript">
+
+	function readFile0(obj,Preview){
+		var file = obj.files[0];
+		if(!/image\/\w+/.test(file.type)){
+			return false;
+		}
+		var reader = new FileReader();
+		reader.readAsDataURL(file);
+		reader.onload = function(e){
+			$(Preview).attr("src", this.result);
+		}
+	}	
+	
+	
+</script>
+
+<!--地址插件----->
+<script type="text/javascript" src="js/plugins/iscroll.js" ></script>
+<script type="text/javascript" src="js/plugins/areaData_v2-yuan.js" ></script>
+<script type="text/javascript" src="js/plugins/iosSelect.js" ></script>
+<script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function(){
+    var hm = document.createElement("script");
+    hm.src = "//hm.baidu.com/hm.js?b25bf95dd99f58452db28b1e99a1a46f";
+    var s = document.getElementsByTagName("script")[0]; 
+    s.parentNode.insertBefore(hm, s);
+    })();
+	
+    var selectContactDom = $('#select_contact');
+    var showContactDom = $('#show_contact');
+    var contactProvinceCodeDom = $('#contact_province_code');
+    var contactCityCodeDom = $('#contact_city_code');
+    selectContactDom.bind('click', function () {
+        var sccode = showContactDom.attr('data-city-code');
+        var scname = showContactDom.attr('data-city-name');
+
+        var oneLevelId = showContactDom.attr('data-province-code');
+        var twoLevelId = showContactDom.attr('data-city-code');
+        var threeLevelId = showContactDom.attr('data-district-code');
+        var iosSelect = new IosSelect(3, 
+            [iosProvinces, iosCitys, iosCountys],
+            {
+                title: '地址选择',
+                itemHeight: 35,
+                relation: [1, 1, 0, 0],
+                oneLevelId: oneLevelId,
+                twoLevelId: twoLevelId,
+                threeLevelId: threeLevelId,
+                callback: function (selectOneObj, selectTwoObj, selectThreeObj) {
+                    contactProvinceCodeDom.val(selectOneObj.id); 
+                    contactProvinceCodeDom.attr('data-province-name', selectOneObj.value);
+                    contactCityCodeDom.val(selectTwoObj.id);
+                    contactCityCodeDom.attr('data-city-name', selectTwoObj.value);
+
+                    showContactDom.attr('data-province-code', selectOneObj.id);
+                    showContactDom.attr('data-city-code', selectTwoObj.id);
+                    showContactDom.attr('data-district-code', selectThreeObj.id);
+                    showContactDom.html(selectOneObj.value + ' ' + selectTwoObj.value + ' ' + selectThreeObj.value);
+                    $('#tencent').fadeIn();
+                }
+        });
+        
+        
+    });
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

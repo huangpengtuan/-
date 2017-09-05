@@ -1,0 +1,34 @@
+
+<!--提现记录-->
+<header class="dhjl">
+	<dl>
+		<dt>
+			<ul>
+				<li class="dhjl-40">时间</li>
+				<li class="dhjl-30">提现金额</li>
+				<li class="dhjl-30">余额</li>
+				<div class="clearfix"></div>
+			</ul>			
+		</dt>
+		<dd ng-repeat="lists in wdCRecords track by $index">
+			<ul>
+				<li class="dhjl-40 ">{{lists.in_time | date:'yyyy-MM-dd HH:mm'}}</li>
+				<li class="dhjl-30 textcolorgreen">{{lists.amount}}</li>
+				<li class="dhjl-30 ">{{lists.balance}}</li>
+				<div class="clearfix"></div>
+			</ul>
+		</dd>					
+	</dl>	
+	<div class="clearfix"></div>
+	
+</header>
+<!--没有记录界面-->
+<div class="noCard" ng-if='totalRow == 0'>
+	<i class="icon-noRecord noCardimg textcolorgray"></i>
+	<div>
+		<div class="noRecord textcolorgray">
+			您还没有记录哦&nbsp;&nbsp;&nbsp;
+		</div>
+	</div>
+</div>
+

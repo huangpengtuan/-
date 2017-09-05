@@ -1,0 +1,74 @@
+<!--我申请的场地详情-->
+<div class="PlaceSold">
+	<div class="CNavigation">
+		<i class="icon-direction-right CNfloat-left" ng-click='goback()'>&nbsp;&nbsp;详情</i>
+	</div>	
+	
+	<!--场地信息-->
+	<div class="PlaceTable">
+		<div class="PlaceHeader" ng-if='PlaceSoldDe.rent_place.status == 0'>
+			<img ng-src="{{PlaceSoldDe.rent_place.member_headimg}}" alt="" class="OtherHeader"/>
+			<div class="PlaceName">&nbsp;&nbsp;&nbsp;{{PlaceSoldDe.member_name}}</div>			
+		</div>
+		<div class="PlaceDatalist">
+			<div class="PlaceDatalist_L">场地费</div>
+			<div class="PlaceDatalist_R">{{PlaceSoldDe.rent_place.rent_money}}/小时</div>
+		</div>
+		<div class="PlaceDatalist">
+			<div class="PlaceDatalist_L">面积</div>
+			<div class="PlaceDatalist_R">{{PlaceSoldDe.rent_place.rent_area_size}}平方</div>
+		</div>
+		<div class="PlaceDatalist">
+			<div class="PlaceDatalist_L">地址</div>
+			<div class="PlaceDatalist_R">{{PlaceSoldDe.rent_place.address}}</div>
+		</div>	    		
+		<div class="PlaceDatalist">
+			<div class="PlaceDatalist_L">发布时间</div>
+			<div class="PlaceDatalist_R">{{PlaceSoldDe.rent_place.insert_date  | date:'yyyy-MM-dd  hh:mm'}}</div>
+		</div>
+		<div class="PlaceBooth">
+			<img ng-src="{{imageKey.image_key}}" alt="" class="BoothImg" ng-repeat='imageKey in PlaceSoldDe.rent_place.imageKey' data-imageKeyId = "{{imageKey.id}}"/>
+		</div>
+	</div>	
+	
+	<div class="PurchaseTime" ng-if='PlaceSoldDe.rent_place.status == 0'>
+		<div class="float-left">购买时长&nbsp;{{PlaceSoldDe.count}}</div>
+		<div class="float-right">
+			<div class="PlaceSold_Total" >总金额</div>			
+			<div class="PlaceSold_Number">￥{{PlaceSoldDe.amount}}</div>
+		</div>
+	</div>
+    
+	<div class="landlord">
+		<div class="PlaceDatalist">
+			<div class="PlaceDatalist_L">房东姓名</div>
+			<div class="PlaceDatalist_R">{{PlaceSoldDe.rent_place.name}}</div>
+		</div>
+		<div class="PlaceDatalist">
+			<div class="PlaceDatalist_L">房东电话</div>
+			<div class="PlaceDatalist_R">{{PlaceSoldDe.rent_place.phone}}</div>
+		</div>
+
+	</div>	
+	
+	<div class="Prompt" ng-if='PlaceSoldDe.rent_place.status == 0'>
+		<i class="icon-yuan29 Cozy_i"></i>	
+		<div class="Cozy_text01">温馨提示</div>
+		<div class="Cozy_text02">以上信息已经过平台审核请放心购买</div>
+		<div class="clearfix"></div>
+	</div>	
+	
+	<div class="Prompt" ng-if='PlaceSoldDe.rent_place.status == 0'>
+		<div class="Prompt_call">订单如有疑问，可拨打&nbsp;<span class="textcoloryuanyuanlan01">{{PlaceSoldDe.phone}}</span>&nbsp;进行询问</div>
+	</div>
+	
+	
+	
+
+	
+	
+</div>
+
+
+
+

@@ -1,0 +1,301 @@
+<!--已经是合伙人界面-->
+<div class="Partner">
+	<div class="CNavigation">
+		<i class="icon-direction-right CNfloat-left" ng-click='goback()'></i>
+		<span class="Partner-title">
+			欢迎您！
+			<span >{{Pcontent.partnerTypeText}}</span>
+			：{{Pcontent.name}}</span>
+		<div class="CNfloat-right" ng-click='goguize()'>规则</div>
+	</div>
+	<!--合伙人头部-->
+	<div class="Partner-TOP">
+		<img ng-src="{{Pcontent.avatar}}" alt="" class="Partner-img"/>
+		<div class="Partner-name">
+			<div class="PnameText">{{Pcontent.name}}</div>
+			<div>
+				<i class="PnameIcom icon-HHR"></i>
+			</div>
+		</div>
+		<!--<a class="Partner-goup" ng-if='Pcontent.type == 1'>
+			升级为超级合伙人
+		</a>-->
+		<div class="clearfix"></div>
+	</div>
+	<!--合伙人中部累计收入，贡献值，工资-->
+	<div class="Partner-Center">
+		<div class="PCLeft" ng-click='showListFn01()'>
+			<div class="PCLeft-top">{{Pcontent.total_income}}</div>
+			<div class="PCLeft-Bottom">累计收入</div>
+		</div>
+		<div class="PCCenter" ng-click='showListFn02()'>
+			<div class="PCLeft-top">{{Pcontent.contribution}}</div>
+			<div class="PCLeft-Bottom">贡献值</div>
+		</div>
+		<div class="PCLeft" ng-click='showListFn03()'>
+			<div class="PCLeft-top">{{Pcontent.star_coins}}</div>
+			<div class="PCLeft-Bottom">工资</div>
+		</div>	
+		<div class="clearfix"></div>
+	</div>
+	<!--我的引进-->
+	<div class="MyIntroduction">
+		<div class="MyIntro-top">
+			<i class="icon-wdyj"></i>
+			我的引进
+		</div>
+		<div class="MyIntro-center">
+			<div class="MyIntro-centerchild" ng-click='showListFn04(1)'>
+				<div class="centerchild-top">{{Pcontent.directUser}}人</div>
+				<div class="centerchild-bottom">直接引进</div>
+			</div>
+			<div class="MyIntro-centerchild" ng-click='showListFn04(2)'>
+				<div class="centerchild-top">{{Pcontent.indirectUse}}人</div>
+				<div class="centerchild-bottom">间接引进</div>				
+			</div>
+		</div>
+		<div class="MyIntro-bottom">
+			<a class="MyIntro-bottom-but" href="/recommend">立即引进</a>
+		</div>		
+	</div>
+	<!--年度红利-->
+	<div class="MyIntroduction noborder">
+		<div class="MyIntro-top">
+			<i class="icon-HL"></i>
+			年度红利
+			<!--<div class="MyIntro-top-right">具体以年终为准</div>-->
+		</div>
+		<div class="MyIntro-center">
+			<div class="MyIntro-centerchildHL">
+				<div class="centerchild-top">{{Pcontent.dividend}}份</div>
+				<div class="centerchild-bottom">年度红利</div>
+			</div>
+		</div>
+		<div class="MyIntro-bottom">
+			<a class="MyIntro-bottom-butHL" ng-click='showListFn05()'>查看兑换明细</a>
+		</div>		
+	</div>	
+
+</div>
+
+<!--01累计收入--膜态框-->
+<div class="AmountOfIncome">
+	<div class="CNavigation">
+		<i class="icon-direction-right CNfloat-left" ng-click='membraneDisappear()'></i>
+		<span class="Partner-title">返回</span>
+	</div>	
+	<div class="AOI_title">
+		<div class="AOI_title_L float-left">累计收入</div>
+		<div class="AOI_title_R float-right">￥{{Pcontent.total_income}}</div>
+		<div class="clearfix"></div>
+	</div>
+	<ul>
+		<!--空状态-->
+		<li class="MOnoneState" ng-if='totalRow01 == 0'>
+			<i class="icon-comment"></i>
+			<div class="CramState-Title">
+				您还没有收入记录				
+			</div>
+		</li>
+		<li class="IncomeDetailed" ng-if='totalRow01 > 0'>明细</li>
+		<li class="IncomeDetailed" ng-repeat='List01 in FlowRecordList01'>			
+			<div class="float-left">
+				<span ng-if='List01.value > 0'>+</span>
+				{{List01.value}}收入
+			</div>
+			<div class="float-right">{{List01.in_time | date:'yyyy-MM-dd hh:mm'}}</div>
+			<div class="clearfix"></div>
+		</li>
+
+	</ul>
+	
+</div>
+
+
+
+<!--02贡献值--膜态框-->
+<div class="ContributionValue">
+	<div class="CNavigation">
+		<i class="icon-direction-right CNfloat-left" ng-click='membraneDisappear()'></i>
+		<span class="Partner-title">返回</span>
+	</div>	
+	<div class="AOI_title">
+		<div class="AOI_title_L float-left">贡献值</div>
+		<div class="AOI_title_R float-right">{{Pcontent.contribution}}</div>
+		<div class="clearfix"></div>
+	</div>
+	<ul>
+		<!--空状态-->
+		<li class="MOnoneState" ng-if='totalRow02 == 0'>
+			<i class="icon-comment"></i>
+			<div class="CramState-Title">
+				您还没有收入记录				
+			</div>
+		</li>
+		<li class="IncomeDetailed" ng-if='totalRow02 > 0'>明细</li>
+		<!--一条明细--有说明时无NonechildL类，有时加-->
+		<li class="ContriValue-list" ng-repeat='List02 in FlowRecordList02'>			
+			<div ng-class="{'CValue-list_childL': true, 'NonechildL': List02.memo == null}" >
+				<span ng-if='List02.value > 0'>+</span>
+				<span>{{List02.value}}贡献值</span><br>
+				<span class="CValue_Show" ng-if='List02.memo'>&nbsp;&nbsp;&nbsp;&nbsp;{{List02.memo}}</span>
+			</div>
+			<div class="CValue-list_childR">{{List02.in_time | date:'yyyy-MM-dd hh:mm'}}</div>
+			<div class="clearfix"></div>
+		</li>
+		
+		
+		
+	</ul>
+	
+</div>
+
+
+<!--03工资--膜态框-->
+<div class="wages">
+	<div class="CNavigation">
+		<i class="icon-direction-right CNfloat-left" ng-click='membraneDisappear()'></i>
+		<span class="Partner-title">返回</span>
+	</div>	
+	<div class="wages_title">
+		<div class="wages_title_L float-left">我的工资</div>
+		<div class="wages_title_R float-right">
+			<div>￥{{Pcontent.star_coins}}</div>
+			<a class="wages_ljdh" href="#/wagesExchange/">立即兑换</a>
+		</div>
+		
+		<div class="clearfix"></div>
+	</div>
+	<ul>
+		<!--空状态-->
+		<li class="MOnoneState" ng-if='totalRow03 == 0'>
+			<i class="icon-comment"></i>
+			<div class="CramState-Title">
+				您还没有收入记录				
+			</div>
+		</li>
+		<li class="IncomeDetailed" ng-if='totalRow03 > 0'>明细</li>
+		<!--一条明细--有说明时无NonechildL类，有时加-->
+		<li class="ContriValue-list" ng-repeat='List03 in FlowRecordList03'>			
+			<div ng-class="{'CValue-list_childL': true, 'NonechildL': List03.memo == null}">
+				<span ng-if='List03.value > 0'>+</span>
+				<span>{{List03.value}}</span><br>
+				<span class="CValue_Show">&nbsp;&nbsp;{{List03.memo}}</span>
+			</div>
+			<div class="CValue-list_childR">{{List03.in_time | date:'yyyy-MM-dd hh:mm'}}</div>
+			<div class="clearfix"></div>
+		</li>
+
+	</ul>
+	
+</div>
+
+
+<!--04直接引进--膜态框-->
+<div class="DirectIntro">
+	<div class="CNavigation">
+		<i class="icon-direction-right CNfloat-left" ng-click='membraneDisappear()'></i>
+		<span class="Partner-title">返回</span>
+	</div>	
+    <ul class="nav DirIntrotabs" >
+	    <li>
+	    	<a class="DirIntro-tabs DirIntroactive">
+	    		<span class="DirInTop">{{directTotal}}人</span><br/>
+	    		<span class="DirInBottom">直接引进</span>
+	    	</a>
+	    </li>
+	    <li >
+	    	<a class="DirIntro-tabs ">
+	    		<span class="DirInTop">{{indirectTotal}}人</span><br/>
+	    		<span class="DirInBottom">间接引进</span>
+	    	</a>
+	    </li>	  	    
+    </ul>	
+	<div class="tab-content">
+		<div class="tab-pane DirIntro-tabs01 active">
+			<!--空状态-->
+			<div class="MOnoneState MOnoneAll" ng-if='directTotal == 0'>
+				<i class="icon-comment"></i>
+				<div class="CramState-Title">
+					您还没有引进哦
+					<a href="#/woyaotuijian/" class="gofindscurri">立即引进</a>
+				</div>
+			</div>
+			<ul>
+				<!--一条-->
+				<li class="DirIn_lists" ng-repeat='direct in directIntrodu'>					
+					<div class="float-left">
+						<img ng-src="{{direct.avatar}}" class="DirIn_img"/>
+						&nbsp;&nbsp;{{direct.name}}
+					</div>
+					<div class="DirIn_right">{{direct.in_time | date:'yyyy-MM-dd hh:mm'}}</div>
+					<div class="clearfix"></div>
+				</li>	
+
+			</ul>			
+
+		</div>
+
+		<div class="tab-pane DirIntro-tabs01">
+			<!--空状态-->
+			<div class="MOnoneState MOnoneAll" ng-if='indirectTotal == 0'>
+				<i class="icon-comment"></i>
+				<div class="CramState-Title">
+					您还没有引进哦
+					<a href="#/woyaotuijian/" class="gofindscurri">立即引进</a>
+				</div>
+			</div>
+			
+			<ul>
+				<li class="DirIn_lists" ng-repeat='indirect in indirectIntrodu'>					
+					<div class="float-left">
+						<img ng-src="{{indirect.avatar}}" class="DirIn_img"/>
+						&nbsp;&nbsp;{{indirect.name}}
+					</div>
+					<div class="DirIn_right">{{indirect.in_time | date:'yyyy-MM-dd hh:mm'}}</div>
+					<div class="clearfix"></div>
+				</li>		
+			</ul>			
+			
+		</div>
+	</div>
+
+	
+</div>
+
+
+<!--05我的红利--膜态框-->
+<div class="ContributionValue-HL">
+	<div class="CNavigation">
+		<i class="icon-direction-right CNfloat-left" ng-click='membraneDisappear()'></i>
+		<span class="Partner-title">返回</span>
+	</div>	
+	<div class="AOI_title">
+		<div class="AOI_title_L float-left">我的红利</div>
+		<div class="AOI_title_R float-right">{{Pcontent.dividend}}份</div>
+		<div class="clearfix"></div>
+	</div>
+	<ul>
+		<!--空状态-->
+		<li class="MOnoneState" ng-if='totalRow04 == 0'>
+			<i class="icon-comment"></i>
+			<div class="CramState-Title">
+				您还没有收入记录				
+			</div>
+		</li>
+		<li class="IncomeDetailed" ng-if='totalRow04 > 0'>明细</li>
+		<!--一条明细--有说明时无NonechildL类，有时加-->
+		<li class="ContriValue-list" ng-repeat='List04 in FlowRecordList04'>			
+			<div ng-class="{'CValue-list_childL': true, 'NonechildL': List04.memo == null}">
+				<span ng-if='List04.value > 0'>+</span>
+				<span>{{List04.value}}份红利</span><br>
+				<span class="CValue_Show">&nbsp;&nbsp;&nbsp;&nbsp;{{List04.memo}}</span>
+			</div>
+			<div class="CValue-list_childR">{{List04.in_time | date:'yyyy-MM-dd hh:mm'}}</div>
+			<div class="clearfix"></div>
+		</li>
+
+	</ul>
+	
+</div>
+

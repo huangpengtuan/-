@@ -1,0 +1,187 @@
+<!--我的业务-->
+<div class="MyBusiness">
+    <!-- 头部tab -->
+    <ul class="nav MyBus-tabs" >
+	    <li ><a class="MyBustabs yewuactive">我发布的</a></li>
+	    <li ><a class="MyBustabs " >我申请的</a></li>
+    </ul>	
+	<!--内容区panes -->
+    <div class="tab-content MyBus-tabsdetails">   	
+    	<!--我发布的-->
+	    <div class="tab-pane  MyBustabs01 active">	
+		    <!-- 我发布的tab -->
+		    <ul class="nav MyRelease-tabs" >
+			    <li ><a class="MyRelease ">生源</a></li>
+			    <li ><a class="MyRelease MyRelease_Acitve" >场地</a></li>
+		    </ul>
+			<div class="tab-content MyRelease-tabsdetails">   	
+				<!--生源-->
+				<div class="tab-pane  MyRelease01 ">	
+				    <div class="xian05">
+						<div class="sanjiao01"></div>		    	
+				    </div>	
+				    
+					<!--空状态-->
+					<div class="VoidState">
+						<i class="icon-yuan32 VoidState_ioc"></i>
+						<div class="VoidState_text01">
+							该模块在努力开发中...
+						</div>
+						<div class="VoidState_text02">
+							敬请期待！
+						</div>					
+					</div>
+					
+				</div>
+				<!--场地-->
+				<div class="tab-pane  MyRelease01 active">	
+				    <div class="xian05">
+						<div class="sanjiao02"></div>		    	
+				    </div>	
+					
+					<!--空状态-->
+					<div class="VoidState" ng-if='MyPlaceList == null'>
+						<i class="icon-yuan32 VoidState_ioc"></i>
+						<div class="VoidState_text01">
+							您还没有发布的场地...
+						</div>
+						<div class="VoidState_text02">
+							赶快去发布一个吧！
+						</div>					
+					</div>					
+					
+			    	<!--一条场地信息-->
+			    	<div class="PlaceTable" ng-repeat='MyPlace in MyPlaceList'>
+						<a  href="#/MyPublishDe/{{MyPlace.id}}">
+				    		<div class="PlaceHeader">
+				    			<i class="icon-yuan28 Placeioc"></i>
+				    			<div class="PlaceName">{{MyPlace.place_title}}</div>	  
+				    			<div class="PlaceState" ng-if='MyPlace.status == 0'>已售出</div>
+				    		</div>
+				    		<div class="PlaceDatalist">
+				    			<div class="PlaceDatalist_L">场地费</div>
+				    			<div class="PlaceDatalist_R">{{MyPlace.rent_money}}/小时</div>
+				    		</div>
+				    		<div class="PlaceDatalist">
+				    			<div class="PlaceDatalist_L">面积</div>
+				    			<div class="PlaceDatalist_R">{{MyPlace.rent_area_size}}平方</div>
+				    		</div>
+				    		<div class="PlaceDatalist">
+				    			<div class="PlaceDatalist_L">地址</div>
+				    			<div class="PlaceDatalist_R">{{MyPlace.address}}</div>
+				    		</div>	    		
+				    		<div class="PlaceDatalist">
+				    			<div class="PlaceDatalist_L">发布时间</div>
+				    			<div class="PlaceDatalist_R">{{MyPlace.insert_date | date:'yyyy-MM-dd  hh:mm'}}</div>
+				    		</div>
+				    		<div class="PlaceBooth">
+				    			<img ng-repeat='imageKey in MyPlace.imageKey' ng-src="{{imageKey.image_key}}" alt="" class="BoothImg" data-imageKeyId = "{{imageKey.id}}"/>
+				    		</div>				    		
+				    	</a>			   
+			    		<div class="PlaceEdit">
+			    			<div class="PlaceDeleteBtn" ng-click='DeletePlace01(MyPlace.id)'>删&nbsp;&nbsp;除</div>
+			    			<a href="#/editPlace/{{MyPlace.id}}" class="PlaceEditBtn" ng-if='MyPlace.status == 1'>编&nbsp;&nbsp;辑</a>
+			    		</div>			   			   			   
+			    	</div>
+
+				</div>				
+			</div>
+
+	
+		</div>
+    	<!--我申请的-->
+	    <div class="tab-pane  MyBustabs01">	
+		    <!-- 我申请的tab -->
+		    <ul class="nav MyRelease-tabs" >
+			    <li ><a class="MyApplyfor ">生源</a></li>
+			    <li ><a class="MyApplyfor MyRelease_Acitve" >场地</a></li>
+		    </ul>
+			<div class="tab-content MyRelease-tabsdetails">   	
+				<!--生源-->
+				<div class="tab-pane  MyApplyfor01 ">	
+				    <div class="xian05">
+						<div class="sanjiao01"></div>		    	
+				    </div>	
+				    
+					<!--空状态-->
+					<div class="VoidState">
+						<i class="icon-yuan32 VoidState_ioc"></i>
+						<div class="VoidState_text01">
+							该模块在努力开发中...
+						</div>
+						<div class="VoidState_text02">
+							敬请期待！
+						</div>					
+					</div>
+					
+				</div>
+				<!--场地-->
+				<div class="tab-pane  MyApplyfor01 active">	
+				    <div class="xian05">
+						<div class="sanjiao02"></div>		    	
+				    </div>	
+					
+					<!--空状态-->
+					<div class="VoidState" ng-if='MyPlaceList == null'>
+						<i class="icon-yuan32 VoidState_ioc"></i>
+						<div class="VoidState_text01">
+							您还没有申请的场地...
+						</div>
+						<div class="VoidState_text02">
+							赶快去申请一个吧！
+						</div>					
+					</div>					
+								
+			    	<!--一条场地信息-->
+			    	<div class="PlaceTable" ng-repeat='MyApplied in MyAppliedList'>
+						<a  href="#/PlaceSold/{{MyApplied.id}}">
+				    		<div class="PlaceHeader">
+				    			<i class="icon-yuan28 Placeioc"></i>
+				    			<div class="PlaceName">{{MyApplied.rentPlace.place_title}}</div>
+				    			<div class="distance">{{MyApplied.rentPlace.distance}}km</div>
+				    			<img ng-src="{{MyApplied.rentPlace.member_headimg}}" alt="" class="PlacePeople"/>
+				    		</div>
+				    		<div class="PlaceDatalist">
+				    			<div class="PlaceDatalist_L">场地费</div>
+				    			<div class="PlaceDatalist_R">{{MyApplied.rentPlace.rent_money}}/小时</div>
+				    		</div>
+				    		<div class="PlaceDatalist">
+				    			<div class="PlaceDatalist_L">面积</div>
+				    			<div class="PlaceDatalist_R">{{MyApplied.rentPlace.rentPlacerent_area_size}}平方</div>
+				    		</div>
+				    		<div class="PlaceDatalist">
+				    			<div class="PlaceDatalist_L">地址</div>
+				    			<div class="PlaceDatalist_R">{{MyApplied.rentPlace.address}}</div>
+				    		</div>	    		
+				    		<div class="PlaceDatalist">
+				    			<div class="PlaceDatalist_L">购买时间</div>
+				    			<div class="PlaceDatalist_R">{{MyApplied.pay_time | date:'yyyy-MM-dd  hh:mm'}}</div>
+				    		</div>
+				    		<div class="PlaceBooth">
+				    			<img ng-repeat='imageKey in MyApplied.rentPlace.imageKey' ng-src="{{imageKey.image_key}}" alt="" class="BoothImg" data-imageKeyId = "{{imageKey.id}}"/>
+				    		</div>				    		
+				    	</a>			   
+			    		<div class="PlaceEdit">
+			    			<div class="PlaceDeleteBtn" ng-click='DeletePlace02(MyApplied.rent_place_id)'>删&nbsp;&nbsp;除</div>	
+			    		</div>			   			   			   
+			    	</div>				
+					
+					
+				</div>				
+			</div>
+
+
+
+
+
+
+	
+		</div>
+	</div>
+	
+	
+</div>
+
+
+
+

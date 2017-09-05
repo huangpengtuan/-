@@ -1,0 +1,35 @@
+<!--结课信息-->
+<div class="OverLessionDetail">
+	<div class="CNavigation">
+		<i class="icon-direction-right CNfloat-left" ng-click='goback()'>&nbsp;&nbsp;结课信息</i>
+	</div>	
+	
+	<div class="xian05"></div>
+	<div class="getOverL_list">
+		<div class="getOverL_list_header">
+			<div class="PlaceName">课程评价</div>				    
+		</div>
+		<div class="OverL_evaluate">{{LessonsDetail.report}}</div>		
+	</div>
+	
+	<div class="xian05"></div>
+	<div class="getOverL_list">
+		<div class="getOverL_list_header">
+			<div class="PlaceName">学员评价</div>				    
+		</div>
+		
+		<!--一个学员-->
+		<div class="Student" ng-repeat='student in LessonsDetail.studentList'>
+			<img ng-src="{{student.avatar}}" alt="" class="StudentPortrait"/>
+			<div class="StudentName">{{student.children_name}}</div>
+			<input type="text" value="{{student.teacher_evaluation}}" class="getOverL_StudentR" readonly="readonly" />
+		</div>	
+
+
+	</div>		
+</div>
+
+
+
+
+

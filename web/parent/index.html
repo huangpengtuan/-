@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html ng-app="myapp">
+	<head lang="en">
+		<!---
+		*  网页基本设置
+		================================================== -->
+		<meta charset="UTF-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="description" content="第壹家教" />
+		<meta name="author" content="diyijiajiao"/>
+		<meta name="keywords" content="家教，教育，培训，考试缴费，学费" />
+		<!--禁止百度转码-->
+		<meta http-equiv="Cache-Control" content="no-siteapp" />
+		<!--兼容ie-->
+		<!--<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">-->
+		<!---
+		*  移动端设置
+		================================================== -->
+		<meta name="viewport" content="width=device-width,user-scalable=no,initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0" />
+		<title>第壹教育平台</title>
+		<script type="text/javascript" src="js/plugins/jquery-1.9.1.min.js" ></script>
+		<script type="text/javascript" src="js/plugins/angular.min.js"></script>
+		<script type="text/javascript" src="js/plugins/angular-route.min.js"></script>		
+		<link rel="stylesheet" type="text/css" href="css/reset.css"/>
+		<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css"/>
+		<link rel="stylesheet" type="text/css" href="css/swiper.min.css"/>
+		<link rel="stylesheet" type="text/css" href="css/index.css"/>
+		<!--[if IE]>
+		<script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+		<![endif]-->		
+	</head>
+	<body>
+		<!--view-->
+		<div ng-view>
+
+
+
+		</div>
+
+		<!--底部导航栏-->
+		<footer class="navbar-fixed-bottom" ng-controller='dyjjapp'>
+			<ul class="index-bottom">
+				<li class="col-xs-3 col-sm-3 col-md-3">
+					<a href="#/home/" class="bottom-tabs activehome">
+						<i class="icon-bottom01 " ></i>
+						<div class="indexBottomtext">主页</div>
+					</a>
+				</li>
+				<li class="col-xs-3 col-sm-3 col-md-3">
+					<a href="#/dynamic/0" class="bottom-tabs">
+						<i class="icon-bottom02 " ></i>
+						<div class="indexBottomtext">动态</div>
+					</a>
+				</li>
+				<li class="col-xs-3 col-sm-3 col-md-3">
+					<a href="#/find/" class="bottom-tabs">
+						<i class="icon-bottom03" ></i>
+						<div class="indexBottomtext">发现</div>
+					</a>
+				</li>
+				<li class="col-xs-3 col-sm-3 col-md-3">
+					<a href="#/my/" class="bottom-tabs">
+						<i class="icon-bottom04" ></i>
+						<div class="indexBottomtext">我的</div>
+					</a>
+				</li>
+			</ul>
+		</footer>
+	</body>
+	<script type="text/javascript" src="js/app.js" ></script>
+	<script type="text/javascript" src="js/plugins/bootstrap.min.js" ></script>
+	<script type="text/javascript" src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+	<script type="text/javascript" src="/static/js/weixin-share.js"></script>
+	<script type="text/javascript" src="https://3gimg.qq.com/lightmap/components/geolocation/geolocation.min.js"></script>
+
+	<!--home模块-->
+	<script type="text/javascript" src="home/home.js" ></script>
+	<!--合伙人模块-->
+	<script type="text/javascript" src="hehuoren/hehuoren.js" ></script>
+	<!--老师详情js-->
+	<script type="text/javascript" src="teatherdetails/teatherdetails.js" ></script>	
+	<!--mejs-->
+	<script type="text/javascript" src="me/me.js" ></script>	
+	<!--上门家教js-->
+	<script type="text/javascript" src="shangmenjiajiao/shangmenjiajiao.js" ></script>		
+	<!--消息js-->
+	<script type="text/javascript" src="news/news.js" ></script>		
+	<!--vipjs-->
+	<script type="text/javascript" src="vip/vip.js" ></script>				
+	<!--钱包&查看流水&意见反馈&提现记录&星币兑换记录js-->
+	<script type="text/javascript" src="wallet/wallet.js" ></script>			
+	<!--补习班js-->
+	<script type="text/javascript" src="CramSchool/CSchool.js" ></script>	
+	<!--发现-->
+	<script type="text/javascript" src="find/find.js" ></script>		
+	<!--评价-->
+	<script type="text/javascript" src="assess/assess.js" ></script>
+
+
+
+
+
+	<!--基础初始化js-->
+	<script type="text/javascript" src="js/base.js" ></script>
+	<!--<script type="text/javascript" src="js/all.js" ></script>-->
+
+
+	<script type="text/javascript">
+		var geolocation = new qq.maps.Geolocation("OB4BZ-D4W3U-B7VVO-4PJWW-6TKDJ-WPB77", "myapp");
+		
+		geolocation.getLocation(showPosition, showErr, options);
+
+        var options = {timeout: 15000};
+        function showPosition(position) {
+			$.ajax({
+				type:"post",
+				url:"/cramSchool/setLongitude",
+				data:{
+					'lat':position.lat, //经度
+					'lng':position.lng, //纬度
+				},
+				datatype:"json",
+				success:function(data){
+					console.log(data);
+				}
+			});			
+
+        };
+ 
+        function showErr() {
+			console.log("获取经纬度失败");
+        };
+		
+	</script>
+	
+</html>
+
+
+
+
+
+
+
+

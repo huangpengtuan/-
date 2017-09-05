@@ -1,0 +1,96 @@
+<!--发起结课确定前预览-->
+<div class="PreLessons margin-bottom100">
+	<div class="CNavigation">
+		<i class="icon-direction-right CNfloat-left"></i>
+		<div class="CNfloat-left-Text" ng-click='goback()'>返回</div>
+	</div>	
+	<div class="linetxt">生成报告</div>
+	<div class="previewSubmit">
+		<a ng-click='goback()'>
+			<button type="button" class="btn btnred float-left">返回修改</button>
+		</a>
+		
+		<button type="button" class="btn btnred float-right" ng-click='CreateReport()'>发送结课报告</button>
+		<div class="clearfix"></div>
+	</div>
+	<section>
+		<ul class="previewdata">
+			<li class="data-group">
+				<div class="float-left">
+					本次结课学员
+				</div>
+				<div class="float-right">
+					{{items_number}}人
+				</div>
+				<div class="clearfix"></div>
+			</li>
+			<li class="data-group">
+				<div class="float-left">
+					实际收费时长(小时)
+				</div>
+				<div class="float-right">
+					{{attend_class_hour}}小时
+				</div>
+				<div class="clearfix"></div>
+			</li>
+			<li class="data-group border-top10">
+				<div class="float-left detailed-Explain">
+					课程规划
+				</div>
+				<div class="clearfix"></div>
+				<div class="Explain-are">{{lessonPlan}}</div>
+			</li>			
+			<li class="data-group border-top10">
+				<div class="float-left detailed-Explain">
+					课程报告
+				</div>
+				<div class="clearfix"></div>
+				<div class="Explain-are">{{report}}</div>
+			</li>			
+
+			<li class="data-group border-top10">
+				<div class="float-left">
+					上课日期
+				</div>
+				<div class="float-right">
+					{{course_date}}
+				</div>
+				<div class="clearfix"></div>
+			</li>			
+			
+			<li class="data-group">
+				<div class="float-left">
+					开课时间
+				</div>
+				<div class="float-right">
+					{{course_time}}
+				</div>
+				<div class="clearfix"></div>
+			</li>
+			<li class="data-group">
+				<div class="float-left">
+					结课时间
+				</div>
+				<div class="float-right">
+					{{over_time}}
+				</div>
+				<div class="clearfix"></div>
+			</li>
+										
+						
+		</ul>
+	</section>	
+	
+	
+	
+</div>	
+	
+	
+
+
+
+
+
+
+
+

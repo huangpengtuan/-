@@ -1,0 +1,67 @@
+<!--场地未支付订单-->
+<div class="PlaceUnpaid">
+	<div class="CNavigation">
+		<i class="icon-direction-right CNfloat-left" ng-click='goback()'>&nbsp;&nbsp;详情</i>
+	</div>	
+	<section class="payment_A">
+		<div class="payment_A_numbers">待支付</div>
+		<div class="payment_A_state">剩余15分钟关闭</div>
+	</section>	
+	
+	<!--场地信息-->
+	<div class="PlaceTable">
+		<div class="PlaceHeader">
+			<i class="icon-yuan28 Placeioc"></i>
+			<div class="PlaceName">{{PlaceDetail.place_title}}</div>
+			<div class="distance">{{PlaceDetail.distance}}km</div>
+			<img ng-src="{{PlaceDetail.member_headimg}}" alt="" class="PlacePeople"/>
+		</div>
+		<div class="PlaceDatalist">
+			<div class="PlaceDatalist_L">场地费</div>
+			<div class="PlaceDatalist_R">{{PlaceDetail.place_rent_money}}/小时</div>
+		</div>
+		<div class="PlaceDatalist">
+			<div class="PlaceDatalist_L">面积</div>
+			<div class="PlaceDatalist_R">{{PlaceDetail.place_rent_area_size}}平方</div>
+		</div>
+		<div class="PlaceDatalist">
+			<div class="PlaceDatalist_L">地址</div>
+			<div class="PlaceDatalist_R">{{PlaceDetail.place_address}}</div>
+		</div>	    		
+		<div class="PlaceDatalist">
+			<div class="PlaceDatalist_L">发布时间</div>
+			<div class="PlaceDatalist_R">{{PlaceDetail.place_insert_date  | date:'yyyy-MM-dd  hh:mm'}}</div>
+		</div>
+		<div class="PlaceBooth">
+			<img ng-src="{{imageKey.image_key}}" alt="" class="BoothImg" ng-repeat='imageKey in PlaceDetail.imageKey' data-imageKeyId = "{{imageKey.id}}"/>
+		</div>
+	</div>	
+	
+	<div class="landlord">
+		<div class="PlaceDatalist">
+			<div class="PlaceDatalist_L">订单编号</div>
+			<div class="PlaceDatalist_R">{{PlaceDetail.order_num}}</div>
+		</div>
+		<div class="PlaceDatalist">
+			<div class="PlaceDatalist_L">创建时间</div>
+			<div class="PlaceDatalist_R">{{PlaceDetail.insert_date | date:'yyyy-MM-dd  hh:mm'}}</div>
+		</div>
+	</div>	
+	
+	<div class="Prompt">
+		<div class="Prompt_call">订单如有疑问，可拨打&nbsp;<span class="textcoloryuanyuanlan01">{{PlaceDetail.phone}}</span>&nbsp;进行询问</div>
+	</div>
+
+
+
+
+	
+	<div class="PDBBtn">
+		<div class="PDBBtn01">合计￥{{PlaceDetail.amount}}</div>
+		<a ng-click='cancalOrder(PlaceDetail.id)' class="PDBBtn02">取&nbsp;&nbsp;消</a>
+		<div class="PDBBtn03"  ng-click='PayPlace(PlaceDetail.id,PlaceDetail.amount)'>立即购买</div>
+	</div>	
+	
+</div>	
+	
+	

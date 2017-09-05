@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html ng-app="myapp">
+	<head lang="en">
+	    <!---
+	    *  老师版网页基本设置
+	    ================================================== -->		
+		<meta charset="UTF-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge"> 
+		<meta name="description" content="第壹家教" />
+		<meta name="author" content="diyijiajiao"/>
+		<meta name="keywords" content="家教，教育，培训，考试缴费，学费" />
+		<!--禁止百度转码-->
+		<meta http-equiv="Cache-Control" content="no-siteapp" />
+		<!--兼容ie-->
+		<!--<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">-->
+	    <!---
+	    *  移动端设置
+	    ================================================== -->	
+	    <meta name="viewport" content="width=device-width,user-scalable=no,initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0" />
+		<title>第壹教育平台</title>
+		<script type="text/javascript" src="js/plugins/jquery-1.9.1.min.js" ></script>
+		<script src="js/plugins/angular.min.js"></script>
+		<script src="js/plugins/angular-route.min.js"></script>				
+		<link rel="stylesheet" type="text/css" href="css/reset.css"/>
+		<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css"/>
+		<link rel="stylesheet" type="text/css" href="css/swiper.min.css"/>
+		<link rel="stylesheet" type="text/css" href="css/index.css"/>
+		
+		<!--时间控件样式-->
+		<link href="js/time/mobiscroll.core-2.5.2.css" rel="stylesheet" type="text/css" />
+		<link href="js/time/mobiscroll.animation-2.5.2.css" rel="stylesheet" type="text/css" />
+		<link href="js/time/mobiscroll.android-ics-2.5.2.css" rel="stylesheet" type="text/css" />
+		
+			
+		<!--[if IE]>
+  		<script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+		<![endif]-->
+	</head>
+	<body>
+		<!--view-->
+		<div ng-view>
+
+
+
+
+		</div>
+		<!--底部导航栏-->
+		<footer class="navbar-fixed-bottom" ng-controller='dyjjapp'>
+			<ul class="index-bottom">
+				<li class="col-xs-3 col-sm-3 col-md-3">
+					<!--/t/index-->
+					<a href="#/home/" class="bottom-tabs ">
+						<i class="icon-bottom01" ></i>
+						<div class="indexBottomtext">主页</div>
+					</a>
+				</li>
+				
+				<li class="col-xs-3 col-sm-3 col-md-3 ">
+					<a href="#/news/0" class="bottom-tabs activehome newsactive">
+						<i class="icon-bottom02" ></i>
+						<div class="indexBottomtext">动态</div>
+					</a>
+				</li>
+				
+				<li class="col-xs-3 col-sm-3 col-md-3">
+					<a href="#/find/" class="bottom-tabs findactive">
+						<i class="icon-bottom03" ></i>
+						<div class="indexBottomtext">发现</div>
+					</a>
+				</li>		
+				<li class="col-xs-3 col-sm-3 col-md-3">
+					<a href="#/my/" class="bottom-tabs myactive">
+						<i class="icon-bottom04" ></i>
+						<div class="indexBottomtext">我的</div>
+					</a>
+				</li>				
+			</ul>
+		</footer>
+	</body>
+	
+	<!--angular引入-->	
+	<script type="text/javascript" src="js/plugins/bootstrap.min.js" ></script>
+	<script type="text/javascript" src="js/app.js" ></script>
+	<script type="text/javascript" src="https://3gimg.qq.com/lightmap/components/geolocation/geolocation.min.js"></script>
+
+
+	<!--消息模块-->
+	<script type="text/javascript" src="news/news.js" ></script>
+	<!--我的-->
+	<script type="text/javascript" src="me/me.js"></script>
+	<!--vip-->
+	<script type="text/javascript" src="vip/vip.js"></script>
+	<!--发现-->
+	<script type="text/javascript" src="find/find.js" ></script>	
+	<!--补习班-->
+	<script type="text/javascript" src="StudentShop/SShop.js" ></script>
+
+
+	<!--all-->
+	<!--<script type="text/javascript" src="js/all.js" ></script>-->		
+	
+	<script type="text/javascript" src="js/base.js"></script>
+
+	<script type="text/javascript">
+		var geolocation = new qq.maps.Geolocation("OB4BZ-D4W3U-B7VVO-4PJWW-6TKDJ-WPB77", "myapp");
+		
+		geolocation.getLocation(showPosition, showErr, options);
+
+        var options = {timeout: 15000};
+        function showPosition(position) {
+			$.ajax({
+				type:"post",
+				url:"/cramSchool/setLongitude",
+				data:{
+					'lat':position.lat, //经度
+					'lng':position.lng, //纬度
+				},
+				datatype:"json",
+				success:function(data){
+					console.log(data);
+				}
+			});			
+
+        };
+ 
+        function showErr() {
+			console.log("获取经纬度失败");
+        };
+		
+	</script>
+
+
+
+</html>

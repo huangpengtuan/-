@@ -1,0 +1,131 @@
+<!--订单详情-->
+<div class="OrderDetails">
+	<!--头部倒计时-->
+	<div class="ODTopTime" ng-if='OrderListDetail.failureTime'>
+		剩余
+		<span class="textcolorred02">{{failureTimeH}}</span>
+		小时
+		<span class="textcolorred02">{{failureTimeM}}</span>
+		分自动关闭
+	</div>
+	<!--一条订单信息-->
+	<div class="ODdata">
+		<a href="#/Cdetails/{{OrderListDetail.school_id}}" class="MO-listTop">
+			<img ng-src="{{OrderListDetail.class_avatar}}" alt="" class="MO-listTopIMG"/>
+			<div class="MO-listTopName">
+				{{OrderListDetail.class_name}}
+				<i class="icon-direction-left"></i>
+			</div>
+			<div class="MO-listTopState01" ng-if='OrderListDetail.status == 0'>
+				待支付
+			</div>
+			<div class="MO-listTopState02" ng-if='OrderListDetail.status == 2'>
+				待评价
+			</div>
+			<div class="MO-listTopState02" ng-if='OrderListDetail.status == 4'>
+				已取消
+			</div>
+			<div class="MO-listTopState02" ng-if='OrderListDetail.status == 1'>
+				已支付
+			</div>
+			<div class="MO-listTopState02" ng-if='OrderListDetail.status == 3'>
+				已完成
+			</div>			
+		</a>
+		<div  class="MO-listData">
+			<div class="MO-listData01">
+				<div class="float-left">课程名称：{{OrderListDetail.orderItems[0].course_name}}</div>
+				<div class="float-right">￥{{OrderListDetail.orderItems[0].amount}}</div>
+				<div class="clearfix"></div>
+			</div>
+			<div class="MO-listData01">
+				<div class="float-left">子女：{{OrderListDetail.orderItems[0].children_name}}</div>								
+				<div class="clearfix"></div>
+			</div>
+			<div class="MO-listData01">
+				<div class="float-left">总课时：{{OrderListDetail.orderItems[0].class_hour}}课时</div>							
+				<div class="clearfix"></div>
+			</div>	
+			<div class="MO-listData01">
+				<div class="float-left">每小时收费：{{OrderListDetail.orderItems[0].Class_fees}}元/小时</div>
+				<div class="float-right textcolorgray">折扣：-￥{{OrderListDetail.orderItems[0].discount_amount}}</div>
+				<div class="clearfix"></div>
+			</div>	
+			<div class="MO-listData01" ng-if='OrderListDetail.status == 1'>					
+				<div class="float-right refund">
+					<a href="#/refundApply/0">退款</a>
+				</div>
+				<div class="clearfix"></div>
+			</div>				
+		</div>
+		<div class="MO-listBottom">
+			<div class="float-left">
+				合计:
+				<span class="textcolorred02">￥{{OrderListDetail.amount}}</span>
+			</div>
+			<div class="float-right" ng-if='OrderListDetail.status == 2'>	
+				<button class="MO-Button02" ng-click='goEvaluate(OrderListDetail.id)'>立即评价</button>				
+			</div>
+		</div>
+	</div>		
+
+	<!--订单创建时间-->
+	<div class="ODCreateTime">
+		<!--取消原因  状态-->
+		<div class="OMReasons" ng-if='OrderListDetail.status == 4'>
+			取消原因：{{OrderListDetail.cancel_reason}}
+		</div>		
+		<div class="ODCTimebox">
+			<div>订单编号：{{OrderListDetail.order_num}}</div>
+			<div>创建时间：{{OrderListDetail.in_time | date:'yyyy-MM-dd HH:mm'}}</div>
+			<div ng-if='OrderListDetail.status == 1 || OrderListDetail.status == 2 || OrderListDetail.status == 3'>付款时间：{{OrderListDetail.pay_time | date:'yyyy-MM-dd HH:mm'}}</div>
+			<div>&nbsp;</div>
+			<div>订单如有疑问，可拨打{{OrderListDetail.serviceTel}}进行咨询</div>
+		</div>
+	</div>
+	<div class="bottomsekuai"></div>
+	<!--底部付款选项-->	
+	<div class="ODpayOrders" ng-if='OrderListDetail.status == 0'>
+		<div class="float-left">
+			合计:
+			<span class="textcolorred02">￥{{OrderListDetail.amount}}</span>
+		</div>
+		<div class="float-right">
+			<button class="MO-Button01" ng-click='cancalReasonFadein(OrderListDetail.id)'>取消订单</button>
+			<button class="MO-Button02" ng-click='paycurri(OrderListDetail.id)'>立即支付</button>
+		</div>		
+	</div>
+	
+	
+	<!--膜态框-->
+	<div class="cancalState">
+		<div class="cancalText">
+			<div class="cancalTitle">请选择取消订单的理由</div>
+			<div class="cancalReason">
+				<div class="float-left">我不想买了</div>
+				<i class="icon-Uncheck float-right"></i>
+			</div>
+			<div class="cancalReason">
+				<div class="float-left">信息填写错误，重新买</div>
+				<i class="icon-Uncheck float-right"></i>
+			</div>
+			<div class="cancalReason">
+				<div class="float-left">价格过高</div>
+				<i class="icon-Uncheck float-right"></i>
+			</div>
+			<div class="cancalReason">
+				<div class="float-left">其他</div>
+				<i class="icon-Uncheck float-right"></i>
+			</div>	
+			<div class="cancalButton">
+				<button class="float-left" ng-click='cancalReasonFadeOut()'>取消</button>
+				<button class="float-right" ng-click='InsureDelete()'>确认</button>
+			</div>
+		</div>
+	</div>	
+	
+	
+</div>
+
+
+

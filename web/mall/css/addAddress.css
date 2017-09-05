@@ -1,0 +1,155 @@
+@charset "UTF-8";
+
+body{
+    margin:0;
+    padding:0;
+}
+a:link {
+    -webkit-tap-highlight-color: transparent;
+}
+a:visited{
+    -webkit-tap-highlight-color: transparent;
+}
+a:hover{
+    -webkit-tap-highlight-color: transparent;
+}
+a:active {
+    -webkit-tap-highlight-color: transparent;
+}
+.head{
+    color:#CECECE;
+    width:100%;
+    line-height: 50px;
+    height:50px;
+    padding:0 10px;
+    z-index: 100;
+    position: fixed;
+    top:0;
+    background-color: #393A3F;
+    box-sizing: border-box;
+    font-size:18px;
+}
+.head span{
+    width:50%;
+    float:left;
+}
+.add{
+    padding-left:30px;
+    box-sizing: border-box;
+}
+.save{
+    text-align: right;
+    color:white;
+}
+.content{
+    padding:10px 10px;
+    margin:0 auto;
+    width:100%;
+    float:left;
+    box-sizing: border-box;
+}
+.content p{
+    width:100%;
+    height:40px;
+    line-height: 40px;
+    float:left;
+    border-bottom: 1px solid #EBEBEB;
+    margin-bottom:5px;
+}
+.address-title{
+    width:25%;
+    float:left;
+}
+.address-np{
+    width:75%;
+    float:left;
+}
+.content p span input{
+    border:none;
+    height:30px;
+    line-height: 30px;
+    background-color: #EBEBEB;
+    text-align: center;
+    width:100%;
+    float:right;
+}
+.detail{
+    margin-top:5px;
+}
+.detail textarea{
+    border:none;
+    height:35px;
+    line-height: 35px;
+    background-color: #EBEBEB;
+    text-align: center;
+    width:100%;
+    vertical-align:middle;
+}
+
+.choose-address{
+    border:none;
+    height:30px;
+    line-height: 30px;
+    background-color: #EBEBEB;
+    text-align: center;
+    width:24%;
+
+}
+.course-title{
+    width:50%;
+    height:40px;
+    line-height: 40px;
+    float:left;
+}
+.course-np{
+    width:50%;
+    float:left;
+    height:35px;
+    line-height: 35px;
+}
+.course-radio{
+    width:50%;
+    float:left;
+    text-align: center;
+}
+
+.no-order{
+    width:100%;float:left;margin-top:50px;padding:5px;
+    text-align: center;
+}
+.no-order-img{
+    margin-top:20%;
+    height:114px;
+    width:100%;
+    float:left;
+    background: url(../images/no_order_img.png) no-repeat 50% center;
+}
+.no-order-msg{
+    margin-top:20px;
+    width:100%;
+    float:left;
+}
+.no-order-find{
+    margin-top:20px;
+    margin-left:38%;
+    float:left;
+    width:24%;
+    height:35px;
+    line-height: 35px;
+    border:1px solid #D3D3D3;
+    border-radius: 3px;
+}
+p{
+    margin:0;
+    padding:0;
+}
+.base-info{
+    width:100%;
+    line-height: 40px;
+    height:40px;
+    float:left;
+    background-color: #EBEBEB;
+    text-align: center;
+    margin-top:50px;
+    font-size: 13px;
+}

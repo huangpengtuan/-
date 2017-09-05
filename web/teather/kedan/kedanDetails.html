@@ -1,0 +1,137 @@
+
+<!--消息界面点击课单详情进入的--课单详情（老师视野）-->
+<div id="preview" class="margin-bottom100">
+	<div class="linetxt">课单详情</div>
+	<section>
+		<ul class="previewdata">
+			<li class="data-group">
+				<div class="float-left">
+					课程类型
+				</div>
+				<div class="float-right">
+					{{typeText}}
+				</div>
+				<div class="clearfix"></div>
+			</li>
+			<li class="data-group">
+				<div class="float-left">
+					学员姓名
+				</div>
+				<div class="float-right">
+					{{studentName}}
+				</div>
+				<div class="clearfix"></div>
+			</li>
+			<li class="data-group">
+				<div class="float-left">
+					年级段/科目
+				</div>
+				<div class="float-right">
+					{{subjectText}}
+				</div>
+				<div class="clearfix"></div>
+			</li>
+			<li class="data-group">
+				<div class="float-left">
+					年级
+				</div>
+				<div class="float-right">
+					{{grade}}
+				</div>
+				<div class="clearfix"></div>
+			</li>
+			<li class="data-group">
+				<div class="float-left">
+					每小时收费(元/小时)
+				</div>
+				<div class="float-right">
+					{{hour_subsidy}}
+				</div>
+				<div class="clearfix"></div>
+			</li>			
+			<li class="data-group">
+				<div class="float-left">
+					本订单总课时（小时）
+				</div>
+				<div class="float-right">
+					{{total_hours}}
+				</div>
+				<div class="clearfix"></div>
+			</li>			
+			<li class="data-group">
+				<div class="float-left">
+					预计上课次数
+				</div>
+				<div class="float-right">
+					{{frequency}}
+				</div>
+				<div class="clearfix"></div>
+			</li>			
+			<li class="data-group">
+				<div class="float-left">
+					上课地点
+				</div>
+				<div class="float-right">
+					{{placeText}}
+				</div>
+				<div class="clearfix"></div>
+				<div class="previewdata-are">详细地址：{{address}}</div>
+			</li>	
+			<li class="data-group">
+				<div class="float-left">
+					订单总收费
+				</div>
+				<div class="float-right">
+					{{order_amount}}元
+				</div>
+				<div class="clearfix"></div>
+			</li>			
+			<li class="data-group">
+				<div class="float-left">
+					订单违约金
+				</div>
+				<div class="float-right">
+					{{penaltyAmount}}元
+				</div>
+				<div class="clearfix"></div>
+			</li>
+			
+			
+			<li class="data-group border-top10">
+				<div class="float-left detailed-Explain">
+					详细说明
+				</div>
+				<div class="clearfix"></div>
+				<div class="Explain-are">{{memo}}</div>
+			</li>
+			<li class="data-group-time">
+				<div class="float-right">
+					{{in_time | date:'yyyy-MM-dd HH:mm'}}
+				</div>
+				<div class="clearfix"></div>
+			</li>			
+			<li class="data-group-Explain">
+				<i class="icon-gantanhao"></i>
+				<span>平台按实际成交额10%收取服务费，违约的一方将赔付约定比例的违约金。</span>
+			</li>
+			
+			
+			
+		</ul>
+	</section>
+	
+	<!--双方协商-->
+	<div class="previewSubmit" ng-hide='state == 18 || state == 17'>
+		<a href="" ng-click='stateChange(17)'>
+			<button type="button" class="btn btnred float-left">强制中止订单</button>
+		</a>
+		
+		<a href="#/StopClass/{{currId}}">
+			<button type="button" class="btn btnred float-right">协商中止订单</button>
+		</a>
+		<div class="clearfix"></div>
+	</div>
+	
+	
+	
+</div>

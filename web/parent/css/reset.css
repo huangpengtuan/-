@@ -1,0 +1,972 @@
+/*----------------------------------
+*  01 reset重置
+*  02 icon字体图标设置
+*  03 颜色类
+*  04 开关类
+*  05 加载动画样式
+* 
+*====================================*/
+
+
+
+
+/*----------------------------------
+*  01 reset
+*====================================*/
+
+html, body, div, span, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+abbr, address, cite, code,
+del, dfn, em, img, ins, kbd, q, samp,
+small, strong, sub, sup, var,
+b, i,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, figcaption, figure,
+footer, header, menu, nav, section, summary,
+time, mark, audio, video {
+    margin:0;
+    padding:0;
+    border:0;
+    outline:0;
+    font-size:100%;
+    vertical-align:baseline;
+    background:transparent;
+}
+
+body {
+    line-height:1;
+    font-size: 12px;
+    font-family:"Microsoft YaHei",Arial,Helvetica,sans-serif,"宋体"!important; 
+}
+@media only screen and (max-width:320px) {
+    body {
+        font-size: 12px;
+    }
+}
+article,aside,canvas,details,
+footer,header,menu,nav,section {
+    display:block;
+}
+
+nav ,ul ,a,li{
+    list-style:none;
+}
+
+q {
+    quotes:none;
+}
+
+q:before, q:after {
+    content:'';
+    content:none;
+}
+
+a {
+	display: block!important;
+    margin:0;
+    padding:0;
+    border:0;
+    font-size:100%;
+    vertical-align:middle;
+    background:transparent;
+    text-decoration: none!important;
+}
+a:hover{
+    text-decoration: none!important;
+    color: #000000;
+}
+a:link { 
+	text-decoration: none!important; 
+	color: #000000;
+} 
+a:visited { 
+	text-decoration: none!important; 
+	color: #000000;
+} 
+a:hover {
+	text-decoration: none!important; 
+	color: #000000;
+} 
+
+
+ins {
+    background-color:#ff9;
+    color:#000;
+    text-decoration:none;
+}
+
+mark {
+    background-color:#ff9;
+    color:#000;
+    font-style:italic;
+    font-weight:bold;
+}
+
+del {
+    text-decoration: line-through;
+}
+
+abbr[title], dfn[title] {
+    border-bottom:1px dotted #000;
+    cursor:help;
+}
+
+table {
+    border-collapse:collapse;
+    border-spacing:0;
+}
+
+hr {
+    display:block;
+    height:1px;
+    border:0;
+    border-top:1px solid #cccccc;
+    margin:1em 0;
+    padding:0;
+}
+input{outline:none;}
+input:focus { outline: none; }
+input, select {
+    vertical-align:middle;
+}
+input,button{
+    margin:0;
+    padding:0;
+    list-style-type:none;
+    background: none;
+}
+.clearfix{
+	clear: both;
+}
+.nav>li>a:focus, .nav>li>a:hover{
+	background-color: #fff;
+}
+.btn.focus, .btn:focus, .btn:hover{
+	color: #FFFFFF!important;
+}
+
+/*----------------------------------
+*  02 icon字体图标设置
+*====================================*/
+@font-face {
+  font-family: 'icomoon';
+  src:  url('../fonts/icomoon.eot?u45fzc');
+  src:  url('../fonts/icomoon.eot?u45fzc#iefix') format('embedded-opentype'),
+    url('../fonts/icomoon.ttf?u45fzc') format('truetype'),
+    url('../fonts/icomoon.woff?u45fzc') format('woff'),
+    url('../fonts/icomoon.svg?u45fzc#icomoon') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+
+[class^="icon-"], [class*=" icon-"] {
+
+  font-family: 'icomoon' !important;
+  speak: none;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+  font-size: 4rem;
+
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+.icon-yuan32:before {
+  content: "\e982";
+  color: #999;
+}
+.icon-yuan33:before {
+  content: "\e983";
+  color: #999;
+}
+.icon-yuan28:before {
+  content: "\e97e";
+  color: #36b1c0;
+}
+.icon-yuan30:before {
+  content: "\e97f";
+  color: #999;
+}
+.icon-yuan29:before {
+  content: "\e980";
+  color: #36b1c0;
+}
+.icon-yuan31:before {
+  content: "\e981";
+  color: #36b1c0;
+}
+.icon-yuan27:before {
+  content: "\e916";
+}
+.icon-yuan26:before {
+  content: "\e97d";
+  color: #dfe9eb;
+}
+.icon-yuan01:before {
+  content: "\e964";
+}
+.icon-yuan02:before {
+  content: "\e965";
+  color: #36b1c0;
+}
+.icon-yuan03:before {
+  content: "\e966";
+  color: #6bd87e;
+}
+.icon-yuan04:before {
+  content: "\e967";
+  color: #398de3;
+}
+.icon-yuan05:before {
+  content: "\e968";
+  color: #36b1c0;
+}
+.icon-yuan06:before {
+  content: "\e969";
+  color: #969696;
+}
+.icon-yuan07:before {
+  content: "\e96a";
+  color: #36b1c0;
+}
+.icon-yuan08:before {
+  content: "\e96b";
+  color: #ff5f5f;
+}
+.icon-yuan09:before {
+  content: "\e96c";
+  color: #fa9d4c;
+}
+.icon-yuan10:before {
+  content: "\e96d";
+  color: #ec6859;
+}
+.icon-yuan11:before {
+  content: "\e96e";
+  color: #fec748;
+}
+.icon-yuan12:before {
+  content: "\e96f";
+  color: #62b900;
+}
+.icon-yuan13:before {
+  content: "\e970";
+  color: #000;
+}
+.icon-yuan14:before {
+  content: "\e971";
+  color: #999;
+}
+.icon-yuan15:before {
+  content: "\e972";
+}
+.icon-yuan16:before {
+  content: "\e973";
+  color: #fecc59;
+}
+.icon-yuan17:before {
+  content: "\e974";
+  color: #8e5cd4;
+}
+.icon-yuan18:before {
+  content: "\e975";
+  color: #b1bc39;
+}
+.icon-yuan19:before {
+  content: "\e976";
+  color: #e9e7e7;
+}
+.icon-yuan20:before {
+  content: "\e977";
+  color: #43b5c3;
+}
+.icon-yuan21:before {
+  content: "\e978";
+  color: #eb5e67;
+}
+.icon-yuan22:before {
+  content: "\e979";
+  color: #36b1c0;
+}
+.icon-yuan23:before {
+  content: "\e97a";
+  color: #36b1c0;
+}
+.icon-yuan24:before {
+  content: "\e97b";
+  color: #ec6859;
+}
+.icon-yuan25:before {
+  content: "\e97c";
+  color: #b1bc39;
+}
+.icon-tips:before {
+  content: "\e963";
+}
+.icon-location:before {
+  content: "\e95d";
+}
+.icon-search2:before {
+  content: "\e95e";
+}
+.icon-bottom02:before {
+  content: "\e95f";
+}
+.icon-bottom03:before {
+  content: "\e960";
+}
+.icon-bottom04:before {
+  content: "\e961";
+}
+.icon-bottom01:before {
+  content: "\e962";
+}
+.icon-cram01:before {
+  content: "\e932";
+  color: #ff8105;
+}
+.icon-cram02:before {
+  content: "\e947";
+  color: #ff4949;
+}
+.icon-cram-select:before {
+  content: "\e94b";
+}
+.icon-cram03:before {
+  content: "\e94c";
+  color: #6955ff;
+}
+.icon-cram04:before {
+  content: "\e958";
+  color: #e719ff;
+}
+.icon-Collect:before {
+  content: "\e924";
+}
+.icon-A4-15:before {
+  content: "\e959";
+}
+.icon-A4-14:before {
+  content: "\e95c";
+}
+.icon-HHR:before {
+  content: "\e955";
+  color: #fff;
+}
+.icon-HL:before {
+  content: "\e956";
+}
+.icon-wdyj:before {
+  content: "\e957";
+}
+.icon-A4-13:before {
+  content: "\e94f";
+}
+.icon-wxpay:before {
+  content: "\e946";
+  color: #00c901;
+}
+.icon-A1-05:before {
+  content: "\e93f";
+  color: #1dc7ff;
+}
+.icon-A4-12:before {
+  content: "\e93e";
+}
+.icon-A4-10:before {
+  content: "\e937";
+}
+.icon-A4-11:before {
+  content: "\e938";
+}
+.icon-A4-09:before {
+  content: "\e939";
+}
+.icon-mychild:before {
+  content: "\e936";
+}
+.icon-default:before {
+  content: "\e934";
+  color: #f11;
+}
+.icon-edit:before {
+  content: "\e935";
+}
+.icon-A1-02:before {
+  content: "\e941";
+  color: #813dff;
+}
+.icon-search:before {
+  content: "\e942";
+  color: #fff;
+}
+.icon-A2:before {
+  content: "\e943";
+}
+.icon-A3:before {
+  content: "\e944";
+}
+.icon-A1-07:before {
+  content: "\e945";
+  color: #fff;
+}
+.icon-A4-02:before {
+  content: "\e95a";
+}
+.icon-A1-04:before {
+  content: "\e948";
+  color: #ffab32;
+}
+.icon-A1-01:before {
+  content: "\e949";
+  color: #ff0060;
+}
+.icon-A1-00:before {
+  content: "\e94a";
+  color: #fff;
+}
+
+.icon-A4-01:before {
+  content: "\e95b";
+}
+.icon-A4-06:before {
+  content: "\e94d";
+}
+.icon-A4-03:before {
+  content: "\e94e";
+}
+.icon-A1-06:before {
+  content: "\e902";
+  color: #e745e9;
+}
+.icon-A4:before {
+  content: "\e950";
+}
+.icon-A4-07:before {
+  content: "\e951";
+}
+.icon-A4-05:before {
+  content: "\e952";
+}
+.icon-A1:before {
+  content: "\e953";
+}
+.icon-A4-04:before {
+  content: "\e954";
+}
+.icon-bianji:before {
+  content: "\e940";
+  color: #14be14;
+}
+.icon-cramDe-t:before {
+  content: "\e93a";
+}
+.icon-cramDe-f:before {
+  content: "\e93b";
+  color: #fff;
+}
+.icon-cramDe-s:before {
+  content: "\e93c";
+  color: #fff;
+}
+.icon-cramDe-c:before {
+  content: "\e93d";
+  color: #fff;
+}
+.icon-Cart:before {
+  content: "\e92f";
+}
+.icon-horn:before {
+  content: "\e922";
+}
+.icon-gesture:before {
+  content: "\e92e";
+}
+.icon-T-03:before {
+  content: "\e930";
+}
+.icon-buxiban:before {
+  content: "\e911";
+}
+.icon-sore:before {
+  content: "\e921";
+
+}
+.icon-vip04:before {
+  content: "\e929";
+ 
+}
+.icon-myBusiness:before {
+  content: "\e901";
+
+}
+.icon-find:before {
+  content: "\e92b";
+}
+.icon-vip01:before {
+  content: "\e91e";
+}
+.icon-vip02:before {
+  content: "\e91f";
+}
+.icon-vip03:before {
+  content: "\e920";
+}
+.icon-vip05:before {
+  content: "\e923";
+}
+.icon-vip06:before {
+  content: "\e925";
+}
+.icon-vip07:before {
+  content: "\e926";
+
+}
+.icon-vip08:before {
+  content: "\e927";
+
+}
+.icon-vip09:before {
+  content: "\e928";
+
+}
+.icon-vip10:before {
+  content: "\e92a";
+
+}
+.icon-good:before {
+  content: "\e909";
+ 
+}
+.icon-addtenteacher:before {
+  content: "\e904";
+
+}
+.icon-searchteacher:before {
+  content: "\e905";
+ 
+}
+.icon-numberofteachers:before {
+  content: "\e906";
+
+}
+.icon-teacher:before {
+  content: "\e907";
+  
+}
+.icon-contribution:before {
+  content: "\e90a";
+  
+}
+.icon-open:before {
+  content: "\e90b";
+  
+}
+.icon-Close:before {
+  content: "\e90c";
+ 
+}
+.icon-love-1:before {
+  content: "\e90d";
+
+}
+.icon-love-2:before {
+  content: "\e90e";
+ 
+}
+.icon-tel:before {
+  content: "\e90f";
+  
+}
+.icon-Shopping-Mall:before {
+  content: "\e910";
+
+}
+.icon-willopen:before {
+  content: "\e912";
+}
+.icon-direction-left:before {
+  content: "\e913";
+
+}
+.icon-direction-right:before {
+  content: "\e914";
+
+}
+.icon-direction-top:before {
+  content: "\e915";
+  
+}
+
+.icon-smjj-b:before {
+  content: "\e903";
+}
+.icon-smjj-l:before {
+  content: "\e91d";
+}
+.icon-jiahao:before {
+  content: "\e92c";
+}
+.icon-gantanhao:before {
+  content: "\e918";
+}
+.icon-curriculum:before {
+  content: "\e93e";
+  color: #8a8a8a;
+}
+.icon-comment:before {
+  content: "\e91b";
+}
+.icon-Uncheck:before {
+  content: "\e91c";
+
+}
+.icon-delete:before {
+  content: "\e933";
+  
+}
+.icon-Unpaid:before {
+  content: "\e937";
+  color: #8a8a8a;
+}
+.icon-examine-not:before {
+  content: "\e919";
+}
+.icon-Establish:before {
+  content: "\e91a";
+  color: #8a8a8a;
+}
+.icon-examineing:before {
+  content: "\e908";
+  color: #8a8a8a;
+}
+.icon-noRecord:before {
+  content: "\e931";
+  color: #a9a9a9;
+}
+.icon-card:before {
+  content: "\e92d";
+  color: #8a8a8a;
+}
+.icon-checkmark:before {
+  content: "\ea10";
+}
+
+/*----------------------------------
+*  03 颜色类
+*====================================*/
+.bcolorblack{
+	background-color: #333333;
+}
+.bcolorViolet{
+	background-color: #a312ff;
+}
+.bcolorViolet02{
+	background-color: #5800ff;
+}
+.bcolorViolet03{
+	background-color: #8525ff;
+}
+.bcolorred{
+	background-color: #ff4646!important;
+}
+.bcolorred02{
+	background-color: #fc140a!important;
+}
+.bcolorblue{
+	background-color: #3c9cf5;
+}
+.bcolorblue02{
+	background-color: #4685f9;
+}
+.bcolorgreed{
+	background-color: #08c584;
+}
+.bcolorPink{
+	background-color: #f93e8d;
+}
+
+/*文字颜色*/
+.textcolorgreen{
+	color: #52d050!important;
+}
+.textcolorgreen2{
+	color: #13bf13!important;
+}
+.textcolorred{
+	color: red!important;
+}
+.textcolorred02{
+	color: #ff4747!important;
+}
+.textcolorblue{
+	color: #3c9cf5!important;
+}
+.textcolorblue02{
+	color: #20b7f2!important;
+}
+.textcolorblue03{
+	color: #4685f9!important;
+}
+.textcolorgray{
+	color: #999999!important;
+}
+.textcoloryellow{
+	color: #dab000!important;
+}
+.textcoloryellow2{
+	color: #ffb901!important;
+}
+.textcoloryellow3{
+	color: #ff8a13!important;
+}
+.textcolorViolet{
+	color: #875fff!important;
+}
+.textcolorViolet02{
+	color: #8525ff!important;
+}
+
+.textcolorPink{
+	color: #ff3889!important;
+}
+.textcolorPink02{
+	color: #f93e8d!important;
+}
+
+/*边框类颜色*/
+.borderViolet{
+	border: 1px solid #875fff;
+}
+.borderBlue{
+	border: 1px solid #3c9cf5;
+}
+.borderGreen{
+	border: 1px solid #52d050!important;
+}
+.borderRed{
+	border: 1px solid red!important;
+}
+.borderYellow{
+	border: 1px solid #dab000!important;
+}
+
+
+/*对齐*/
+.textalign-right{
+	text-align: right!important;
+}
+/*浮动定位*/
+.float-right{
+	float: right!important;
+}
+.float-left{
+	float: left!important;
+}
+.bottomsekuai{
+	width: 100%;
+	height: 60vh;
+	background-color: #fff;
+}
+.sekuai02{
+	width: 100%;
+	height: 8rem;
+	background-color: #fff;
+}
+.noborder{
+	border: none!important;
+}
+/*----------------------------------
+*  04 开关类
+*====================================*/
+.opentxt{
+	display: block!important;
+}
+.closetxt{
+	display: none!important;
+}
+
+/*----------------------------------
+*  05 加载动画样式
+*====================================*/
+.spinner {
+  margin: 10vh auto 0;
+  width: 150px;
+  text-align: center;
+  position: fixed;
+  top: 30vh;
+  left: 50%;
+  margin-left: -75px;
+}
+.spinner > div {
+  width: 30px;
+  height: 30px;
+  background-color: #67CF22;
+ 
+  border-radius: 100%;
+  display: inline-block;
+  -webkit-animation: bouncedelay 1.4s infinite ease-in-out;
+  animation: bouncedelay 1.4s infinite ease-in-out;
+
+  -webkit-animation-fill-mode: both;
+  animation-fill-mode: both;
+}
+.spinner .bounce1 {
+  -webkit-animation-delay: -0.32s;
+  animation-delay: -0.32s;
+}
+ 
+.spinner .bounce2 {
+  -webkit-animation-delay: -0.16s;
+  animation-delay: -0.16s;
+}
+ 
+@-webkit-keyframes bouncedelay {
+  0%, 80%, 100% { -webkit-transform: scale(0.0) }
+  40% { -webkit-transform: scale(1.0) }
+}
+ 
+@keyframes bouncedelay {
+  0%, 80%, 100% {
+    transform: scale(0.0);
+    -webkit-transform: scale(0.0);
+  } 40% {
+    transform: scale(1.0);
+    -webkit-transform: scale(1.0);
+  }
+}
+/*----------------------------------
+*  05 公共类
+*====================================*/
+.text-right{
+	text-align: right;
+	padding-right: 1.5rem;
+	font-size: 1.5rem; 
+}
+.text-center{
+	text-align: center;
+	padding: 0 1.5rem ;
+	font-size: 1.5rem;
+}
+.margin-bottom100{
+	margin-bottom: 10rem!important;
+}
+.margin-bottom50{
+	margin-bottom: 5rem!important;
+}
+.margin-bottom3{
+	margin-bottom: 3rem!important;
+}
+.margin-bottom1{
+	margin-bottom: 1rem!important;
+}
+.margin-top1{
+	margin-top: 1rem!important;
+}
+.margin-top2{
+	margin-top: 0.6rem!important;
+}
+/*字体加大加粗*/
+.fontws{
+	font-weight: 600;
+	font-size: 2.5rem;
+}
+.fontw{
+	font-weight: 600;
+}
+.bgc-hui{
+	background-color: #EBEBEB;
+}
+.border-top10{
+	border-top: 0.5rem solid #ebebeb; 
+	margin-top: 0!important;
+}
+.border-top15{
+	border-top: 1.8rem solid #ebebeb; 
+	margin-top: 0!important;
+}
+.border-top{
+	border-top: 1px solid #ebebeb;
+	margin-top: 0!important;
+}
+.border-right1px{
+	border-right: 1px solid #ebebeb;
+	
+}
+.border-left{
+	border-left: 0.6rem solid #ebebeb;
+}
+.border-right{
+	border-right: 0.6rem solid #ebebeb;
+}
+.border-bottom10{
+	border-bottom: 0.6rem solid #ebebeb;
+}
+.border-bottom1{
+	border-bottom: 1px solid #ebebeb;
+}
+.border-left1{
+	border-left: 1px solid #EBEBEB;
+}
+.border-right1{
+	border-right: 1px solid #EBEBEB;
+}
+.border-leftNO{
+	border-left: none!important;
+}
+
+/*----------------------------------
+*  06 公共按钮
+*====================================*/
+/*一键*/
+.kedanSubmit{
+	padding: 3rem 1rem;	
+}
+.btnred{
+	font-size: 1.7rem!important;
+	width: 100%;
+	height: 4rem;
+	border-radius: 0!important;
+	border: 0!important;
+	color: #FFFFFF;
+	background-color: #ff4646;
+}
+.xian05{
+	width: 100%;
+	height: 1rem;
+	background-color: #DFE9EB;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

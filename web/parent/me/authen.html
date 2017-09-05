@@ -1,0 +1,111 @@
+<!--认证-->
+<div class="margin-bottom50">
+
+	<form id="withdrawForm" method="post" enctype="multipart/form-data"">
+	<div class="authen01">
+		<div >
+			<i class="icon-gantanhao authen01-I"></i>
+			通过实名认证后才能使用更多功能
+		</div>
+		<div >			
+			1：您的验证信息第壹家教承诺为您保密，只用于身份验证，不作其他用途；
+		</div>	
+		<div >			
+			2：照片大小不超过3M；
+		</div>		
+	</div>
+	<ul class="authen02">
+		<li class="authen02-li">
+			<div class="authen02-li-c">姓&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;名</div>
+			<input class="authen02-li-i" type="text" name="trueName"  value="" placeholder="请输入身份证姓名"/>
+			<div class="clearfix"></div>
+		</li>
+		<li class="authen02-li">
+			<div class="authen02-li-c">身份证号</div>
+			<input class="authen02-li-i" type="text" name="idCardNo"  value="" placeholder="请输入身份证号"/>
+			<div class="clearfix"></div>
+		</li>		
+	</ul>
+	<!--正面-->
+	<div class="authen03">
+		<div class="authen03-D">第一步：上传手持身份证照片</div>
+		<div class="authen03-Dd textcolorgray">提示：免冠，五官清晰，手持身份证，保证信息清晰可见</div>
+	</div>
+	<div class="authen04">
+		<div class="control-group js_uploadBox01">
+			<!--点击上传盒子-->
+    		<div class="btn-upload01">
+      			<a href="javascript:void(0);">
+      				<i class="icon-jiahao textcolorgray sCTPi"></i>
+      				<!--<span class="js_uploadText">上传</span>
+      				图片-->
+      			</a>
+      			<input class="js_upFile01" type="file" name="card1">
+    		</div>
+    		<!--预览盒子-->
+    		<div class="js_showBox01 ">
+    			<img class="js_logoBox" src=""  >
+    			
+    		</div>
+		</div>
+	</div>
+	<!--反面-->
+	<div class="authen03">
+		<div class="authen03-D">第二步：上传身份证正面照</div>
+		<div class="authen03-Dd textcolorgray">提示：证件和第一张手持证件一致，证件号码清晰可见</div>
+	</div>
+	<div class="authen04">
+		<div class="control-group js_uploadBox02">
+			<!--点击上传盒子-->
+    		<div class="btn-upload02">
+      			<a href="javascript:void(0);">
+      				<i class="icon-jiahao textcolorgray sCTPi"></i>
+      				<!--<span class="js_uploadText">上传</span>
+      				图片-->
+      			</a>
+      			<input class="js_upFile02" type="file" name="card0">
+    		</div>
+    		<!--预览盒子-->
+    		<div class="js_showBox02 ">
+    			<img class="js_logoBox" src="" >
+    			
+    		</div>
+		</div>
+	</div>
+	<div class="kedanSubmit">
+		<a href="" ng-click="submitAuthen()">
+			<button type="button" class="btn btnred">提交审核</button>
+		</a>	
+	</div>
+	</form>
+	
+</div>
+
+<script type="text/javascript" src="js/plugins/jquery.uploadView.js" ></script>
+
+<script>
+	$(".js_upFile01").uploadView({
+		uploadBox: '.js_uploadBox01',//设置上传框容器
+		showBox : '.js_showBox01',//设置显示预览图片的容器
+		width : 300, //预览图片的宽度，单位px
+		height : 120, //预览图片的高度，单位px
+		allowType: ["gif", "jpeg", "jpg", "bmp", "png"], //允许上传图片的类型
+		maxSize :3, //允许上传图片的最大尺寸，单位M
+		success:function(e){
+			$(".btn-upload01").css("opacity",0);
+		}
+	});
+	
+	$(".js_upFile02").uploadView({
+		uploadBox: '.js_uploadBox02',//设置上传框容器
+		showBox : '.js_showBox02',//设置显示预览图片的容器
+		width : 300, //预览图片的宽度，单位px
+		height : 120, //预览图片的高度，单位px
+		allowType: ["gif", "jpeg", "jpg", "bmp", "png"], //允许上传图片的类型
+		maxSize :3, //允许上传图片的最大尺寸，单位M
+		success:function(e){
+			$(".btn-upload02").css("opacity",0);
+		}
+	});	
+</script>
+

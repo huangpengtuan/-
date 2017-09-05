@@ -1,0 +1,168 @@
+<!--生源和场地入口页-->
+<div class="PlaceAndChild">
+	<!--tab-->
+    <ul class="nav PACtab">
+	    <li ><a class="PAC_tab " href="/t/hot">找生源</a></li>
+	    <li ><a class="PAC_tab PAC-active" >找场地</a></li>
+    </ul>
+	<div class="tab-content PACData">	
+    	<!--课程-->
+	    <div class="tab-pane PAC_tab01">	
+	    	
+	    	
+		</div>  
+		<!--找场地-->
+	    <div class="tab-pane PAC_tab01 active">	
+	    	<ul class="PlaceTab" >
+	    		<li class="PlaceTablist" id="select_contact">
+	    			<div class="areaName" data-city-code="" data-province-code="" data-district-code="" id="show_contact">
+	    				区域
+	    				<i class="icon-yuan22"></i>
+	    			</div>	    			
+					<input type="hidden" name="contact_province_code" id="contact_province_code" value="" data-id="0001" data-province-name="">                
+		        	<input type="hidden" name="cram.area_id" id="contact_city_code" value="" data-city-name="">
+		        	
+	    		</li>
+	    		<li class="PlaceTablist" id="range" ng-click="BySort('distance')">距离</li>
+	    		<li class="PlaceTablist" id="measure" ng-click="BySort('rent_area_size')">面积</li>
+	    		<li class="PlaceTablist" id="Price" ng-click="BySort('rent_money')">价格</li>
+	    	</ul>
+	    	<!--一条场地信息-->
+	    	<a class="PlaceTable" href="#/PlaceDetails/{{Place.id}}" ng-repeat='Place in PlaceList track by Place.id'>
+	    		<div class="PlaceHeader">
+	    			<i class="icon-yuan28 Placeioc"></i>
+	    			<div class="PlaceName">{{Place.place_title}}</div>
+	    			<div class="distance">{{Place.distance}}km</div>
+	    			<img ng-src="{{Place.member_headimg}}" alt="" class="PlacePeople"/>
+	    		</div>
+	    		<div class="PlaceDatalist">
+	    			<div class="PlaceDatalist_L">场地费</div>
+	    			<div class="PlaceDatalist_R">{{Place.rent_money}}/小时</div>
+	    		</div>
+	    		<div class="PlaceDatalist">
+	    			<div class="PlaceDatalist_L">面积</div>
+	    			<div class="PlaceDatalist_R">{{Place.rent_area_size}}平方</div>
+	    		</div>
+	    		<div class="PlaceDatalist">
+	    			<div class="PlaceDatalist_L">地址</div>
+	    			<div class="PlaceDatalist_R">{{Place.address}}</div>
+	    		</div>	    		
+	    		<div class="PlaceDatalist">
+	    			<div class="PlaceDatalist_L">发布时间</div>
+	    			<div class="PlaceDatalist_R">{{Place.insert_date | date:'yyyy-MM-dd  hh:mm'}}</div>
+	    		</div>
+	    		<div class="PlaceBooth">
+	    			<img ng-src="{{imageKey.image_key}}" alt="" class="BoothImg" ng-repeat='imageKey in Place.imageKey' data-imageKeyId = "{{imageKey.id}}"/>
+	    		</div>
+	    	</a>
+	    	
+
+		</div>
+	</div>
+
+	<button ng-click='MaskOnefadeIn()' class="yuanyuanBTN01">发&nbsp;&nbsp;布</button>
+
+
+
+	
+</div>
+
+
+<!--发布场地蒙版--01发布学员或发布场地-->
+<div class="PalceMaskOne" >
+	<div class="MaskOneData">
+		<div class="MaskOneRelease">
+			<div class="ReleaseStudent">发布学员</div>
+			<div class="ReleasePlace" ng-click='isMaskOneFadein()'>发布场地</div>
+		</div>
+		<div class="CancelRelease" ng-click='MaskOneFadeOut()'>取消</div>
+	</div>
+	
+	<!--是否已经缴纳保证金-->
+	<div class="MaskOneDataTwo">
+		<div class="Masktext">发布场地需先缴纳保证金</div>
+		<div class="MaskTwoBtn">
+			<div class="MaskTwoBtn01" ng-click='MaskOneFadeOut()'>取消</div>
+			<div class="MaskTwoBtn02" ng-click='ReleasePlace()'>缴纳</div>
+		</div>		
+	</div>
+
+</div>
+
+<!--加载动画-->
+<div class="spinner">
+  <div class="spinner-container container1">
+    <div class="circle1"></div>
+    <div class="circle2"></div>
+    <div class="circle3"></div>
+    <div class="circle4"></div>
+  </div>
+  <div class="spinner-container container2">
+    <div class="circle1"></div>
+    <div class="circle2"></div>
+    <div class="circle3"></div>
+    <div class="circle4"></div>
+  </div>
+  <div class="spinner-container container3">
+    <div class="circle1"></div>
+    <div class="circle2"></div>
+    <div class="circle3"></div>
+    <div class="circle4"></div>
+  </div>
+</div>
+
+
+
+
+
+
+<!--地址插件----->
+<script type="text/javascript" src="js/plugins/iscroll.js" ></script>
+<script type="text/javascript" src="js/plugins/areaData_v2-yuan.js" ></script>
+<script type="text/javascript" src="js/plugins/iosSelect.js" ></script>
+<!--<script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function(){
+    var hm = document.createElement("script");
+    hm.src = "//hm.baidu.com/hm.js?b25bf95dd99f58452db28b1e99a1a46f";
+    var s = document.getElementsByTagName("script")[0]; 
+    s.parentNode.insertBefore(hm, s);
+    })();
+	
+    var selectContactDom = $('#select_contact');
+    var showContactDom = $('#show_contact');
+    var contactProvinceCodeDom = $('#contact_province_code');
+    var contactCityCodeDom = $('#contact_city_code');
+    selectContactDom.bind('click', function () {
+        var sccode = showContactDom.attr('data-city-code');
+        var scname = showContactDom.attr('data-city-name');
+
+        var oneLevelId = showContactDom.attr('data-province-code');
+        var twoLevelId = showContactDom.attr('data-city-code');
+        var threeLevelId = showContactDom.attr('data-district-code');
+        var iosSelect = new IosSelect(3, 
+            [iosProvinces, iosCitys, iosCountys],
+            {
+                title: '地址选择',
+                itemHeight: 35,
+                relation: [1, 1, 0, 0],
+                oneLevelId: oneLevelId,
+                twoLevelId: twoLevelId,
+                threeLevelId: threeLevelId,
+                callback: function (selectOneObj, selectTwoObj, selectThreeObj) {
+                    contactProvinceCodeDom.val(selectOneObj.id); 
+                    contactProvinceCodeDom.attr('data-province-name', selectOneObj.value);
+                    contactCityCodeDom.val(selectTwoObj.id);
+                    contactCityCodeDom.attr('data-city-name', selectTwoObj.value);
+
+                    showContactDom.attr('data-province-code', selectOneObj.id);
+                    showContactDom.attr('data-city-code', selectTwoObj.id);
+                    showContactDom.attr('data-district-code', selectThreeObj.id);
+                    showContactDom.html( selectTwoObj.value + ' ' + selectThreeObj.value);
+                
+                }
+        });
+        
+        
+    });
+</script>-->

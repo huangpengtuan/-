@@ -1,0 +1,133 @@
+
+<div id="vip">
+
+	<header class="me-top">
+		<div class="media">			 						 
+			<div class="list-left">
+			   	<div href="">	   		
+			   		<img ng-src="{{avatar}}" class="list-left-img" alt=""/>
+			   		<div class="list-left-body">
+						<div class="listteathername">				
+			      			{{name}}				      	      
+				      	    <i ng-if="parentVip == 0"><img src="img/icon_vip.png" alt="" /></i>
+				      	    <i ng-if="parentVip == 1"><img src="img/icon_vip_m.png" alt="" /></i>
+				      	    <i ng-if="parentVip ==2 "><img src="img/icon_vip_y.png" alt="" /></i>
+				      	    <i ng-if="sex == 1 "><img src="img/icon_gender_men.png" alt="" /></i>
+				      	    <i ng-if="sex == 2"><img src="img/icon_gender_woman.png" alt="" /></i>	
+							      	     	    
+				        </div>
+				        
+				       	<div class="bangdingshouji">
+	  	                   	<a href="" class="textcolorgray" ng-if="parentVip == 0">您未开通家长会员，不能享受会员特权。</a>
+	  	                   	<a href="" class="" ng-if="parentVip == 1 || parentVip == 2">会员到期：{{ vip_end_time | date:'yyyy-MM-dd' }}</a>
+				       	</div>	
+			       					    							       	
+					</div>
+					<div class="clearfix"></div>
+			   	</div>			   				
+			</div>			 	 			 
+		</div>									
+	</header>
+	<section>
+		<div class="linetxt">开通会员</div>
+		<ul class="vip">
+			<li>
+				<div class="whiteborder textalign-right">开通服务：</div>
+				<div class="grayborder greedborder-active" ng-click="vipService($event)">会员vip</div>
+			</li>
+			<li>
+				<div class="whiteborder textalign-right">付费模式：</div>
+				<div data-vip="0" class="grayborder month-year greedborder-active" ng-click='monthandyear($event,"m")'>月费</div>
+				<div data-vip="1" class="grayborder month-year" ng-click='monthandyear($event,"y")'>
+					年费
+					<div class="tehui">特惠</div>
+				</div>
+			</li>
+			<li>
+				<div class="whiteborder textalign-right">开通时长：</div>
+				<input class="inputtime" type="text" ng-change="inputviptime(viptime)" ng-model="viptime" onkeyup="this.value=this.value.replace(/\D/g,'')"  onafterpaste="this.value=this.value.replace(/\D/g,'')">
+				<div class="viptimefont" ng-if="viptype == 'm'">个月</div>
+				<div class="viptimefont" ng-if="viptype == 'y'">年</div>
+			</li>
+			<li>
+				<div class="whiteborder textalign-right">应付金额：</div>
+				<div class="textcolorred  sum-of-money1">{{Totalamount}} <span ng-if="yuanonoff">元</span></div>
+				<div class="sum-of-money2" ng-if="viptype == 'y'">限时推广</div>
+				<div class="sum-of-money3" ng-if="viptype == 'y'">原价{{originalPrice}}</div>
+			</li>
+			<li class="pay-bottom">
+				<div class="whiteborder textalign-right pay">
+					支付方式：
+					<ul class="pay1">
+						<li  class="pay-style" ng-click='paystyle($event,2)'>钱包支付</li>
+						<span class="textcolorgray wallet-balance">钱包余额:{{balance}}元</span>
+						<li class="pay-style" ng-click='paystyle($event,1)'>微信支付</li>
+					</ul>					
+				</div>
+
+
+			</li>
+			<li class="zhifu-bottom">
+				<button ng-click="submitpay(Totalamount,balance)" type="button" class="btn newbtn">支付</button>
+			</li>			
+			
+		</ul>
+		<ul class="vipshow pay-bottom">
+			<li class="month-year-show">
+				<div class="linetxt">月费会员特权</div>
+				<div class="month-vip">
+					<i class="icon-vip08 textcoloryellow3"></i>
+					可享受免费试课
+				</div>
+				<div class="month-vip border-top">
+					<i class="icon-addtenteacher textcolorred2"></i>
+					每月可以添加10名师资
+				</div>
+				<div class="month-vip border-top">
+					<i class="icon-good textcolorViolet"></i>
+					可使用特优特惠推荐功能
+				</div>
+				<div class="month-vip border-top">
+					<i class="icon-vip10 textcolorblue"></i>
+					免费参加平台线下课堂与活动
+				</div>				
+				
+				
+			</li>
+			<li class="month-year-show">
+				<div class="linetxt">年费会员特权</div>
+				<div class="month-vip">
+					<i class="icon-vip08 textcoloryellow3"></i>
+					可享受免费试课
+				</div>
+				<div class="month-vip border-top">
+					<i class="icon-addtenteacher textcolorgreen2"></i>
+					不限制添加老师人数
+				</div>
+				<div class="month-vip border-top">
+					<i class="icon-good textcolorViolet"></i>
+					可使用特优特惠推荐功能
+				</div>
+				<div class="month-vip border-top">
+					<i class="icon-numberofteachers textcolorblue02"></i>
+					可使用帮我匹配老师功能
+				</div>				
+				<div class="month-vip border-top">
+					<i class="icon-vip07 textcolorPink"></i>
+					可享受家庭小秘书服务
+				</div>				
+				
+				<div class="month-vip border-top">
+					<i class="icon-vip10 textcolorblue"></i>
+					免费参加平台线下课堂与活动
+				</div>			
+			</li>			
+		</ul>
+		
+		
+	</section>
+
+
+</div>
+
+

@@ -1,0 +1,103 @@
+<!--场地详情-->
+<div class="PlaceDetails">
+	<div class="CNavigation">
+		<i class="icon-direction-right CNfloat-left" ng-click='goback()'>&nbsp;&nbsp;详情</i>
+	</div>	
+	<!--场地信息-->
+	<div class="PlaceTable">
+		<div class="PlaceHeader">
+			<i class="icon-yuan28 Placeioc"></i>
+			<div class="PlaceName">{{PlaceDetail.place_title}}</div>
+			<div class="distance">{{PlaceDetail.distance}}km</div>
+			<img ng-src="{{PlaceDetail.member_headimg}}" alt="" class="PlacePeople"/>
+		</div>
+		<div class="PlaceDatalist">
+			<div class="PlaceDatalist_L">场地费</div>
+			<div class="PlaceDatalist_R">{{PlaceDetail.rent_money}}/小时</div>
+		</div>
+		<div class="PlaceDatalist">
+			<div class="PlaceDatalist_L">面积</div>
+			<div class="PlaceDatalist_R">{{PlaceDetail.rent_area_size}}平方</div>
+		</div>
+		<div class="PlaceDatalist">
+			<div class="PlaceDatalist_L">地址</div>
+			<div class="PlaceDatalist_R">{{PlaceDetail.address}}</div>
+		</div>	    		
+		<div class="PlaceDatalist">
+			<div class="PlaceDatalist_L">发布时间</div>
+			<div class="PlaceDatalist_R">{{PlaceDetail.insert_date  | date:'yyyy-MM-dd  hh:mm'}}</div>
+		</div>
+		<div class="PlaceBooth">
+			<img ng-src="{{imageKey.image_key}}" alt="" class="BoothImg" ng-repeat='imageKey in PlaceDetail.imageKey' data-imageKeyId = "{{imageKey.id}}"/>
+		</div>
+	</div>	
+	
+	<div class="PurchaseTime">
+		<div class="float-left">购买时长</div>
+		<div class="float-right">
+			<div class="reduce" ng-click='reduce()'>-</div>
+			<input id="HourAmount" value="{{HourAmounts}}" type="number" readonly="readonly">
+			<div class="plus" ng-click='plus()'>+</div>
+		</div>
+	</div>
+	
+	<div class="landlord">
+		<div class="PlaceDatalist">
+			<div class="PlaceDatalist_L">房东姓名</div>
+			<div class="PlaceDatalist_R">{{PlaceDetail.name}}</div>
+		</div>
+		<div class="PlaceDatalist">
+			<div class="PlaceDatalist_L">房东电话</div>
+			<div class="PlaceDatalist_R">{{PlaceDetail.phone}}</div>
+		</div>
+ 	    <!--非会员则显示-->		
+		<div class="isVip" ng-if='PlaceDetail.isVip == 0'>
+			<div class="PlaceDatalist_L">房东信息只提供给平台会员查看</div>
+			<div class="PlaceDatalist_R">
+				<i class="icon-yuan01 baginVIP_img"></i>
+				<a href="#/vip/" class="baginVIP_text">成为会员</a>
+			</div>
+		</div>
+	</div>	
+	
+	<div class="Prompt">
+		<i class="icon-yuan29 Cozy_i"></i>	
+		<div class="Cozy_text01">温馨提示</div>
+		<div class="Cozy_text02">以上信息已经过平台审核请放心购买</div>
+		<div class="clearfix"></div>
+	</div>	
+	
+	<div class="PDBBtn">
+		<div class="PDBBtn01">合计￥{{HourAmounts*PlaceDetail.rent_money}}</div>
+		<a href="#/PlaceAndChild/" class="PDBBtn02">取&nbsp;&nbsp;消</a>
+		<a class="PDBBtn03" href="#/PlaceUnpaid/{{PlaceDetail.id}}/{{HourAmounts}}" ng-click='PayPlace(PlaceDetail.id)'>立即购买</a>
+	</div>
+	
+</div>	
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

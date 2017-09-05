@@ -1,0 +1,40 @@
+<!--追评-->
+<div class="assShow">
+	<div class="assST">
+		<span class="fontw textcolorred">{{comments.parent_score}}分</span>
+		<span>{{comments.content}}</span>
+		<span class="textcolorgray assSTime">{{comments.in_time | date:'yyyy-MM-dd HH:mm'}}</span>
+	</div>
+	<div class="assC">
+		<div class="assCTab">追加评论</div>
+		<textarea name="" rows="6"  class="assCText" placeholder="对老师的服务还满意吗？客观评价一下老师吧~"></textarea>
+	</div>
+	<div class="previewSubmit" >
+		<a href="#/assShow/{{teatherId}}/{{currId}}" >
+			<button type="button" class="btn btnred float-left">取消</button>
+		</a>									
+		<a href="" ng-click='assSubmit()'>
+			<button type="button" class="btn btnred float-right">提交</button>
+		</a>
+		<div class="clearfix"></div>
+	</div>
+</div>	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

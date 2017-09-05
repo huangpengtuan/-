@@ -1,0 +1,37 @@
+<!--修改我的子女信息-->
+<div id="editChilds">
+	<div class="CNavigation">
+		<i class="icon-direction-right CNfloat-left" ng-click='goback()'></i>
+		<div class="CNfloat-right" ng-click='modifyChilds()'>保存</div>
+	</div>
+	<div class="linetxt">开通会员</div>
+	
+	<form class="CNdata" id="CNdatas">
+		<div class="CNdata01">
+			<div class="CNdata01-left">子女姓名</div>
+			<input name="name" class="CNdata01-right" placeholder="输入" value="{{childsData.name}}"/>
+		</div>
+		<div class="CNdata01">
+			<div class="CNdata01-left">子女年龄</div>
+			<input name="age" type="tel" class="CNdata01-right" placeholder="输入" onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')" value="{{childsData.age}}"/>
+		</div> 
+		<div class="CNdata01">
+			<div class="CNdata01-left">子女性别</div>
+			<select name="sex" class="CNdata01-rightsele" value="{{childsData.sex}}">
+				<option value="">点击选择</option>
+				<option value="1" ng-selected='childsData.sex == 1'>男</option>
+				<option value="2" ng-selected='childsData.sex == 2'>女</option>
+			</select>
+		</div>
+		<div class="CNdata01">
+			<div class="CNdata01-left">手机号</div>
+			<input name="mobile" type="tel" class="CNdata01-right" placeholder="输入" onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')" value="{{childsData.mobile}}"/>
+		</div>	
+		<div class="CNdata02">
+			<div class="CNdata01-left">子女其他情况说明</div>			
+		</div>	
+		<textarea name="explain" rows="5" cols="" class="CNdata03" placeholder="简要介绍子女性格与学习状况......（不超过120字）" >{{childsData.explain}}</textarea>
+	</form>
+	
+
+</div>

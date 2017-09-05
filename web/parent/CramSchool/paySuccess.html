@@ -1,0 +1,49 @@
+<!--支付成功界面-->
+<div class="paySuccess">
+	<div class="paySuccess-img">
+		<i class="icon-Uncheck"></i>
+		<div class="paySuccess-text">支付成功</div>
+	</div>	
+	<ul class="paySuccess-data">
+		<li class="PSdata-list">
+			<div class="PSdata-list-left">订单总价</div>
+			<div class="PSdata-list-right">￥{{amount}}</div>
+			<div class="clearfix"></div>
+		</li>
+		<li class="PSdata-list">
+			<div class="PSdata-list-left">创建时间</div>
+			<div class="PSdata-list-right">{{ in_time | date:'yyyy-MM-dd HH:mm:ss' }}</div>
+			<div class="clearfix"></div>
+		</li>		
+		<li class="PSdata-list">
+			<div class="PSdata-list-left">付款时间</div>
+			<div class="PSdata-list-right">{{ pay_time | date:'yyyy-MM-dd HH:mm:ss' }}</div>
+			<div class="clearfix"></div>
+		</li>				
+		<li class="PSdata-list-button">
+			<button class="PSdata-button-left" ng-click='goMyOrders()'>查看详情</button>
+			<button class="PSdata-button-right" ng-click='gohomes()'>返回首页</button>
+			<div class="clearfix"></div>
+		</li>		
+		
+	</ul>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+	
+	
+	
+	
+	
+	
+	

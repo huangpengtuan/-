@@ -1,0 +1,117 @@
+<!--我的-->
+<div id="me">
+	<div class="CNavigation">
+		<i class="icon-direction-right CNfloat-left" ng-click='goback()'>&nbsp;&nbsp;我</i>
+		<div class="CNfloat-right">
+			编辑
+		</div>
+	</div>
+	<header class="me_A">
+		<div class="me_A_01">
+			<img ng-src="{{avatar}}" alt="" class="me_A_01_img"/>
+			<img ng-if='verify == 2' src="img/renzheng.png" alt="" class="Authentication"/>
+			<img ng-if='verify == 3' src="img/renzhengno.png" alt="" class="Authentication"/>
+			<img ng-if='verify == 1' src="img/renzhengno.png" alt="" class="Authentication"/>
+			<img ng-if='verify == 0' src="img/renzhengno.png" alt="" class="Authentication"/>
+		</div>
+		<div class="me_A_02">
+			{{name}}
+			<i ng-if="sex == 1" class="icon-yuan07 me_sex"></i>
+			<i ng-if="sex == 2" class="icon-yuan08 me_sex"></i>
+		</div>
+		<div class="me_A_03">
+			一年级
+			<i ng-if="vip_type == 2" class="icon-yuan01 vipyesred"></i>
+			<i ng-if="vip_type == 1" class="icon-yuan01 vipyesred"></i>
+			<i ng-if="vip_type == 0" class="icon-yuan01 vipno"></i>
+		</div>
+		<div class="me_A_04">
+			<div class="me_A_0401">
+				<div class="me_A_040101">21</div>
+				<div class="me_A_040102">师德</div>
+			</div>
+			<div class="me_A_0401">
+				<div class="me_A_040101">5</div>
+				<div class="me_A_040102">教龄</div>
+			</div>
+			<div class="me_A_0401">
+				<div class="me_A_040101">21</div>
+				<div class="me_A_040102">学员数</div>
+			</div>			
+		</div>
+	</header>
+	<div class="xian05"></div>
+	<section class="me_Grade">
+		<div class="me_Grade_img">
+			<img src="img/new-03.png" alt="" class="Grade_imgs"/>
+		</div>
+		<div class="me_Grade_data">
+			<div class="me_Grade_star">
+				<img class="starslist" src="img/star.png" alt="" />
+				<img class="starslist" src="img/star.png" alt="" />
+				<img class="starslist" src="img/star.png" alt="" />
+				<img class="starslist" src="img/star.png" alt="" />
+				<img class="starslist" src="img/star-hollow.png" alt="" />
+			</div>
+			<div class="me_Grade_Label">
+				<div class="LabelsList">耐心</div>
+				<div class="LabelsList">鬼斧神功</div>
+				<div class="LabelsList">耐心</div>
+				<div class="LabelsList">鬼斧神功</div>
+				<div class="LabelsList">鬼斧神功</div>
+			</div>
+		</div>
+		<i class="icon-yuan26 me_B_list_03"></i>
+	</section>
+	<div class="xian05"></div>
+	<section class="me_B">
+		<a class="me_B_list" href="/t/money">
+			<i class="icon-yuan09 me_B_list_01"></i>
+			<div class="me_B_list_02 border-bottom1">钱包</div>
+			<i class="icon-yuan26 me_B_list_03"></i>
+			<div class="clearfix"></div>
+		</a>
+		<a class="me_B_list" href="/t/cert">
+			<i class="icon-yuan10 me_B_list_01"></i>
+			<div class="me_B_list_02 border-bottom1">认证中心</div>
+			<i class="icon-yuan26 me_B_list_03"></i>
+			<div class="clearfix"></div>
+		</a>
+		<a class="me_B_list" href="#/MyBusiness/">
+			<i class="icon-yuan18 me_B_list_01"></i>
+			<div class="me_B_list_02 border-bottom1">我的业务</div>
+			<i class="icon-yuan26 me_B_list_03"></i>
+			<div class="clearfix"></div>
+		</a>
+		<a class="me_B_list" href="#/vip/">
+			<i class="icon-yuan04 me_B_list_01"></i>
+			<div class="me_B_list_02 border-bottom1">会员中心</div>
+			<i class="icon-yuan26 me_B_list_03"></i>
+			<div class="clearfix"></div>
+		</a>
+		<a class="me_B_list" href="#/MyCollect/">
+			<i class="icon-yuan17 me_B_list_01"></i>
+			<div class="me_B_list_02">我的收藏</div>
+			<i class="icon-yuan26 me_B_list_03"></i>
+			<div class="clearfix"></div>
+		</a>
+		<div class="xian05"></div>	
+		<a class="me_B_list" href="/resetUserType?type=1">
+			<div class="me_B_list_04 border-bottom1">切换到家长身份</div>
+			<i class="icon-yuan26 me_B_list_03"></i>
+			<div class="clearfix"></div>
+		</a>	
+		<a class="me_B_list border-bottom1" href="/t/feedback">
+			<div class="me_B_list_04">意见反馈</div>
+			<i class="icon-yuan26 me_B_list_03"></i>
+			<div class="clearfix"></div>
+		</a>		
+	</section>
+	
+	
+	
+</div>
+
+
+
+

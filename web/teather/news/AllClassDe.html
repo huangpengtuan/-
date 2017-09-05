@@ -1,0 +1,72 @@
+<!--课单详情（可查看该班全部课次）-->
+<div id="AllClassDe">
+	<div class="CNavigation">
+		<i class="icon-direction-right CNfloat-left"></i>
+		<div class="CNfloat-left-Text" ng-click='goback()'>返回</div>
+	</div>
+	<!--空状态-->
+	<div class="MOnoneState MOnoneAll" ng-if='lessonchildsList.length == 0'>
+		<i class="icon-comment"></i>
+		<div class="CramState-Title">
+			您还没有课次哦	
+		</div>
+	</div>
+	<!--有课程状态-->
+	<div class="Havecurri">
+		<!--一条课程信息-->
+		<div class="oneCurri" ng-repeat='lessonchilds in lessonchildsList track by $index'>
+			<a class="MO-listTop">				
+				<div class="MO-listTopName">
+					&nbsp;&nbsp;&nbsp;课次{{lessonchilds.lesson_num}}					
+				</div>
+				<div class="MO-listTopState01" ng-if='lessonchilds.status == 0'>
+					上课中
+				</div>
+				<div class="MO-listTopState01" ng-if='lessonchilds.status == 1'>
+					待结课
+				</div>
+				<div class="MO-listTopState02 textcolorgray" ng-if='lessonchilds.status == 2'>
+					已结课
+				</div>							
+			</a>
+			<div ng-click='goOrderDetails(5,1)' class="MO-listData">
+				<div class="MO-listData01">
+					<div class="float-left">发起上课人数：{{lessonchilds.studentCount}}人</div>
+					<a ng-click='goLessonchildDetail(lessonchilds.status,lessonchilds.lesson_id)' class="float-right textcolorblue">课次详情</a>
+					<div class="clearfix"></div>
+				</div>
+				<div class="MO-listData01">
+					<div class="float-left">未确认学员：{{lessonchilds.unconfirmed}}人</div>
+					<div class="clearfix"></div>
+				</div>
+				<div class="MO-listData01">
+					<div class="float-left">拒绝结课学员：{{lessonchilds.reject}}人</div>
+					<div class="clearfix"></div>
+				</div>							
+				<div class="MO-listData01">
+					<div class="float-left">
+						<span ng-if='lessonchilds.status == 0'>预计上课时长：</span><span ng-if='lessonchilds.status == 1 || lessonchilds.status == 2'>实际上课时长：</span>
+						{{lessonchilds.attend_class_hour}}小时</div>							
+					<div class="clearfix"></div>
+				</div>	
+				<div class="MO-listData01">
+					<div class="float-left">
+						<span ng-if='lessonchilds.status == 0'>预计上课时长：</span><span ng-if='lessonchilds.status == 1 || lessonchilds.status == 2'>实际上课时长：</span>
+						{{lessonchilds.course_date}}&nbsp;&nbsp;{{lessonchilds.course_time}}</div>								
+					<div class="clearfix"></div>
+				</div>	
+				<!--列表按钮-->
+				<div class="HC-listBottom" ng-if='lessonchilds.status == 0'>												
+					<a href="#/GLessons/{{lessonchilds.courser_id}}/{{lessonchilds.lesson_id}}" class="HC-Button">发起结课</a>
+				</div>							
+			</div>
+
+		</div>	
+
+	</div>	
+	
+	<div class="bottomsekuai"></div>
+	
+	
+</div>
+	

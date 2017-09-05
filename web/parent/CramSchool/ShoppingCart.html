@@ -1,0 +1,135 @@
+<!--全局购物车-->
+<div class="SCart">
+    <ul class="nav SCarttabs" >
+	    <li ><a class="SCart-tabs SCactive">课程</a></li>
+	    <li ><a class="SCart-tabs ">商城</a></li>	  	    
+    </ul>
+    <div class="tab-content">
+    	<!--课程选项卡-->  	
+    	<div class="tab-pane SCart-tabs01 active">
+			<!--空状态-->
+			<div class="MOnoneState MOnoneAll" ng-if='!CartLists'>
+				<i class="icon-comment"></i>
+				<div class="CramState-Title">
+					您还没有相关的订单
+					<a href="#/CSchool/" class="gofindscurri">发现课程</a>
+				</div>
+			</div>
+    		<!--一条店铺订单信息-->
+	    	<div class="SClists" ng-repeat='cramschool in CartLists track by $index' on-finish-render>
+	    		<!--店铺头部-->
+	    		<div class="SClists_top">
+	    			<i class="icon-Uncheck scchecksimg checks checksActive"></i>
+	    			<img ng-src="{{cramschool.class_avatar}}" alt="" class="SClists_top_img"/>
+	    			<a class="sctoptitle" href="#/Cdetails/{{cramschool.schoolId}}">
+	    				{{cramschool.class_name}}
+	    				<i class="icon-direction-left  SCdireleftimg"></i>
+	    			</a>
+	    			<div class="clearfix"></div>
+	    		</div>
+	    		<!--一条订单内容-->
+			    <div class="SCartlist" ng-repeat='currilists in cramschool.courses'>
+		        	<div class="SC-container">
+			    		<div class="SClists_data">
+			    			<i class="icon-Uncheck SClists_dataimg checks01 checksActive01" data-checkID = "{{currilists.id}}"></i>			    			
+			    			<div class="SClists_data_left">
+			    				课程名称：{{currilists.course_name}}	
+			    				<div class="SCmianandzhe">
+			    					<span class="CSmian" ng-if='currilists.try_out == 1'>免</span>
+			    					<span class="CSmian" ng-if='currilists.discount > 0'>折</span>
+			    				</div>
+			    			</div>
+							<div class="SCdata01">
+								<div class="listright02-start">
+									<span >评价：</span>
+									<span ng-if="currilists.eva_star >= 1"><img src="img/start10.png"/></span>
+						    		<span ng-if="currilists.eva_star >= 2"><img src="img/start10.png"/></span>
+						    		<span ng-if="currilists.eva_star >= 3"><img src="img/start10.png"/></span>
+						    		<span ng-if="currilists.eva_star >= 4"><img src="img/start10.png"/></span>
+						    		<span ng-if="currilists.eva_star*10%10 !=0  && currilists.eva_star*10%10 <= 2"><img src="img/start2.png"/></span>
+						    		<span ng-if="currilists.eva_star*10%10 > 2 && currilists.eva_star*10%10 <= 5"><img src="img/start5.png"/></span>
+						    		<span ng-if="currilists.eva_star*10%10 > 5 && currilists.eva_star*10%10 <= 9"><img src="img/start8.png"/></span>
+						    		<span ng-if="currilists.eva_star*10%10 == 0"><img src="img/start10.png"/></span>
+						    		<span ng-if="currilists.eva_star < 1"><img src="img/start0.png"/></span>
+						    		<span ng-if="currilists.eva_star < 2"><img src="img/start0.png"/></span>
+						    		<span ng-if="currilists.eva_star < 3"><img src="img/start0.png"/></span>
+						    		<span ng-if="currilists.eva_star < 4"><img src="img/start0.png"/></span>
+						    		<span class="scgrade">{{currilists.eva_star}}</span>
+								</div>
+								<div class="clearfix"></div>
+							</div>
+							<div class="SCdata01">
+								<div class="SCdata01-text">
+									简介：{{currilists.introduction}}
+								</div>
+							</div>
+							<div class="SCdata01">
+								<div class="SCdata01-text">
+									价格：
+									<span class="textcolorred02">￥</span>
+									<span class="textcolorred02 ">{{currilists.preferential_price}}</span>
+									<i class="yuanjiaclass">原价：{{currilists.original_price}}</i>
+								</div>
+							</div>
+							<div class="SCdata02">
+				              	<div class="change_box">
+				                    <span class="change_box_left">-</span>
+				                    <input type="tel" value="{{currilists.count}}"  onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')" data-goodsID='{{currilists.id}}'/>
+				                    <span class="change_box_right" >+</span>
+				                </div>
+							</div>							
+			    		</div>			        	
+			        	
+			        	<div class="SC-delete" ng-click='deleteFN(currilists.id)'>
+			        		<i class="iconfont icon-delete"></i>
+			        		删除
+			        	</div>
+		        	</div>
+		    	</div>
+  		    	
+	    	</div>
+			<div class="sekuai02" ng-if='!CartLists'></div>
+
+		    <!--尾部结算-->
+		    <section class="jd_amount" ng-if='CartLists'>
+		       <!--勾选按钮-->
+		       <div class="jd_amount_check checkalls">
+		           <i class="icon-Uncheck SClists_dataimg checksActiveAll"></i>
+		           <span>全选</span>
+		       </div>
+		
+		       <!--金额合计-->
+		       <div class="amount_info">
+		           <div class="sum">
+		           		合计
+		           </div>	
+		           <div class="sumnumbers">
+		           		¥
+		           		<span id="Totalsnumbers" ></span>
+		           </div>
+		       </div>
+		
+		       <!--结算-->
+		       <a class="amount_submit" href="#/Order/">
+		       		结算
+		       </a>
+		    </section>	    
+
+	  	    
+    	</div>
+    	<!--商城选项卡-->
+    	<div class="tab-pane SCart-tabs01">
+ 			<!--空状态-->
+			<div class="MOnoneState MOnoneAll">
+				<i class="icon-comment"></i>
+				<div class="CramState-Title">
+					该功能暂未开放...					
+				</div>
+			</div>
+    	</div>
+    </div>
+</div>	
+	
+	
+	
+	

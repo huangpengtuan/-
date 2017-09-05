@@ -1,0 +1,33 @@
+<!--支付界面-->
+<div class="payment">
+	<div class="CNavigation">
+		<i class="icon-direction-right CNfloat-left" ng-click='goback()'>&nbsp;&nbsp;支付</i>
+	</div>	
+	<section class="payment_A">
+		<div class="payment_A_numbers">￥{{payTotals}}</div>
+		<div class="payment_A_state">&nbsp;待支付</div>
+	</section>	
+
+	
+	<section class="payment_B">
+		<a class="me_B_list PayStyle" href="" >
+			<i class="icon-yuan12 me_B_list_01"></i>
+			<div class="me_B_list_02 border-bottom1">微信支付</div>
+			<i class="icon-yuan06 me_B_list_03 " data-Pstyle='1'></i>
+			<div class="clearfix"></div>
+		</a>
+		<a class="me_B_list PayStyle" href="" >
+			<i class="icon-yuan21 me_B_list_01"></i>
+			<div class="me_B_list_02 border-bottom1">余额支付</div>
+			<i class="icon-yuan06 me_B_list_03 " data-Pstyle='2'></i>
+			<div class="clearfix"></div>
+		</a>			
+	</section>	
+	
+	<button ng-click='PayMenoy()' class="yuanyuanBTN01">支&nbsp;&nbsp;付</button>
+	
+	
+</div>	
+	
+
+	

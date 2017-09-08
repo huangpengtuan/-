@@ -1,208 +1,127 @@
-<!--补习班 传2-->
-<div class="CramSchool" id="zone">		
-	<header class="homehead">
-		<a class="homehead-L a1-01s">
-		 	<div class="homeZones01" id='area' onclick="areaShow('#zone','#zoneinfo')" ng-bind='ifAreasname'></div>
-		 	<i class="icon-smjj-b"></i>
-			<input type="hidden" class="smjj-change" name="areaId" id="area_id" value="{{ifAreas}}">			 	
-		 	<div class="clearfix"></div>
-		</a>
-		<div class="a1-01sin">
-			<input type="text" placeholder="输入老师姓名或手机"  class="a1-01sinput" ng-model="searchinput" name='keyWord' id="keyWords"/>	
-		</div>			
-		<div class="dise" ng-click="search(searchinput)">
-			<div class="a1-01siimg">
-				<i class="icon-search"></i>
+<!--补习班圆圆版 传2-->
+<div class="CramSchool">	
+	<div class="CNavigation">
+		<i class="icon-direction-right CNfloat-left" ng-click='goback()'>&nbsp;&nbsp;家教</i>
+		<div class="CNfloat-right" ng-click='SearchFadein()'>
+			<i class="icon-search2 CNIoc"></i>
+		</div>
+	</div>	
+	
+	<div class="CramSchool_tab">
+		<div class="CSTab CSTab-Active" ng-click='getDataforList(1)' data-SchoolType='1'>
+			科目学习
+			<!--<i class="icon-yuan22 CSTab_Ioc"></i>-->
+		</div>
+		<div class="CSTab" ng-click='getDataforList(2)' data-SchoolType='2'>
+			琴棋书画
+		</div>
+		<div class="CSTab" ng-click='getDataforList(3)' data-SchoolType='3'>
+			舞蹈健身
+		</div>
+		<div class="CSTab" >
+			外教专区
+		</div>		
+	</div>
+	
+	<!--补习班列表-->
+	<div class="CramSchool_List">
+		<!--一个补习班-->
+		<a class="School_List" href="#/Cdetails/{{school.id}}" ng-repeat='school in schoolList track by school.id'>
+			<div class="School_L">
+				<img ng-src="{{school.class_avatar}}" alt="" class="School_IMG"/>
+				<div>{{school.eva_star}}分</div>
+				<div class="Stars_List">
+					<img src="img/star.png" alt="" class="School_Stars" ng-if='school.eva_star >= 1'/>
+					<img src="img/star.png" alt="" class="School_Stars" ng-if='school.eva_star >= 2'/>
+					<img src="img/star.png" alt="" class="School_Stars" ng-if='school.eva_star >= 3'/>
+					<img src="img/star.png" alt="" class="School_Stars" ng-if='school.eva_star >= 4'/>
+					<img src="img/star.png" alt="" class="School_Stars" ng-if='school.eva_star >= 5'/>
+					<img src="img/star-hollow.png" alt="" class="School_Stars" ng-if='school.eva_star < 1'/>
+					<img src="img/star-hollow.png" alt="" class="School_Stars" ng-if='school.eva_star < 2'/>
+					<img src="img/star-hollow.png" alt="" class="School_Stars" ng-if='school.eva_star < 3'/>
+					<img src="img/star-hollow.png" alt="" class="School_Stars" ng-if='school.eva_star < 4'/>
+					<img src="img/star-hollow.png" alt="" class="School_Stars" ng-if='school.eva_star < 5'/>
+				</div>
 			</div>
+			
+			<div class="School_R">
+				<div class="School_name">
+					<div class="School_name_text">{{school.class_name}}</div>
+					<div class="School_distance">{{school.distance}}</div>
+				</div>
+				<div class="School_brief">简介：{{school.about}}</div>
+				<div class="SLabel_List">
+					<div class="School_Label" ng-if='school.try_out == 1'>免费试课</div>
+					<div class="School_Label" ng-if='school.is_discount != none'>优惠课程</div>
+				</div>
+			</div>
+		</a>
+
+	</div>
+	
+	
+</div>
+
+
+
+<!--搜索蒙板-->
+<div class="school_search">
+	<div class="CNavigation">
+		<i class="icon-direction-right CNfloat-left" ng-click='SearchFadeOut()'></i>
+		<div class="search-center">
+			<input type="text" class="search_input" placeholder="请输入关键词"/>
+			<i class="icon-search2 searchIoc_center" ng-click='submitSearch()'></i>
 		</div>
-		<div class="clearfix"></div>
-	</header>
-	<!--banner-->
-	<!-- Swiper -->
-    <div class=" swiper-container">
-        <div class="swiper-wrapper">
-            <a ng-repeat='banner in inderBanner track by $index' href="{{banner.image_url}}" class="swiper-slide" on-finish-render><img ng-src="{{banner.image_key}}"/></a>
-        </div>
-        <!-- Add Pagination -->
-		 <div class="swiper-pagination"></div>
 	</div>		
-	<ul class="CramSchool-center">
-		<li class="home3 col-xs-3 col-sm-3 col-md-3">
-			<a href="#/SAS/1">
-				<div class="home3-img">
-					<i class="icon-cram01"></i>							
-				</div>
-				<div class="home3-text">科目学习</div>
-			</a>
-		</li>
-		<li class="home3 col-xs-3 col-sm-3 col-md-3">
-			<a href="#/InterestCram/2">
-				<div class="home3-img">
-					<i class="icon-cram02"></i>								
-				</div>
-				<div class="home3-text">琴棋书画</div>
-			</a>
-		</li>
-		<li class="home3 col-xs-3 col-sm-3 col-md-3">
-			<a href="#/InterestCram/3">
-				<div class="home3-img">							
-					<i class="icon-cram04"></i>															
-				</div>
-				<div class="home3-text">舞蹈健身</div>
-			</a>
-		</li>
-		<li class="home3 col-xs-3 col-sm-3 col-md-3">
-			<a href="">
-				<div class="home3-img">							
-					<i class="icon-cram03"></i>															
-				</div>
-				<div class="home3-text">外教专区</div>
-			</a>
-		</li>				
-		<div class="clearfix"></div>
-	</ul>
-	
-	<div class="Recommend">推荐机构</div>
-	<!--培训班列表-->
-	<ul class="CSchool" id="CSchools">
-		
 
-	</ul>
-	<div id="getmorefalse">没有更多数据了...</div>
-	<!--加载动画-->
-	<div class="spinner">
-	  <div class="bounce1"></div>
-	  <div class="bounce2"></div>
-	  <div class="bounce3"></div>
-	</div>
+	<!--<div class="searchHistory">
+		热门搜索
+		<i class="icon-delete deleta_all" ng-click="DeleteSearch()">&nbsp;清空</i>
+	</div>	
+	<ul class="History_list">
+		<li class="HL01" >5545</li>
+		<li class="clearfix"></li>
+	</ul>-->
+
+	<div class="searchHistory">
+		历史搜索
+		<i class="icon-delete deleta_all" ng-click="DeleteSearch()">&nbsp;清空</i>
+	</div>	
+	<ul class="History_list">
+		<!--搜索历史为空-->
+		<li class="nonechildren" ng-if='SearchHistory == null'>
+			搜索历史为空
+		</li>
+		<li class="HL01" ng-repeat='History in SearchHistory' ng-click='SearchByHistory($event)'>{{History}}</li>
+		<li class="clearfix"></li>
+	</ul>	
 	
 	
 </div>
 
 
 
-<!--地址选择资源--补习班主页传1-->
-<div id="zoneinfo" class="zoneinfo" >
-	<div class="zone-now">
-		<div id="areashange">您的位置：</div>
-		<div id='areanames'>
-			<span id="areanames01" data-CID = ""></span>
-			<span id="areanames02" data-CID = ""></span>
-		</div>
-		<div class="clearfix"></div>
-	</div>
-   	<div class="zone-tabs" id="areaHtml">
-    	
-		<!--地址选项卡-->
-	    <div class="nav zonelistTabs">
-	        <li><a class="zoneBody tabItemactive">热门城市</a></li>
-	        <li><a class="zoneBody border-noleft">省份</a></li>
-	        <li class="zonehide"><a class="zoneBody border-noleft">城市</a></li>
-	        <div class="clearfix"></div>
-	    </div>
-	    <div class="tab-content zonelistDe">
-	        <div class="tab-pane zoneBody01 active">
-	            <ul class="citylists">
-	            	<li class="citys" onclick="gethotcity(event,1)"  data-cityid = "110100">
-	            		北京
-	            	</li>
-	            	<li class="citys" onclick="gethotcity(event,1)" data-cityid = "310100">
-	            		上海
-	            	</li>
-	            	<li class="citys" onclick="gethotcity(event,1)" data-cityid = "440100">
-	            		广州
-	            	</li>	
-	            	<li class="citys" onclick="gethotcity(event,1)" data-cityid = "440300">
-	            		深圳
-	            	</li>
-	            	<li class="citys" onclick="gethotcity(event,1)" data-cityid = "120100">
-	            		天津
-	            	</li>	            	
-	            	<li class="citys" onclick="gethotcity(event,1)" data-cityid = "330100">
-	            		杭州
-	            	</li>	            	
-	            	<li class="citys" onclick="gethotcity(event,1)" data-cityid = "420100">
-	            		武汉
-	            	</li>	  	            	
-	            	<li class="citys" onclick="gethotcity(event,1)" data-cityid = "320100">
-	            		南京
-	            	</li>	  	            	
-	            	<li class="citys" onclick="gethotcity(event,1)" data-cityid = "610100">
-	            		西安
-	            	</li>	  	            	
-	  	            <div class="clearfix"></div>	
-	            </ul>
-	        </div>
-	        <!--省-->
-	        <div class="tab-pane zoneBody01">
-	            <dl class="provinceslists">
-				    <dt class="cityLetter">A-G</dt>
-				    <dd class="provinces" onclick="getcityid(event,1)" data-cityid = "340000" >安徽</dd>
-				    <dd class="provinces" onclick="getcityid(event,1)" data-cityid = "110000">北京</dd>
-				    <dd class="provinces" onclick="getcityid(event,1)" data-cityid = "500000">重庆</dd>
-				    <dd class="provinces" onclick="getcityid(event,1)" data-cityid = "350000">福建</dd>
-				    <dd class="provinces" onclick="getcityid(event,1)" data-cityid = "620000">甘肃</dd>
-				    <dd class="provinces" onclick="getcityid(event,1)" data-cityid = "450000">广西</dd>
-				    <dd class="provinces" onclick="getcityid(event,1)" data-cityid = "520000">贵州</dd>
-				    <dd class="provinces" onclick="getcityid(event,1)" data-cityid = "440000">广东</dd>				             
-	  	            <div class="clearfix"></div>	
-	            </dl>
-	            <dl class="provinceslists">
-				    <dt class="cityLetter">H-K</dt>
-				    <dd class="provinces" onclick="getcityid(event,1)" data-cityid = "460000">海南</dd>
-				    <dd class="provinces" onclick="getcityid(event,1)" data-cityid = "230000">黑龙江</dd>
-				    <dd class="provinces" onclick="getcityid(event,1)" data-cityid = "410000">河南</dd>
-				    <dd class="provinces" onclick="getcityid(event,1)" data-cityid = "130000">河北</dd>
-				    <dd class="provinces" onclick="getcityid(event,1)" data-cityid = "420000">湖北</dd>
-				    <dd class="provinces" onclick="getcityid(event,1)" data-cityid = "430000">湖南</dd>
-				    <dd class="provinces" onclick="getcityid(event,1)" data-cityid = "150000">内蒙古</dd>
-				    <dd class="provinces" onclick="getcityid(event,1)" data-cityid = "360000">江西</dd>	
-				    <dd class="provinces" onclick="getcityid(event,1)" data-cityid = "220000">吉林</dd>
-				    <dd class="provinces" onclick="getcityid(event,1)" data-cityid = "320000">江苏</dd>					    
-	  	            <div class="clearfix"></div>	
-	            </dl>
-	            <dl class="provinceslists">
-				    <dt class="cityLetter">L-S</dt>
-				    <dd class="provinces" onclick="getcityid(event,1)" data-cityid = "310000">上海</dd>
-				    <dd class="provinces" onclick="getcityid(event,1)" data-cityid = "210000">辽宁</dd>
-				    <dd class="provinces" onclick="getcityid(event,1)" data-cityid = "640000">宁夏</dd>
-				    <dd class="provinces" onclick="getcityid(event,1)" data-cityid = "630000">青海</dd>
-				    <dd class="provinces" onclick="getcityid(event,1)" data-cityid = "140000">山西</dd>
-				    <dd class="provinces" onclick="getcityid(event,1)" data-cityid = "370000">山东</dd>
-				    <dd class="provinces" onclick="getcityid(event,1)" data-cityid = "610000">陕西</dd>
-				    <dd class="provinces" onclick="getcityid(event,1)" data-cityid = "510000">四川</dd>			  	            
-	  	            <div class="clearfix"></div>	
-	            </dl>
-	            <dl class="provinceslists">
-				    <dt class="cityLetter">Q-Z</dt>
-				    <dd class="provinces" onclick="getcityid(event,1)" data-cityid = "120000">天津</dd>
-				    <dd class="provinces" onclick="getcityid(event,1)" data-cityid = "540000">西藏</dd>
-				    <dd class="provinces" onclick="getcityid(event,1)" data-cityid = "650000">新疆</dd>
-				    <dd class="provinces" onclick="getcityid(event,1)" data-cityid = "530000">云南</dd>
-				    <dd class="provinces" onclick="getcityid(event,1)" data-cityid = "330000">浙江</dd>		  	            
-	  	            <div class="clearfix"></div>	
-	            </dl>	            
-	        </div>
-	        <div class="tab-pane zoneBody01">
-	            <ul class="citylists" id="city01">
-	            	<li class="provincesNone">您还没有选择省!</li>	  	            	
-	  	            <div class="clearfix"></div>	
-	            </ul>
-	        </div>
-
-	    </div>
-			  				  		
-    </div>
-   	
+<!--加载动画-->
+<div class="spinner">
+  <div class="spinner-container container1">
+    <div class="circle1"></div>
+    <div class="circle2"></div>
+    <div class="circle3"></div>
+    <div class="circle4"></div>
+  </div>
+  <div class="spinner-container container2">
+    <div class="circle1"></div>
+    <div class="circle2"></div>
+    <div class="circle3"></div>
+    <div class="circle4"></div>
+  </div>
+  <div class="spinner-container container3">
+    <div class="circle1"></div>
+    <div class="circle2"></div>
+    <div class="circle3"></div>
+    <div class="circle4"></div>
+  </div>
 </div>
-
-<script src="js/plugins/swiper.min.js"></script>
-
-
-
-
-
-
 
 
 

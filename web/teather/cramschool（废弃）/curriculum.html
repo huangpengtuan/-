@@ -1,0 +1,108 @@
+<!--课程详情-->
+<div class="curriDetails">
+	<!--头部-->
+	<div class="CDTop" style='background:url({{curriobject.avatar}})'>
+		<div class="CDTopD">
+			<div class="CDtscf">				
+				<a href="/recommend"><i class="icon-cramDe-s"></i></a>
+			</div>	
+			<div class="curriName" ng-bind='curriobject.course_name'></div>
+			<div class="listright02">				
+				<div class="listright02-start">
+					<span class="listright02-grade">评分：</span>
+					<span ng-if="curriobject.composite_score >= 1"><img src="img/start10.png"/></span>
+		    		<span ng-if="curriobject.composite_score >= 2"><img src="img/start10.png"/></span>
+		    		<span ng-if="curriobject.composite_score >= 3"><img src="img/start10.png"/></span>
+		    		<span ng-if="curriobject.composite_score >= 4"><img src="img/start10.png"/></span>	
+		    		<span><img ng-src="{{stars}}"/></span>
+		    		<span ng-if="curriobject.composite_score < 1"><img src="img/start0.png"/></span>
+		    		<span ng-if="curriobject.composite_score < 2"><img src="img/start0.png"/></span>
+		    		<span ng-if="curriobject.composite_score < 3"><img src="img/start0.png"/></span>
+		    		<span ng-if="curriobject.composite_score < 4"><img src="img/start0.png"/></span>
+				</div>
+				<div class="listright02-grade">&nbsp;&nbsp;{{curriobject.eva_star}}</div>
+				<div class="clearfix"></div>
+			</div>			
+			<div>年级科目：{{curriobject.subjectText}}</div>
+			<div class="curriBrief">
+				课程简介:{{curriobject.introduction}}
+			</div>
+				
+			<div>历史报名人数：{{curriobject.sales}}</div>	
+			<div>授课地点：{{curriobject.areaText + curriobject.address}}</div>		
+			<div class="curriActivity">
+				<div href="" class="listBotton-L" ng-if='curriobject.try_out == 1'>
+					<span class="CSmian">免</span>
+					免费试听
+				</div>
+				<div href="" class="listBotton-L">
+					<span class="CSmian">折</span>
+					{{curriobject.discount}}折
+				</div>
+				<div class="clearfix"></div>
+			</div>			
+		</div>
+	</div>
+	
+	<div class="curriDetails02">
+		<div class="curriDetails02-L">
+			<div>每小时收费：{{curriobject.hour_price}}元</div>
+			<div>课时：{{curriobject.course_hour}}小时</div>
+			<div>
+				价格：
+				<span class="textcolorred02">￥{{curriobject.preferential_price}}元</span>	
+				<i class="yuanjiaclass">原价:{{curriobject.original_price}}</i>
+			</div>
+		</div>		
+		<div class="clearfix"></div>
+	</div>
+	
+	<div class="curriDetails03">用户评价（{{totalRow}}）</div>
+	
+	<div class="curriDetails04 margin-bottom50">
+		<!--无评论-->
+		<div class="noneCram" ng-if='totalRow == 0'>
+			<i class="icon-comment"></i>
+			<div>当前还没有评论哦!</div>
+		</div> 
+		<!--一条评论-->
+		<div class="media discuss-data" ng-repeat='Evitem in EvaluateList track by $index'>
+	      <div class="media-left discuss-data1">										       
+             <img class="media-object" ng-src="{{Evitem.avatar}}" alt="...">										        
+	      </div>
+		  <div class="media-body discuss-data2 border-top">
+		    <div class="media-heading">
+		    	{{Evitem.name}}		    	
+		    	<span class="score">
+		    		<span ng-if="Evitem.score >= 1"><img src="img/start10.png"/></span>
+		    		<span ng-if="Evitem.score >= 2"><img src="img/start10.png"/></span>
+		    		<span ng-if="Evitem.score >= 3"><img src="img/start10.png"/></span>
+		    		<span ng-if="Evitem.score >= 4"><img src="img/start10.png"/></span>
+		    		<span ng-if="Evitem.score == 5"><img src="img/start10.png"/></span>
+		    		<span ng-if="Evitem.score < 1"><img src="img/start0.png"/></span>
+		    		<span ng-if="Evitem.score < 2"><img src="img/start0.png"/></span>
+		    		<span ng-if="Evitem.score < 3"><img src="img/start0.png"/></span>
+		    		<span ng-if="Evitem.score < 4"><img src="img/start0.png"/></span>
+		    		<span ng-if="Evitem.score < 5"><img src="img/start0.png"/></span>
+		    	</span>
+		    </div>
+		    <p>评论：{{Evitem.explain}}</p>
+		    <div class="discuss-time textcolorgray">
+		    	{{Evitem.in_time | date:'yyyy-MM-dd HH:mm'}}
+		    </div>
+		  </div>
+		</div>
+		
+
+		
+		
+		
+	</div>
+	
+	
+</div>
+
+
+
+
+

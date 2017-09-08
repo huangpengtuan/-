@@ -1,75 +1,73 @@
-<!--补习班订单-->
+<!--补习班订单(圆圆版)-->
 <div class="order">
-	<ul class="orderbylist">
-		<!--一条订单信息-->
-		<li class="Obylists" ng-repeat='orders in orderlist track by $index'>
-			<a href="#/curriculum/{{orders.id}}" class="OBL-top">
-				<div class="listleft">
-					<div class="cramWidth">
-						<img ng-src="{{orders.class_avatar}}" alt="" />
-					</div>										
-				</div>
-				<div class="OBLtop-right">
-					<div class="OBLtopR01">
-						<div class="OBLtopR01-L">{{orders.class_name}}</div>
-						<div class="OBLtopR01-R">￥{{orders.original_price}}</div>
-						<div class="clearfix"></div>
-					</div>
-					<div class="OBLtopR02">
-						<div class="OBLtopR02-L">{{orders.course_name}}</div>
-						<div class="OBLtopR02-R">x{{orders.count}}</div>
-						<div class="clearfix"></div>
-					</div>
-					<div class="OBLtopR02">
-						<div class="OBLtopR02-L">{{orders.course_hour}}课时</div>
-						<div class="OBLtopR02-R">折扣：-￥{{orders.discount_amount}}</div>
-						<div class="clearfix"></div>
-					</div>					
-				</div>
-				<i class="icon-direction-left"></i>
-				<div class="clearfix"></div>
-			</a>
-			<!--子女信息-->
-			<div class="chilldDataL">
-				<!--一条子女信息-->
-				<a href="#/mychild/{{orders.id}}/{{childs.id}}" class="childDlist01" ng-repeat='childs in orders.childrenList'>
-					<div class="noneselecdchild" ng-if='childs.id == 0'>请填写学员1信息（必填）</div>
-					<div class="haveselecdchild" ng-if='childs.id != 0'>
-						<div class="havechildtext">子女：{{childs.name}}</div>
-						<div class="havechildtext">手机：{{childs.mobile}}</div>
-						<div class="clearfix"></div>
-					</div>
-					<i class="icon-direction-left "></i>
-				</a>
-			</div>
-		</li>
-	</ul>
-	<div class="orderbymounts">
-		<div class="OBLBottom">
-			<div class="OBLBottom-L">商品金额</div>
-			<div class="OBLBottom-R">￥{{originalTotal}}</div>
-			<div class="clearfix"></div>
+	<div class="CNavigation">
+		<i class="icon-direction-right CNfloat-left" ng-click='goback()'>&nbsp;&nbsp;订单详情</i>
+	</div>	
+	<!--场地信息-->
+	<div class="PlaceTable">
+		<div class="PlaceHeader">
+			<img ng-src="{{CourseInfo.schoolAvatar}}" alt="" class="OtherHeader"/>
+			<div class="PlaceName">&nbsp;&nbsp;&nbsp;{{CourseInfo.schoolName}}</div>		
 		</div>
-		<div class="OBLBottom margin-bottom1">
-			<div class="OBLBottom-L">折扣</div>
-			<div class="OBLBottom-R">-￥{{discountTotal}}</div>
-			<div class="clearfix"></div>
+		<div class="culumList01">
+			<div class="culumname">{{CourseInfo.course_name}}</div>
+			<div class="float-right">
+				￥{{CourseInfo.preferential_price}}					
+			</div>						
 		</div>
-		<div class="OBLBpaytext">
-			<div class="float-left">实际支付</div>
-			<div class="textcolorred02 float-right">￥{{paymentAmount}}</div>		
-			<div class="clearfix"></div>
-		</div>		
+		<div class="PlaceDatalist">
+			<div class="PlaceDatalist_L textcolorgray">{{CourseInfo.course_hour}}个课时</div>
+		</div>
+		<div class="PlaceDatalist">
+			<div class="PlaceDatalist_L textcolorgray">已报{{CourseInfo.sales}}/999</div>
+		</div>			
+	</div>	
+	
+	<div class="xian05"></div>
+	<div class="YYList06">		
+		<div class="float-left">孩子选择</div>
+	</div>	
+	<div class="childrenList">
+		<div class="border-top">
+			
+			<!--没有孩子-->
+			<div class="nonechildren" ng-if='ChildrenList == null'>
+				您还没有添加孩子
+			</div>		
+
+			<!--一个孩子-->
+			<div class="Student" ng-repeat='Children in ChildrenList' on-finish-render>
+				<img ng-src="{{Children.avatar}}" alt="" class="StudentPortrait" ng-if='Children.avatar'/>
+				<img src="img/boy.png" alt="" class="StudentPortrait" ng-if='Children.sex == 1 && !Children.avatar'/>
+				<img src="img/girl.png" alt="" class="StudentPortrait" ng-if='Children.sex == 2 && !Children.avatar'/>
+				<div class="StudentName">{{Children.name}}&nbsp;&nbsp;
+					<i class="icon-yuan07 people_sex" ng-if='Children.sex == 1'></i>
+					<i class="icon-yuan08 people_sex" ng-if='Children.sex == 2'></i>
+				</div>
+				<div class="children_select">
+					<i class="icon-yuan06 children_select_ioc" data-childId='{{Children.id}}'></i>
+				</div>
+			</div>	
+
+
+
+		</div>
 	</div>
-	<div class="orderbybottom">
-		<div class="paybutton">
-			<div class="paybutton-L">
-				合计：<span class="textcolorred02">￥{{paymentAmount}}</span>
-			</div>
-			<a class="paybutton-R" ng-click='submitOrders()'>提交订单</a>		
-			<div class="clearfix"></div>
-		</div>		
+	
+	<div class="subscribeBtn">
+		<a href="#/addChilds/" class="subscribe_Btn">添加孩子</a>
+	</div>	
+	
+	
+	
+	
+
+	<div class="PDBBtn">
+		<div class="PDBBtn01">￥{{TotalNumber}}</div>
+		<a href="#/CSchool/" class="PDBBtn02">取消购买</a>
+		<a class="PDBBtn03" ng-click='PaySchool(CourseInfo.id)'>立即购买</a>
 	</div>
+
 	
 </div>
 

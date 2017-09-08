@@ -1,104 +1,146 @@
-<script src="js/plugins/swiper.min.js"></script>
-<!--内容区-->
-<div id="zone" class="homehome">
-		<header class="head">
-			<div class="head_a" onclick="areaShow('#zone','#zoneinfo','.zonehide')">
-				<i class="icon-location head_a_img"></i>
-				<div class="head_a_text">
-					<div class="head_a_text01" id='area' ng-bind='ifAreasname'>深圳</div>
-					<div class="head_a_text02" id='pinyin' ng-bind='parent_follow_area_pinyin'></div>
+<!--修改资料-->
+<div id="zone" class="applycram margin-bottom50">
+	<form id="withdrawForm" method="post">
+		<div class="linetxt bgc-hui">基本信息</div>
+		<!--头像-->
+		<div class="AC-Text">	
+			<div class="data-group HeadDetails">
+				<div class="float-left detailed-Explain">
+					班级头像
 				</div>
-				
+				<div class="clearfix"></div>			
+		    </div>		
+		</div>
+	
+		<div class="clearfix"></div>	
+		<div class="authen04">
+			<div class="control-group js_uploadBox01">
+				<!--点击上传盒子-->
+	    		<div class="btn-upload01">
+	      			<a href="javascript:void(0);">
+	      				<img ng-src="{{cram_avatar}}" alt="" class="cramheadimg"/>
+	      			</a>
+	      			<input class="js_upFile01" type="file" name="avatar">
+	    		</div>
+	    		<!--预览盒子-->
+	    		<div class="js_showBox01 ">
+	    			<img class="js_logoBox" src="" />	    			
+	    		</div>
 			</div>
-			<a href="#/news/" class="head_c">
-				<i class="icon-tips head_c_img"></i>
-				<div class="head_c_number" ng-if='unMessageCount > 0'>{{unMessageCount}}</div>
-			</a>			
-		</header>
+		</div>
+
+
+
+
+
+
+
+
+		<div class="AC-Text01">
+			<div class="AC-TextTabs">班级名称</div>
+			<input type="text" name="cram.class_name" value="{{class_name}}"  class="AC-Textinout" placeholder="请输入班级名称"/>
+			<div class="clearfix"></div>
+		</div>
 		
-		<header>
-			 <!-- Swiper -->
-		    <div class=" swiper-container">
-		        <div class="swiper-wrapper">
-		            <a ng-repeat='banner in inderBanner track by $index' href="{{banner.image_url}}" class="swiper-slide" on-finish-render><img ng-src="{{banner.image_key}}"/></a>
-		        </div>
-		        <!-- Add Pagination -->
-				 <div class="swiper-pagination"></div>
+		<!--班级名称-->		
+		<div class="AC-Text01">
+			<div class="CreateCus-L">班级类型</div>
+			<div class="CreateCus-R">
+				<select name="cram.school_type_id" class="CreateCus-fenzhu">
+		            <option value="school_type_id" >点击选择</option>
+					<option value="{{CStyles.id}}" ng-repeat='CStyles in cramStyles'>{{CStyles.name}}</option>
+				</select>
+				<i class="icon-smjj-b"></i>
+			</div>			
+			<div class="clearfix"></div>
+		</div>
+
+		<!--地址-->
+		<div class="AC-Text01-area">
+			<div class="CreateCus border-top">
+				<div class="CreateCus-L">班级地址</div>	
+				<div class="CreateCus-R">
+					<div class="CreateCus-Rarea" id='area' onclick="areaShow('#zone','#zoneinfo')" >点击选择</div>
+				 	<i class="icon-smjj-b"></i>
+				 	<!--地区ID隐藏框-->
+					<input type="hidden" class="" id="area_id" value="{{area_id}}" name="cram.area_id">
+					<!--经度隐藏框-->
+					<input type="hidden" class="" id="lat" value="{{lat}}" name="cram.lat">
+					<!--纬度隐藏框-->
+					<input type="hidden" class="" id="lng" value="{{lng}}" name="cram.lng">	
+				</div>					
+				<div class="clearfix"></div>		
+			</div>	
+			<div class="CreateCus">
+				<input type="" class="CreateCus-area" name="cram.address"  placeholder="请输入详细地址" value="{{address}}" id='DiZhi'/>
 			</div>
-		</header>
+		</div>
+		<!--地图膜态框-->
+		<div id="tencent">
+			<iframe id="mapPage" width="100%" height="100%" frameborder=0 
+			    src="http://apis.map.qq.com/tools/locpicker?search=1&type=1&key=6W5BZ-DI2KS-22LOE-6CGGS-MZI33-VKBQ4&referer=myapp">
+			</iframe>			
+		</div>		
 
-
-		<section class="homeCenterData">
-
-			<ul class="head_d">
-				<li class="head_d_01">
-					<a href="#/shangmenjiajiao/" class="head_d_01_img">
-						<img src="img/1.jpg" alt="" />
-						<div class="head_d_01_text">
-							1对1
-						</div>						
-					</a>
-				</li>
-				<li class="head_d_01">
-					<a href="#/CSchool/" class="head_d_01_img">
-						<img src="img/2.jpg" alt="" />
-						<div class="head_d_01_text">
-							补习/兴趣班
-						</div>	
-					</a>
-				</li>
-				<li class="head_d_01" ng-click='goPartner(ParentHome.content.isPartner)'>
-					<a href="" class="head_d_01_img">
-						<img src="img/3.jpg" alt="" />
-						<div class="head_d_01_text">
-							合伙人
-						</div>	
-					</a>
-				</li>
-				<li class="clearfix"></li>
-			</ul>
-						
-			<!--平台推荐模块入口-->
-			<ul class="home-center border-top">
-				<li class="home4-data">
-					<ul class="head_E">
-						<li class="data01-child">
-							<a href="/api/mall/toutiaoDetail?id=4">
-								<img src="img/4.jpg"/>
-							</a>
-						</li>						
-						<li class="data01-child">						
-							<a href="/api/mall/goodsList?category_id=1">
-								<img src="img/5.jpg"/>
-							</a>
-						</li>
-						<li class="data01-child">						
-							<a href="/api/mall/toutiaoDetail?id=5">
-								<img src="img/6.jpg"/>
-							</a>
-						</li>
-						<li class="data01-child">						
-							<a href="/api/mall/toutiaoDetail?id=6">
-								<img src="img/7.jpg"/>
-							</a>
-						</li>						
-						<div class="clearfix"></div>
-					</ul>
-				</li>
-			</ul>
-		</section>	
+		
+		
+		
+		<div class="AC-Text border-top">
+			<div class="data-group HeadDetails">
+				<div class="float-left detailed-Explain">
+					班级简介
+				</div>
+				<div class="clearfix"></div>
+				<textarea class="Explain-are" name="cram.about" rows="4" placeholder="请输入班级简介" ng-bind='aboutcram'></textarea>
+		    </div>		
+		</div>
+		<div class="linetxt bgc-hui">联系方式</div>
+		<div class="AC-Text01">
+			<div class="AC-TextTabs">班主任姓名</div>
+			<input type="text" name="cram.teacher_name" value="{{teacher_name}}"  class="AC-Textinout" placeholder="请输入班主任姓名"/>
+			<div class="clearfix"></div>
+		</div>	
+		<div class="AC-Text01">
+			<div class="AC-TextTabs">班主任电话</div>
+			<input type="text" name="cram.teacher_phone" value="{{teacher_phone}}" class="AC-Textinout" placeholder="请输入班主任电话"/>
+			<div class="clearfix"></div>
+		</div>	
+		<div class=" yijiaona">
+			<i class="icon-Check "></i>
+			已缴纳保证金300元
+		</div>
+		
+		<!--隐形补习班ID容器-->
+		<input type="text" name="cramSchoolId" value="{{cramID}}" class="AC-Textinout ACIDOP0" 　readOnly="true"/>
+		
+		<div class="kedanSubmit AC-btn">
+			<a>
+				<button type="button" class="btn btnred" ng-click='submitModify()'>修&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;改</button>
+			</a>	
+		</div>
+		
+	</form>
 </div>
 
 
 
+
+
+
+
+
+
+
 <!--地址选择资源-->
-<div id="zoneinfo" class="zoneinfo" >
+<div id="zoneinfo" class="zoneinfo">
 	<div class="zone-now">
-		<div id="areashange">您的位置：</div>
+		<div id="areashange">您选择的地址是：</div>
 		<div id='areanames'>
 			<span id="areanames01" data-CID = ""></span>
 			<span id="areanames02" data-CID = ""></span>
+			<span id="areanames03" data-CID = ""></span>
 		</div>
+		<!--<div class="citysearch">搜索</div>-->
 		<div class="clearfix"></div>
 	</div>
    	<div class="zone-tabs" id="areaHtml">
@@ -107,7 +149,8 @@
 	    <div class="nav zonelistTabs">
 	        <li><a class="zoneBody tabItemactive">热门城市</a></li>
 	        <li><a class="zoneBody border-noleft">省份</a></li>
-	        <li class="zonehide"><a class="zoneBody border-noleft">城市</a></li>
+	        <li class="zonehide01"><a class="zoneBody border-noleft">城市</a></li>
+	        <li class="zonehide02"><a class="zoneBody border-noleft">区县</a></li>
 	        <div class="clearfix"></div>
 	    </div>
 	    <div class="tab-content zonelistDe">
@@ -143,7 +186,6 @@
 	  	            <div class="clearfix"></div>	
 	            </ul>
 	        </div>
-	        <!--省-->
 	        <div class="tab-pane zoneBody01">
 	            <dl class="provinceslists">
 				    <dt class="cityLetter">A-G</dt>
@@ -186,6 +228,7 @@
 	            <dl class="provinceslists">
 				    <dt class="cityLetter">Q-Z</dt>
 				    <dd class="provinces" onclick="getcityid(event,1)" data-cityid = "120000">天津</dd>
+				    <dd class="provinces" onclick="getcityid(event,1)" data-cityid = "120000">天津</dd>
 				    <dd class="provinces" onclick="getcityid(event,1)" data-cityid = "540000">西藏</dd>
 				    <dd class="provinces" onclick="getcityid(event,1)" data-cityid = "650000">新疆</dd>
 				    <dd class="provinces" onclick="getcityid(event,1)" data-cityid = "530000">云南</dd>
@@ -199,15 +242,44 @@
 	  	            <div class="clearfix"></div>	
 	            </ul>
 	        </div>
+	        <div class="tab-pane zoneBody01">
+	            <ul class="citylists" id="city02">
+	            	<li class="provincesNone">您还没有选择市!</li> 	            	  	            	
+	  	            <div class="clearfix"></div>	
+	            </ul>
+	        </div>
 
 	    </div>
-			  				  		
+			  		
+    		
+    		
+    	  		
     </div>
    	
 </div> 
 
-<script type="text/javascript">
-$(document).ready(function() {
-	wxShareCurrentPage("好神奇的教育平台！","第壹家教平台");
-})
+
+
+
+<script type="text/javascript" src="js/plugins/jquery.uploadView.js" ></script>
+<script>
+	$(".js_upFile01").uploadView({
+		uploadBox: '.js_uploadBox01',//设置上传框容器
+		showBox : '.js_showBox01',//设置显示预览图片的容器
+//		width : 300, //预览图片的宽度，单位px
+//		height : 120, //预览图片的高度，单位px
+		allowType: ["gif", "jpeg", "jpg", "bmp", "png"], //允许上传图片的类型
+		maxSize :3, //允许上传图片的最大尺寸，单位M
+		success:function(e){
+			$(".btn-upload01").css("opacity",0);
+		}
+	});
+	
+	$('#exampleModal').on('show.bs.modal', function (event) {
+	  var button = $(event.relatedTarget) 	  
+	  	  
+	  var modal = $(this)
+	})	
+	
 </script>
+

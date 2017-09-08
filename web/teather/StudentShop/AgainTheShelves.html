@@ -37,7 +37,7 @@
 	<div class="xian05"></div>
 	<div class="YYList06" ng-click="studentListShow('.StudentList')">		
 		<div class="float-left">学员信息</div>
-		<i class="icon-direction-left" id="student_info"></i>
+		<i class="icon-direction-left student_info"></i>
 		<div class="float-right textcolorgray">共{{lessionDetail.studentCout}}位学员</div>
 	</div>	
 	<div class="StudentList">
@@ -45,7 +45,10 @@
 			<!--一个学员-->
 			<div class="Student" ng-repeat='student in lessionDetail.studentList'>
 				<img src="img/hebenT.png" alt="" class="StudentPortrait"/>
-				<div class="StudentName">{{student.children_name}}&nbsp;&nbsp;男</div>
+				<div class="StudentName">{{student.children_name}}&nbsp;&nbsp;
+					<i class="icon-yuan07 people_sex"></i>
+					<!--<i class="icon-yuan08 people_sex"></i>-->
+				</div>
 			</div>		
 									
 		</div>
@@ -54,7 +57,7 @@
 	<div class="xian05"></div>
 	<div class="YYList06" ng-click="studentListShow('.StudentList01')">		
 		<div class="float-left">课程评价</div>
-		<i class="icon-direction-left" id="student_info"></i>
+		<i class="icon-direction-left student_info" ></i>
 		<div class="float-right textcolorgray">共26条</div>
 	</div>	
 	<div class="StudentList01">

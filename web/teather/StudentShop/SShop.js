@@ -600,7 +600,7 @@
 			var Cid=$routeParams.ID;   //课程ID
 			//01返回上一页历史
 			$scope.goback=function(){
-				window.history.back();
+				$location.path('/news/2');
 			}	
 			//02课程表消失
 			$scope.CSCardfadeOut=function(){
@@ -1110,7 +1110,7 @@
 		                }
 		        	});
 		    	});
-		    //11 定时器15秒自动加载	
+		    //11 定时器8秒自动加载	
 		    setInterval(function(){
 		    	pageNumber++;
 		    	var areaId=$('#show_contact').attr('data-district-code');			    
@@ -1129,7 +1129,7 @@
 						$scope.$apply();								
 					}
 				})		    	
-		    },15000);
+		    },8000);
 		    	
 			//12下拉加载更多
 			$(window).bind("scroll", function () {

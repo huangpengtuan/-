@@ -1,691 +1,99 @@
-<!--机构详情-->
+<!--补习班详情（圆圆版）-->
 <div class="Cramdetails">
-	<div class="CDTop" style='background:url({{CramData.class_avatar}})'>
-		<div class="CDTopD">
-			<a ng-click='CCDfilmFadeIn()' class="listTOP">				
-				<div class="listleft">
-					<div class="cramWidth">
-						<img ng-src="{{CramData.class_avatar}}" alt="" />
-					</div>										
-				</div>
-			
-				<div class="listright">
-					<div class="listright01">
-						<div class="listright01-L" ng-bind='CramData.class_name'></div>						
-						<div class="clearfix"></div>
-					</div>
-					<div class="listright02">
-						<div class="listright02-start">
-							<span ng-if="CramData.eva_star >= 1"><img src="img/start10.png"/></span>
-				    		<span ng-if="CramData.eva_star >= 2"><img src="img/start10.png"/></span>
-				    		<span ng-if="CramData.eva_star >= 3"><img src="img/start10.png"/></span>
-				    		<span ng-if="CramData.eva_star >= 4"><img src="img/start10.png"/></span>
-				    		<span><img ng-src="{{stars}}"/></span>			    		
-				    		<span ng-if="CramData.eva_star < 1"><img src="img/start0.png"/></span>
-				    		<span ng-if="CramData.eva_star < 2"><img src="img/start0.png"/></span>
-				    		<span ng-if="CramData.eva_star < 3"><img src="img/start0.png"/></span>
-				    		<span ng-if="CramData.eva_star < 4"><img src="img/start0.png"/></span>
-						</div>
-						<div class="listright02-grade">&nbsp;&nbsp;{{CramData.eva_star}}</div>
-						<div class="clearfix"></div>
-					</div>
-					<p class="listright03">
-						业务介绍：{{CramData.about}}
-					</p>
-					<p class="listright03-area">
-						地址：{{CramData.address}}
-					</p>					
-				</div>
-				<div class="clearfix"></div>
-				<div class="CDDinto"><i class="icon-direction-left"></i></div>
-			</a>
-			<div class="CDtscf">
-				<a href="tel:{{CramData.teacher_phone}}"  ><i class="icon-cramDe-t"></i></a>
-				<a href="/recommend"><i class="icon-cramDe-s"></i></a>
-				<a href="#/Reports/1"><i class="icon-cramDe-f"></i></a>
-			</div>			
+	
+	<div class="CNavigation">
+		<i class="icon-direction-right CNfloat-left" ng-click='goback()'>&nbsp;&nbsp;补习班详情</i>
+	</div>		
+	<a class="myshop_A" href="#/CDDetail/{{schoolDetail.id}}">
+		<div class="myshop_A_L">
+			<img ng-src="{{schoolDetail.class_avatar}}" alt="" class="myshop_A_Limg"/>
 		</div>
-
-	</div>
-	<!--内容选项卡-->
-    <ul class="nav cramd-tabs" >
-	    <li ><a class="CDtabs CDactive">课程</a></li>
-	    <li ><a class="CDtabs ">评论</a></li>	   
-    </ul>
-    <div class="tab-content">
-    	<!--课程-->
-    	<div class="tab-pane active CDtabs1 ">
-    		<!--课程选项卡-->
-    		<!--购物车-->
-    		<div class="BottomCart" id="BottomCart">
-				<div class="BottomCart-posi">
-					<a href="#/SCart/"><i class="icon-Cart"></i></a>
-					<div class="BottomCart-number">{{count}}</div>
-				</div>
-				<div class="BottomCart-money">￥{{totalPrice}}</div>
-				<a class="BottomCart-JS" href="#/SCart/">去结算</a>
-    		</div>
-				<div class="nav CSSlistTabs">
-			        <li ng-show='CramData.groups[0].groupName' ng-click='fgcurri(CramData.id,CramData.groups[0].id,$event)'><a class="tabBody cramdetailactive">{{CramData.groups[0].groupName}}</a></li>
-			        <li ng-show='CramData.groups[1].groupName' ng-click='fgcurri(CramData.id,CramData.groups[1].id,$event)'><a class="tabBody">{{CramData.groups[1].groupName}}</a></li>
-			        <li ng-show='CramData.groups[2].groupName' ng-click='fgcurri(CramData.id,CramData.groups[2].id,$event)'><a class="tabBody">{{CramData.groups[2].groupName}}</a></li>
-			        <li ng-show='CramData.groups[3].groupName' ng-click='fgcurri(CramData.id,CramData.groups[3].id,$event)'><a class="tabBody">{{CramData.groups[3].groupName}}</a></li>
-			        <li ng-show='CramData.groups[4].groupName' ng-click='fgcurri(CramData.id,CramData.groups[4].id,$event)'><a class="tabBody" >{{CramData.groups[4].groupName}}</a></li>
-			        <li ng-show='CramData.groups[5].groupName' ng-click='fgcurri(CramData.id,CramData.groups[5].id,$event)'><a class="tabBody" >{{CramData.groups[5].groupName}}</a></li>
-			        <li ng-show='CramData.groups[6].groupName' ng-click='fgcurri(CramData.id,CramData.groups[6].id,$event)'><a class="tabBody" >{{CramData.groups[6].groupName}}</a></li>
-			        <li ng-show='CramData.groups[7].groupName' ng-click='fgcurri(CramData.id,CramData.groups[7].id,$event)'><a class="tabBody" >{{CramData.groups[7].groupName}}</a></li>
-			    </div>
-		    <div class="tab-content CSSlistDe">
-		    	<!--组01-->
-		        <div class="tab-pane tabBody01 active">
-		        	<!--一条课程信息-->
-					<!--空状态-->
-					<a class="CramStateDetail" ng-if='groupcurri.length == 0' href="">
-						<i class="icon-comment CurriState-Ic"></i>
-						<div class="CramState-Title">当前分组没有课程哦</div>
-					</a>
-					
-					<div class="currigoods" ng-repeat='gclists in groupcurri track by $index'>
-					
-						<div class="curriculum"  ng-click='gocurriculum(gclists.id)'>
-							<div class="curri-child">
-								课程名称：{{gclists.course_name}}
-								<div class="curri-childL">
-									<span ng-if='gclists.discount > 0' class="CSmian">折</span>
-									<span ng-if='gclists.try_out == 1' class="CSmian">免</span>
-								</div>
-							</div>
-							<div class="listright02">
-								<div class="listright02-start">
-									<span ng-if="gclists.composite_score >= 1"><img src="img/start10.png"/></span>
-						    		<span ng-if="gclists.composite_score >= 2"><img src="img/start10.png"/></span>
-						    		<span ng-if="gclists.composite_score >= 3"><img src="img/start10.png"/></span>
-						    		<span ng-if="gclists.composite_score >= 4"><img src="img/start10.png"/></span>
-						    		<span ><img ng-src="{{starslistA[$index]}}"/></span>
-						    		<span ng-if="gclists.composite_score < 1"><img src="img/start0.png"/></span>
-						    		<span ng-if="gclists.composite_score < 2"><img src="img/start0.png"/></span>
-						    		<span ng-if="gclists.composite_score < 3"><img src="img/start0.png"/></span>
-						    		<span ng-if="gclists.composite_score < 4"><img src="img/start0.png"/></span>
-								</div>
-								<div class="clearfix"></div>
-							</div>
-							<div>
-								年级/科目：{{gclists.subject_text}}
-							</div>
-							<div>
-								简介：{{gclists.introduction}}
-							</div>
-							<div>
-								课时：{{gclists.course_hour}}小时
-							</div>											
-							
-							<div>
-								每小时收费：{{gclists.hour_price}}元
-							</div>	
-	
-							<div>
-								价格：
-								<span class="textcolorred02">￥{{gclists.preferential_price}}元</span>	
-								<i class="yuanjiaclass">原价:{{gclists.original_price}}</i>
-							</div>								
-			        	</div>					
-						<a class="curri-Cart" href="">
-							<i class="icon-Cart" ng-click='joinshoppingcart(1,gclists.id)'></i>
-						</a>										
+		<div class="myshop_A_R">
+			<div class="myshop_name">{{schoolDetail.class_name}}</div>
+			<div class="myshop_stars">
+				<img ng-if='schoolDetail.eva_star >= 1' src="img/star.png" alt="" class="starslist"/>
+				<img ng-if='schoolDetail.eva_star >= 2' src="img/star.png" alt="" class="starslist"/>
+				<img ng-if='schoolDetail.eva_star >= 3' src="img/star.png" alt="" class="starslist"/>
+				<img ng-if='schoolDetail.eva_star >= 4' src="img/star.png" alt="" class="starslist"/>
+				<img ng-if='schoolDetail.eva_star >= 5' src="img/star.png" alt="" class="starslist"/>
+				<img ng-if='schoolDetail.eva_star < 1' src="img/star-hollow.png" alt="" class="starslist"/>
+				<img ng-if='schoolDetail.eva_star < 2' src="img/star-hollow.png" alt="" class="starslist"/>
+				<img ng-if='schoolDetail.eva_star < 3' src="img/star-hollow.png" alt="" class="starslist"/>
+				<img ng-if='schoolDetail.eva_star < 4' src="img/star-hollow.png" alt="" class="starslist"/>
+				<img ng-if='schoolDetail.eva_star < 5' src="img/star-hollow.png" alt="" class="starslist"/>
+				<span class="eva_star">&nbsp;{{schoolDetail.eva_star}}分</span>
+			</div>
+			<div class="myshop_abstract">简介：{{schoolDetail.about}}</div>
+			<div class="myshop_abstract">地址：{{schoolDetail.address}}</div>
+		</div>
+		<i class="icon-yuan26 Right-Direction"></i>
+	</a>		
+	<section>
+		<!--tab-->
+	    <ul class="nav YYtabA">
+		    <li ><a class="YY_tabA YYtabA-active">课程</a></li>
+		    <li ><a class="YY_tabA " ng-click='getEvaluateList()'>评论</a></li>
+	    </ul>			
+		<!--内容区panes -->
+		<div class="xian05"></div>
+	    <div class="tab-content">	
+	    	<!--课程-->
+		    <div class="tab-pane YY_tabA01 active">
+		    	<!--空状态---->
+		    	<div class="nocomment" ng-if='LessionList.length == 0'>暂无可选课程</div>
+		    	<!--一条课程-- on-finish-render-->
+				<div class="culumList" ng-repeat='Lession in LessionList'>
+					<div class="culumList01">
+						<div class="culumname">{{Lession.course_name}}</div>
+						<div class="float-right">
+							￥{{Lession.preferential_price}}						
+						</div>						
 					</div>
-		        	
-		        </div>
-		        <!--组02-->
-		        <div class="tab-pane tabBody01">
-		        	<!--一条课程信息-->
-					<!--空状态-->
-					<a class="CramStateDetail" ng-if='groupcurri.length == 0' href="">
-						<i class="icon-comment CurriState-Ic"></i>
-						<div class="CramState-Title">您还没有新建课程，快去创建课程吧！</div>
-					</a>
-
-		        	<div class="currigoods" ng-repeat='gclists in groupcurri track by $index'>
-					
-						<div class="curriculum"  ng-click='gocurriculum(gclists.id)'>
-							<div class="curri-child">
-								课程名称：{{gclists.course_name}}
-								<div class="curri-childL">
-									<span ng-if='gclists.discount > 0' class="CSmian">折</span>
-									<span ng-if='gclists.try_out == 1' class="CSmian">免</span>
-								</div>
-							</div>
-							<div class="listright02">
-								<div class="listright02-start">
-									<span ng-if="gclists.composite_score >= 1"><img src="img/start10.png"/></span>
-						    		<span ng-if="gclists.composite_score >= 2"><img src="img/start10.png"/></span>
-						    		<span ng-if="gclists.composite_score >= 3"><img src="img/start10.png"/></span>
-						    		<span ng-if="gclists.composite_score >= 4"><img src="img/start10.png"/></span>
-						    		<span ><img ng-src="{{starslistA[$index]}}"/></span>
-						    		<span ng-if="gclists.composite_score < 1"><img src="img/start0.png"/></span>
-						    		<span ng-if="gclists.composite_score < 2"><img src="img/start0.png"/></span>
-						    		<span ng-if="gclists.composite_score < 3"><img src="img/start0.png"/></span>
-						    		<span ng-if="gclists.composite_score < 4"><img src="img/start0.png"/></span>
-								</div>
-								<div class="clearfix"></div>
-							</div>
-							<div>
-								年级/科目：{{gclists.subject_text}}
-							</div>
-							<div>
-								简介：{{gclists.introduction}}
-							</div>
-							<div>
-								课时：{{gclists.course_hour}}小时
-							</div>											
-							
-							<div>
-								每小时收费：{{gclists.hour_price}}元
-							</div>	
-	
-							<div>
-								价格：
-								<span class="textcolorred02">￥{{gclists.preferential_price}}元</span>	
-								<i class="yuanjiaclass">原价:{{gclists.original_price}}</i>
-							</div>								
-			        	</div>					
-						<a class="curri-Cart" href="">
-							<i class="icon-Cart" ng-click='joinshoppingcart(1,gclists.id)'></i>
-						</a>										
+					<div class="culumList02">
+						{{Lession.hour_price}}
+						<span class="textcolorgray">/课时</span>
 					</div>
-		        </div>
-		        <!--组03-->
-		        <div class="tab-pane tabBody01">
-		        	<!--一条课程信息-->
-					<!--空状态-->
-					<a class="CramStateDetail" ng-if='groupcurri.length == 0' href="">
-						<i class="icon-comment CurriState-Ic"></i>
-						<div class="CramState-Title">您还没有新建课程，快去创建课程吧！</div>
-					</a>
-
-		        	<div class="currigoods" ng-repeat='gclists in groupcurri track by $index'>
-					
-						<div class="curriculum"  ng-click='gocurriculum(gclists.id)'>
-							<div class="curri-child">
-								课程名称：{{gclists.course_name}}
-								<div class="curri-childL">
-									<span ng-if='gclists.discount > 0' class="CSmian">折</span>
-									<span ng-if='gclists.try_out == 1' class="CSmian">免</span>
-								</div>
-							</div>
-							<div class="listright02">
-								<div class="listright02-start">
-									<span ng-if="gclists.composite_score >= 1"><img src="img/start10.png"/></span>
-						    		<span ng-if="gclists.composite_score >= 2"><img src="img/start10.png"/></span>
-						    		<span ng-if="gclists.composite_score >= 3"><img src="img/start10.png"/></span>
-						    		<span ng-if="gclists.composite_score >= 4"><img src="img/start10.png"/></span>
-						    		<span ><img ng-src="{{starslistA[$index]}}"/></span>
-						    		<span ng-if="gclists.composite_score < 1"><img src="img/start0.png"/></span>
-						    		<span ng-if="gclists.composite_score < 2"><img src="img/start0.png"/></span>
-						    		<span ng-if="gclists.composite_score < 3"><img src="img/start0.png"/></span>
-						    		<span ng-if="gclists.composite_score < 4"><img src="img/start0.png"/></span>
-								</div>
-								<div class="clearfix"></div>
-							</div>
-							<div>
-								年级/科目：{{gclists.subject_text}}
-							</div>
-							<div>
-								简介：{{gclists.introduction}}
-							</div>
-							<div>
-								课时：{{gclists.course_hour}}小时
-							</div>											
-							
-							<div>
-								每小时收费：{{gclists.hour_price}}元
-							</div>	
-	
-							<div>
-								价格：
-								<span class="textcolorred02">￥{{gclists.preferential_price}}元</span>	
-								<i class="yuanjiaclass">原价:{{gclists.original_price}}</i>
-							</div>								
-			        	</div>					
-						<a class="curri-Cart" href="">
-							<i class="icon-Cart" ng-click='joinshoppingcart(1,gclists.id)'></i>
-						</a>										
+					<div class="culumList03">
+						已报&nbsp;{{Lession.sales}}/999		
+						<a href="#/Order/{{Lession.id}}" class="SignUp">报名</a>
 					</div>
-		        </div>
-		        <!--组04-->
-		        <div class="tab-pane tabBody01">
-		        	<!--一条课程信息-->
-					<!--空状态-->
-					<a class="CramStateDetail" ng-if='groupcurri.length == 0' href="">
-						<i class="icon-comment CurriState-Ic"></i>
-						<div class="CramState-Title">您还没有新建课程，快去创建课程吧！</div>
-					</a>
-
-		        	<div class="currigoods" ng-repeat='gclists in groupcurri track by $index'>
-					
-						<div class="curriculum"  ng-click='gocurriculum(gclists.id)'>
-							<div class="curri-child">
-								课程名称：{{gclists.course_name}}
-								<div class="curri-childL">
-									<span ng-if='gclists.discount > 0' class="CSmian">折</span>
-									<span ng-if='gclists.try_out == 1' class="CSmian">免</span>
-								</div>
-							</div>
-							<div class="listright02">
-								<div class="listright02-start">
-									<span ng-if="gclists.composite_score >= 1"><img src="img/start10.png"/></span>
-						    		<span ng-if="gclists.composite_score >= 2"><img src="img/start10.png"/></span>
-						    		<span ng-if="gclists.composite_score >= 3"><img src="img/start10.png"/></span>
-						    		<span ng-if="gclists.composite_score >= 4"><img src="img/start10.png"/></span>
-						    		<span ><img ng-src="{{starslistA[$index]}}"/></span>
-						    		<span ng-if="gclists.composite_score < 1"><img src="img/start0.png"/></span>
-						    		<span ng-if="gclists.composite_score < 2"><img src="img/start0.png"/></span>
-						    		<span ng-if="gclists.composite_score < 3"><img src="img/start0.png"/></span>
-						    		<span ng-if="gclists.composite_score < 4"><img src="img/start0.png"/></span>
-								</div>
-								<div class="clearfix"></div>
-							</div>
-							<div>
-								年级/科目：{{gclists.subject_text}}
-							</div>
-							<div>
-								简介：{{gclists.introduction}}
-							</div>
-							<div>
-								课时：{{gclists.course_hour}}小时
-							</div>											
-							
-							<div>
-								每小时收费：{{gclists.hour_price}}元
-							</div>	
-	
-							<div>
-								价格：
-								<span class="textcolorred02">￥{{gclists.preferential_price}}元</span>	
-								<i class="yuanjiaclass">原价:{{gclists.original_price}}</i>
-							</div>								
-			        	</div>					
-						<a class="curri-Cart" href="">
-							<i class="icon-Cart" ng-click='joinshoppingcart(1,gclists.id)'></i>
-						</a>										
-					</div>
-		        </div>
-		        <!--组05-->
-		        <div class="tab-pane tabBody01">
-		        	<!--一条课程信息-->
-					<!--空状态-->
-					<a class="CramStateDetail" ng-if='groupcurri.length == 0' href="">
-						<i class="icon-comment CurriState-Ic"></i>
-						<div class="CramState-Title">您还没有新建课程，快去创建课程吧！</div>
-					</a>
-
-		        	<div class="currigoods" ng-repeat='gclists in groupcurri track by $index'>
-					
-						<div class="curriculum"  ng-click='gocurriculum(gclists.id)'>
-							<div class="curri-child">
-								课程名称：{{gclists.course_name}}
-								<div class="curri-childL">
-									<span ng-if='gclists.discount > 0' class="CSmian">折</span>
-									<span ng-if='gclists.try_out == 1' class="CSmian">免</span>
-								</div>
-							</div>
-							<div class="listright02">
-								<div class="listright02-start">
-									<span ng-if="gclists.composite_score >= 1"><img src="img/start10.png"/></span>
-						    		<span ng-if="gclists.composite_score >= 2"><img src="img/start10.png"/></span>
-						    		<span ng-if="gclists.composite_score >= 3"><img src="img/start10.png"/></span>
-						    		<span ng-if="gclists.composite_score >= 4"><img src="img/start10.png"/></span>
-						    		<span ><img ng-src="{{starslistA[$index]}}"/></span>
-						    		<span ng-if="gclists.composite_score < 1"><img src="img/start0.png"/></span>
-						    		<span ng-if="gclists.composite_score < 2"><img src="img/start0.png"/></span>
-						    		<span ng-if="gclists.composite_score < 3"><img src="img/start0.png"/></span>
-						    		<span ng-if="gclists.composite_score < 4"><img src="img/start0.png"/></span>
-								</div>
-								<div class="clearfix"></div>
-							</div>
-							<div>
-								年级/科目：{{gclists.subject_text}}
-							</div>
-							<div>
-								简介：{{gclists.introduction}}
-							</div>
-							<div>
-								课时：{{gclists.course_hour}}小时
-							</div>											
-							
-							<div>
-								每小时收费：{{gclists.hour_price}}元
-							</div>	
-	
-							<div>
-								价格：
-								<span class="textcolorred02">￥{{gclists.preferential_price}}元</span>	
-								<i class="yuanjiaclass">原价:{{gclists.original_price}}</i>
-							</div>								
-			        	</div>					
-						<a class="curri-Cart" href="">
-							<i class="icon-Cart" ng-click='joinshoppingcart(1,gclists.id)'></i>
-						</a>										
-					</div>
-		        </div>
-		        <!--组06-->
-		        <div class="tab-pane tabBody01">
-		        	<!--一条课程信息-->
-					<!--空状态-->
-					<a class="CramStateDetail" ng-if='groupcurri.length == 0' href="">
-						<i class="icon-comment CurriState-Ic"></i>
-						<div class="CramState-Title">您还没有新建课程，快去创建课程吧！</div>
-					</a>
-
-		        	<div class="currigoods" ng-repeat='gclists in groupcurri track by $index'>
-					
-						<div class="curriculum"  ng-click='gocurriculum(gclists.id)'>
-							<div class="curri-child">
-								课程名称：{{gclists.course_name}}
-								<div class="curri-childL">
-									<span ng-if='gclists.discount > 0' class="CSmian">折</span>
-									<span ng-if='gclists.try_out == 1' class="CSmian">免</span>
-								</div>
-							</div>
-							<div class="listright02">
-								<div class="listright02-start">
-									<span ng-if="gclists.composite_score >= 1"><img src="img/start10.png"/></span>
-						    		<span ng-if="gclists.composite_score >= 2"><img src="img/start10.png"/></span>
-						    		<span ng-if="gclists.composite_score >= 3"><img src="img/start10.png"/></span>
-						    		<span ng-if="gclists.composite_score >= 4"><img src="img/start10.png"/></span>
-						    		<span ><img ng-src="{{starslistA[$index]}}"/></span>
-						    		<span ng-if="gclists.composite_score < 1"><img src="img/start0.png"/></span>
-						    		<span ng-if="gclists.composite_score < 2"><img src="img/start0.png"/></span>
-						    		<span ng-if="gclists.composite_score < 3"><img src="img/start0.png"/></span>
-						    		<span ng-if="gclists.composite_score < 4"><img src="img/start0.png"/></span>
-								</div>
-								<div class="clearfix"></div>
-							</div>
-							<div>
-								年级/科目：{{gclists.subject_text}}
-							</div>
-							<div>
-								简介：{{gclists.introduction}}
-							</div>
-							<div>
-								课时：{{gclists.course_hour}}小时
-							</div>											
-							
-							<div>
-								每小时收费：{{gclists.hour_price}}元
-							</div>	
-	
-							<div>
-								价格：
-								<span class="textcolorred02">￥{{gclists.preferential_price}}元</span>	
-								<i class="yuanjiaclass">原价:{{gclists.original_price}}</i>
-							</div>								
-			        	</div>					
-						<a class="curri-Cart" href="">
-							<i class="icon-Cart" ng-click='joinshoppingcart(1,gclists.id)'></i>
-						</a>										
-					</div>
-		        </div>
-		        <!--组07-->
-		        <div class="tab-pane tabBody01">
-		        	<!--一条课程信息-->
-					<!--空状态-->
-					<a class="CramStateDetail" ng-if='groupcurri.length == 0' href="">
-						<i class="icon-comment CurriState-Ic"></i>
-						<div class="CramState-Title">您还没有新建课程，快去创建课程吧！</div>
-					</a>
-
-		        	<div class="currigoods" ng-repeat='gclists in groupcurri track by $index'>
-					
-						<div class="curriculum"  ng-click='gocurriculum(gclists.id)'>
-							<div class="curri-child">
-								课程名称：{{gclists.course_name}}
-								<div class="curri-childL">
-									<span ng-if='gclists.discount > 0' class="CSmian">折</span>
-									<span ng-if='gclists.try_out == 1' class="CSmian">免</span>
-								</div>
-							</div>
-							<div class="listright02">
-								<div class="listright02-start">
-									<span ng-if="gclists.composite_score >= 1"><img src="img/start10.png"/></span>
-						    		<span ng-if="gclists.composite_score >= 2"><img src="img/start10.png"/></span>
-						    		<span ng-if="gclists.composite_score >= 3"><img src="img/start10.png"/></span>
-						    		<span ng-if="gclists.composite_score >= 4"><img src="img/start10.png"/></span>
-						    		<span ><img ng-src="{{starslistA[$index]}}"/></span>
-						    		<span ng-if="gclists.composite_score < 1"><img src="img/start0.png"/></span>
-						    		<span ng-if="gclists.composite_score < 2"><img src="img/start0.png"/></span>
-						    		<span ng-if="gclists.composite_score < 3"><img src="img/start0.png"/></span>
-						    		<span ng-if="gclists.composite_score < 4"><img src="img/start0.png"/></span>
-								</div>
-								<div class="clearfix"></div>
-							</div>
-							<div>
-								年级/科目：{{gclists.subject_text}}
-							</div>
-							<div>
-								简介：{{gclists.introduction}}
-							</div>
-							<div>
-								课时：{{gclists.course_hour}}小时
-							</div>											
-							
-							<div>
-								每小时收费：{{gclists.hour_price}}元
-							</div>	
-	
-							<div>
-								价格：
-								<span class="textcolorred02">￥{{gclists.preferential_price}}元</span>	
-								<i class="yuanjiaclass">原价:{{gclists.original_price}}</i>
-							</div>								
-			        	</div>					
-						<a class="curri-Cart" href="">
-							<i class="icon-Cart" ng-click='joinshoppingcart(1,gclists.id)'></i>
-						</a>										
-					</div>
-		        </div>
-		        <!--组08-->
-		        <div class="tab-pane tabBody01">
-		        	<!--一条课程信息-->
-					<!--空状态-->
-					<a class="CramStateDetail" ng-if='groupcurri.length == 0' href="">
-						<i class="icon-comment CurriState-Ic"></i>
-						<div class="CramState-Title">您还没有新建课程，快去创建课程吧！</div>
-					</a>
-					
-		        	<div class="currigoods" ng-repeat='gclists in groupcurri track by $index'>
-					
-						<div class="curriculum"  ng-click='gocurriculum(gclists.id)'>
-							<div class="curri-child">
-								课程名称：{{gclists.course_name}}
-								<div class="curri-childL">
-									<span ng-if='gclists.discount > 0' class="CSmian">折</span>
-									<span ng-if='gclists.try_out == 1' class="CSmian">免</span>
-								</div>
-							</div>
-							<div class="listright02">
-								<div class="listright02-start">
-									<span ng-if="gclists.composite_score >= 1"><img src="img/start10.png"/></span>
-						    		<span ng-if="gclists.composite_score >= 2"><img src="img/start10.png"/></span>
-						    		<span ng-if="gclists.composite_score >= 3"><img src="img/start10.png"/></span>
-						    		<span ng-if="gclists.composite_score >= 4"><img src="img/start10.png"/></span>
-						    		<span ><img ng-src="{{starslistA[$index]}}"/></span>
-						    		<span ng-if="gclists.composite_score < 1"><img src="img/start0.png"/></span>
-						    		<span ng-if="gclists.composite_score < 2"><img src="img/start0.png"/></span>
-						    		<span ng-if="gclists.composite_score < 3"><img src="img/start0.png"/></span>
-						    		<span ng-if="gclists.composite_score < 4"><img src="img/start0.png"/></span>
-								</div>
-								<div class="clearfix"></div>
-							</div>
-							<div>
-								年级/科目：{{gclists.subject_text}}
-							</div>
-							<div>
-								简介：{{gclists.introduction}}
-							</div>
-							<div>
-								课时：{{gclists.course_hour}}小时
-							</div>											
-							
-							<div>
-								每小时收费：{{gclists.hour_price}}元
-							</div>	
-	
-							<div>
-								价格：
-								<span class="textcolorred02">￥{{gclists.preferential_price}}元</span>	
-								<i class="yuanjiaclass">原价:{{gclists.original_price}}</i>
-							</div>								
-			        	</div>					
-						<a class="curri-Cart" href="">
-							<i class="icon-Cart" ng-click='joinshoppingcart(1,gclists.id)'></i>
-						</a>										
-					</div>
-		        </div>		        
-		    </div>
-			  		
-    		
-    		
-    	</div>
-    	
-    	<!--评论-->
-    	<div class="tab-pane CDtabs1">
-    		<!--无评论-->
-    		<div class="noneCram" ng-if='!EvaluateList'>
-    			<i class="icon-comment"></i>
-    			<div>当前还没有评论哦!</div>
-    		</div>   
-    		<!--综合评分-->
-    		<div class="Cram-dis">
-    			<div class="Cram-dis-L">
-    				<div class="Cram-dis-L-T">{{CramData.eva_star}}</div>
-    				<div class="Cram-dis-L-B">综合评分</div>
-    			</div>
-    			<div class="Cram-dis-R">
-    				<div class="Cram-dis-R-T">
-    					<span>课程质量：</span>
-    					<span class="quality_score" ng-if='quality_score >= 1'><img src="img/start10.png" alt="" /></span>
-    					<span class="quality_score" ng-if='quality_score >= 2'><img src="img/start10.png" alt="" /></span>
-    					<span class="quality_score" ng-if='quality_score >= 3'><img src="img/start10.png" alt="" /></span>
-    					<span class="quality_score" ng-if='quality_score >= 4'><img src="img/start10.png" alt="" /></span>
-    					<span class="quality_score"><img ng-src="{{quality_score01}}" alt="" /></span>
-    					<span class="quality_score" ng-if='quality_score < 1'><img src="img/start0.png" alt="" /></span>
-    					<span class="quality_score" ng-if='quality_score < 2'><img src="img/start0.png" alt="" /></span>
-    					<span class="quality_score" ng-if='quality_score < 3'><img src="img/start0.png" alt="" /></span>
-    					<span class="quality_score" ng-if='quality_score < 4'><img src="img/start0.png" alt="" /></span>
-    					<span>&nbsp;&nbsp;{{quality_score}}</span>
-    				</div>
-     				<div class="Cram-dis-R-T">
-    					<span>服务态度：</span>
-    					<span class="quality_score" ng-if='service_score >= 1'><img src="img/start10.png" alt="" /></span>
-    					<span class="quality_score" ng-if='service_score >= 2'><img src="img/start10.png" alt="" /></span>
-    					<span class="quality_score" ng-if='service_score >= 3'><img src="img/start10.png" alt="" /></span>
-    					<span class="quality_score" ng-if='service_score >= 4'><img src="img/start10.png" alt="" /></span>
-    					<span class="quality_score"><img ng-src="{{service_score01}}" alt="" /></span>
-    					<span class="quality_score" ng-if='service_score < 1'><img src="img/start0.png" alt="" /></span>
-    					<span class="quality_score" ng-if='service_score < 2'><img src="img/start0.png" alt="" /></span>
-    					<span class="quality_score" ng-if='service_score < 3'><img src="img/start0.png" alt="" /></span>
-    					<span class="quality_score" ng-if='service_score < 4'><img src="img/start0.png" alt="" /></span>
-    					<span>&nbsp;&nbsp;{{service_score}}</span>
-    				</div>   				
-    			</div>
-    		</div>
-    		<!--评论内容-->
-			<div class="Cram-dis-data">用户评价（{{totalRow}}）</div>
-			
-			<div class="curriDetails04 margin-bottom50">
-				<!--一条评论-->
-				<div class="media discuss-data" ng-repeat='Evitem in EvaluateList track by $index'>
-			      <div class="media-left discuss-data1">										       
-		             <img class="media-object" ng-src="{{Evitem.avatar}}" alt="...">										        
-			      </div>
-				  <div class="media-body discuss-data2 border-top">
-				    <div class="media-heading">
-				    	{{Evitem.name}}		    	
-				    	<span class="score">
-				    		<span ng-if="Evitem.score >= 1"><img src="img/start10.png"/></span>
-				    		<span ng-if="Evitem.score >= 2"><img src="img/start10.png"/></span>
-				    		<span ng-if="Evitem.score >= 3"><img src="img/start10.png"/></span>
-				    		<span ng-if="Evitem.score >= 4"><img src="img/start10.png"/></span>
-				    		<span ng-if="Evitem.score == 5"><img src="img/start10.png"/></span>
-				    		<span ng-if="Evitem.score < 1"><img src="img/start0.png"/></span>
-				    		<span ng-if="Evitem.score < 2"><img src="img/start0.png"/></span>
-				    		<span ng-if="Evitem.score < 3"><img src="img/start0.png"/></span>
-				    		<span ng-if="Evitem.score < 4"><img src="img/start0.png"/></span>
-				    		<span ng-if="Evitem.score < 5"><img src="img/start0.png"/></span>
-				    	</span>
-				    </div>
-				    <p>评论：{{Evitem.explain}}</p>
-				    <div class="discuss-time textcolorgray">
-				    	{{Evitem.in_time | date:'yyyy-MM-dd HH:mm'}}
-				    </div>
-				  </div>
+					<a class="floltleft" href="#/curriculum/{{Lession.id}}"></a>
 				</div>
 				
-			</div>    		
-    	</div>
-    </div>
-   		
-	
-</div>
-
-<!--补习班详细信息膜态框-->
-<div class="cramClassfilm">
-	<div class="filmcantair">
-		<div class="CDTopD">
-			<div class="listTOP">				
-				<div class="listleft">
-					<div class="cramWidth">
-						<img ng-src="{{CramData.class_avatar}}" alt="" />
-					</div>										
-				</div>
-			
-				<div class="listright">
-					<div class="listright01">
-						<div class="listright01-L" ng-bind='CramData.class_name'></div>						
-						<div class="clearfix"></div>
-					</div>
-					<div class="listright02">
-						<div class="listright02-start">
-							<span ng-if="CramData.eva_star >= 1"><img src="img/start10.png"/></span>
-				    		<span ng-if="CramData.eva_star >= 2"><img src="img/start10.png"/></span>
-				    		<span ng-if="CramData.eva_star >= 3"><img src="img/start10.png"/></span>
-				    		<span ng-if="CramData.eva_star >= 4"><img src="img/start10.png"/></span>
-				    		<span><img ng-src="{{stars}}"/></span>			    		
-				    		<span ng-if="CramData.eva_star < 1"><img src="img/start0.png"/></span>
-				    		<span ng-if="CramData.eva_star < 2"><img src="img/start0.png"/></span>
-				    		<span ng-if="CramData.eva_star < 3"><img src="img/start0.png"/></span>
-				    		<span ng-if="CramData.eva_star < 4"><img src="img/start0.png"/></span>
+				
+				
+			</div>
+	    	<!--评论-->
+		    <div class="tab-pane YY_tabA01 ">		
+				<div class="nocomment" ng-if='EvaluateList.length == 0'>暂无评论...</div>
+				
+				<!--一条评论-->
+				<div class="OneDiscuss" ng-repeat='Evaluate in EvaluateList'>
+					<img ng-src="{{Evaluate.avatar}}" alt="" class="Discuss"/>
+					<div class="DiscussData">
+						<div class="Discuss_Top">
+							<div class="Discuss_name">{{Evaluate.name}}</div>
+							<div class="Discuss_Time">{{Evaluate.in_time | date:'yyyy-mm-dd hh:mm' }}</div>
 						</div>
-						<div class="listright02-grade">&nbsp;&nbsp;{{CramData.eva_star}}</div>
-						<div class="clearfix"></div>
+						<div class="Discuss_Bottom">{{Evaluate.explain}}</div>						
 					</div>
 				</div>
-				<div class="clearfix"></div>				
-			</div>		
+				
+
+			</div>	
+			
 		</div>
 		
-		<div class="data-group noborder">
-			<div class="float-left detailed-Explain">
-				联系方式&nbsp;&nbsp;&nbsp;&nbsp;<span class="CCfilmTel">41545454545</span>
-			</div>
-			<div class="clearfix"></div>
-		</div>	
-		<div class="data-group noborder">
-			<div class="float-left detailed-Explain">
-				业务介绍
-			</div>
-			<div class="clearfix"></div>
-			<div class="Explain-are" ng-bind='CramData.about'></div>
-		</div>	
-		<div class="data-group noborder">
-			<div class="float-left detailed-Explain">
-				地址
-			</div>
-			<div class="clearfix"></div>
-			<div class="Explain-are" ng-bind='CramData.address'></div>
-		</div>	
-		<i class="icon-examine-not CCfilmClose" ng-click='CCDfilmFadeOut()'></i>
-	</div>
+	</section>
+
+
+
+
+
+
+
+
+
 </div>
 
 

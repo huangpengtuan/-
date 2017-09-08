@@ -18,7 +18,7 @@
 
 	.config(['$routeProvider',function($routeProvider){
 		$routeProvider
-			//01我的主界面
+			//01我的主界面（圆圆版）
 			.when('/my/',{
 				templateUrl:'me/me.html',
 				controller:'meCtl'
@@ -33,10 +33,10 @@
 				templateUrl:'me/authen.html',
 				controller:'authenCtl'
 			})	
-			//04我的子女新增界面
-			.when('/editChilds/',{
-				templateUrl:'me/editChilds.html',
-				controller:'editChildsCtl'
+			//04添加子女界面（圆圆版）
+			.when('/addChilds/',{
+				templateUrl:'me/addChilds.html',
+				controller:'addChildsCtl'
 			})
 			//05我的子女展示选择界面
 			.when('/mychild/:ID/:oldID',{
@@ -238,42 +238,61 @@
 	}])
 
 	//04我的子女新增界面
-	.controller('editChildsCtl',[
+	.controller('addChildsCtl',[
 		'$scope',
 		'$route',		
 		'$location',
 		'$routeParams',
 		function($scope,$route,$location,$routeParams){
-
-			$scope.creatChilds=function(){
-				var ChildsData=$('#CNdatas').serializeArray();
-		    	$.ajax({
-		    		type:"post",
-		    		url:"/childrenInfo/createChildrenInfo",
-		    		data:{
-		    			"c.name":ChildsData[0].value,        //子女姓名
-						"c.age":ChildsData[1].value,
-						"c.sex":ChildsData[2].value,       //男性：1  女性：2
-						"c.mobile":ChildsData[3].value,     //13888888888
-						"c.explain":ChildsData[4].value,   //情况说明
-		    		},
-		    		datatype:"json",
-		    		success:function(data){	
-		    			alert(data.msg);
-		    			if(data.isSuccess){
-		    				location.reload();
-		    			}
-		    			
-		    		}
-		    	});				
-
-			}
-				
-				
-			
+			//01返回上一页
 			$scope.goback=function(){
 				window.history.back();
 			}
+			//02上传头像蒙版出现
+			$scope.fileImgShow=function(){
+				$('#fileimg').fadeIn();
+			}			
+			$scope.sex=1;
+			//03确定添加
+			$scope.Release=function(){
+				
+				//袁浩图片上传裁剪JS-------------------------
+				var formData = new FormData($( "#form" )[0]);
+				var data=$("#fileData").val();
+				// dataURL 的格式为 “data:image/png;base64,****”,逗号之前都是一些说明性的文字，我们只需要逗号之后的就行了
+				data=data.split(',')[1];
+				data=window.atob(data);
+				var ia = new Uint8Array(data.length);
+				for (var i = 0; i < data.length; i++) {
+				    ia[i] = data.charCodeAt(i);
+				};
+				// canvas.toDataURL 返回的默认格式就是 image/png
+				var blob=new Blob([ia], {type:"image/png"});
+				formData.append('avatar',blob);							
+				//--------------------------------------------
+				
+				
+		    	$.ajax({
+		    		type:"post",
+		    		url:"/childrenInfo/createChildrenInfo",
+		    		data:formData,
+		    		datatype:"json",
+					async: false,
+					cache: false,
+					contentType: false,
+					processData: false,		    		
+		    		success:function(data){	
+						console.log(data);
+						alert(data.msg);
+						if(data.isSuccess){
+							$scope.goback();
+						}
+						$scope.$apply();
+		    		}
+		    	});					
+
+			}
+
 			
 	}])
 

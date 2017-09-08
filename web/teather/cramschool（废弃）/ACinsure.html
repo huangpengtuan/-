@@ -1,0 +1,71 @@
+<!--补习班支付确认界面-->
+<div class="ACinsure margin-bottom50">
+	<div class="linetxt bgc-hui">确认支付</div>
+	<div class="insure-number">
+		<span class="insure-number01">待支付：</span>
+		￥{{margin}}
+	</div>
+	<div class="insure-data">
+		<!--<div class="AC-Text01">
+			<div class="AC-TextTabs">订单编号</div>
+			<input type="text" class="AC-Textinout" value="{{margin}}" disabled="true"　readOnly="true"/>
+			<div class="clearfix"></div>
+		</div>	-->
+		<div class="AC-Text01">
+			<div class="AC-TextTabs">订单名称</div>
+			<input type="text" class="AC-Textinout" value="缴纳保证金" disabled="true"　readOnly="true"/>
+			<div class="clearfix"></div>
+		</div>
+		<div class="AC-Text01">
+			<div class="AC-TextTabs">班级名称</div>
+			<input type="text" class="AC-Textinout" value="{{class_name}}" disabled="true"　readOnly="true"/>
+			<div class="clearfix"></div>
+		</div>
+		<div class="AC-Text01">
+			<div class="AC-TextTabs">班主任电话</div>
+			<input type="text" class="AC-Textinout" value="{{teacher_phone}}" disabled="true"　readOnly="true"/>
+			<div class="clearfix"></div>
+		</div>		
+	</div>
+	<div class="linetxt bgc-hui">支付方式</div>
+	<div class="insure-data">
+		<div class="AC-Text02 AC-active" ng-click="applystateWaY(1)">
+			<div class="AC-TextTabs applystate-wy">
+				<i class="icon-Uncheck AC-check"></i>
+				微信支付
+			</div>
+			<div class="AC-applystate">
+				支付
+				<span class="applystate">{{margin}}</span>
+				元		
+			</div>
+			<div class="clearfix"></div>
+		</div>	
+		<div class="AC-Text02" ng-click="applystateWaY(2)">
+			<div class="AC-TextTabs applystate-wy" >
+				<i class="icon-Uncheck"></i>
+				余额支付
+			</div>
+			<div class="AC-applystate" style="display: none;">
+				支付
+				<span class="applystate">{{margin}}</span>
+				元		
+			</div>
+			<div class="clearfix"></div>
+		</div>	
+	</div>
+
+	<div class="kedanSubmit AC-btn" ng-click='submitCrams(cram.id)'>
+		<a href="">
+			<button type="button" class="btn btnred">确认付款</button>
+		</a>	
+	</div>
+	
+</div>
+
+
+
+
+
+
+

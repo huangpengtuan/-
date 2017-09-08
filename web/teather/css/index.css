@@ -1848,177 +1848,6 @@ a.CramState{
 	font-size: 1.5rem;
 	text-align: right;
 }
-/*课程详情-----------------------------*/
-/*头部*/
-.curriName{
-	font-size: 1.7rem;
-	margin-bottom: 2rem;
-}
-.curriBrief{
-	font-size: 1.5rem;
-	height:5rem;
-	overflow: hidden;
-    text-overflow: ellipsis;
-}
-.curriDetails .CDTop{
-	height: 24.5rem;
-}
-.curriActivity{
-	border-top: 1px solid #999999;
-	margin-top: 0.5rem;
-	padding: 1rem 0;
-}
-.curriActivity .listBotton-L{
-	padding: 0 1rem 0 0;
-}
-/*中部*/
-.curriDetails02{
-	padding: 1rem;
-	font-size: 1.5rem;
-	background-color: #fff;
-}
-.curriDetails02-L{
-	float: left;
-}
-.curriDetails02-R{
-	font-size: 1.7rem;
-	color: #FFFFFF;
-	float: right;
-	width: 9rem;
-	height: 4rem;
-	padding: 1rem;
-	background-color: red;
-	text-align: center;
-	margin-top: 0.7rem;
-}
-.curriDetails03{
-	font-size: 1.7rem;
-	padding: 1rem;
-}
-.curriDetails04{
-	background-color: #fff;
-}
-.yuanjiaclass{
-	text-decoration: line-through;
-	color: #999999;
-	font-size: 1rem;
-}
-.curriDetails04 .discuss-data1  .media-object{
-	margin: 0.7rem 0 0 1rem;
-}
-.curriDetails .CDtscf i{
-	font-size: 2rem;
-}
-/*评论内容*/
-.discuss-data1  .media-object{
-	display: block;
-    width: 2rem;
-    height: 2rem;
-    margin: 0.3rem 0 0 0.3rem;
-    
-}
-.discuss-data2{
-	line-height: 2rem;
-	padding-top: 0.4rem;
-	
-} 
-.jiazhang{
-	font-size: 1rem;
-	margin: 0 0.5rem;
-	padding: 0.1rem 0.8rem;
-	color: #FFFFFF;
-}
-.dingdankeshi{
-	font-size:1rem;
-}
-.score{
-	float: right;
-}
-.score span{
-	display: inline-block;
-}
-.score span img{
-	display: block;
-	width: 1.3rem;
-	padding: 0.5rem 0;
-}
-.discuss-data2{
-	padding-right: 1rem;
-}
-.discuss-data2 p{
-
-	margin-bottom: 0;
-}
-.discuss-time{
-	text-align: right;
-	font-size: 1.5rem;	
-	color: #889696;
-}
-/*补习班界面评论----------------------*/
-.Cram-dis{
-	width: 100%;
-	height: 8rem;
-	background-color: #fff;
-	border-bottom: 0.4rem solid #EBEBEB;
-}
-.Cram-dis-L{
-	width: 32%;
-	height: 5rem;
-	float: left;
-	margin: 1.5rem auto;
-	border-right: 1px solid #EBEBEB;
-}
-.Cram-dis-R{
-	width: 68%;
-	height: 5rem;
-	margin: 1.5rem auto;
-	float: right;
-	text-align: center;
-}
-.Cram-dis-L-T{
-	width: 100%;
-	height: 2.5rem;
-	line-height: 2.5rem;
-	text-align: center;
-	color: red;
-	font-size: 2.5rem;
-}
-.Cram-dis-L-B{
-	width: 100%;
-	height: 2.5rem;
-	line-height: 2.5rem;
-	text-align: center;
-	font-size: 2rem;
-}
-.Cram-dis-R-T{
-	width: 100%;
-	height: 2.5rem;
-	line-height: 2.5rem;
-}
-.quality_score img{
-	width: 1.5rem;
-	height: 1.5rem;
-	margin-bottom: 0.5rem;
-}
-.Cram-dis-data{
-	font-size: 1.7rem;
-	padding-left: 2rem;
-	width: 100%;
-	height: 5rem;
-	line-height: 5rem;
-	border-bottom: 1px solid #EBEBEB;
-	position: relative;
-}
-.Cram-dis-data:before{
-	content: '';
-	height: 1.5rem;
-	border-left: 3px solid #101010;
-	position: absolute;
-	top: 1.9rem;
-	left: 1rem;
-}
-
-
 
 
 /*地址展开页-----------------------------*/
@@ -3285,65 +3114,7 @@ a.PlaceEditBtn,
     float: left;	
 }
 
-
-
-
 /*编辑场地*/
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 /*----------------------------------
@@ -4152,10 +3923,6 @@ a.YY_tabA{
 	width: 100%;
 	min-height: 500vh;
 	background-color: #DFE9EB;
-	/*padding: 5rem 0;
-	position: fixed;
-	top: 0;
-	left: 0;*/
 	z-index: 1055;
 	display: none;
 	overflow: hidden;
@@ -4280,6 +4047,9 @@ a.YY_tabA{
 	padding-left: 1.5rem;
 	float: left;
 }
+.people_sex{
+	font-size: 1.2rem;
+}
 /*18-09--下架课程列表------------------------*/
 .OffTheShelf{
 	width: 100%;
@@ -4326,7 +4096,7 @@ a.LessionDetails_A{
 	width: 100%;
 	color: #525255;
 }
-#student_info{
+.student_info{
 	font-size: 1.5rem;
 	float: right;
 	height: 4rem;
@@ -4720,6 +4490,7 @@ a.baginVIP_text{
 	padding-left:1.5rem;
 	overflow: hidden;	
 }
+/*底部固定按钮*/
 .PDBBtn{
 	width: 100%;
 	height: 6rem;

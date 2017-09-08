@@ -19,17 +19,22 @@
 	
 	.config(['$routeProvider',function($routeProvider){
 		$routeProvider
-		//01培训班搜索主页面
+		//01培训班列表页面（圆圆版）
 		.when('/CSchool/',{
 			templateUrl:'CramSchool/CramSchool.html',
 			controller:'CSchoolCtl'
 		})
-		//02培训班详情界面
+		//02培训班详情界面（圆圆版）
 		.when('/Cdetails/:ID',{
 			templateUrl:'CramSchool/Cramdetails.html',
 			controller:'CdetailsCtl'
 		})
-		//03课程详情界面
+		//03培训班信息（圆圆版）
+		.when('/CDDetail/:ID',{
+			templateUrl:'CramSchool/CDDetail.html',
+			controller:'CDDetailCtl'
+		})		
+		//04课程详情界面（圆圆版）
 		.when('/curriculum/:ID',{
 			templateUrl:'CramSchool/curriculum.html',
 			controller:'curriculumCtl'
@@ -39,10 +44,10 @@
 			templateUrl:'CramSchool/Report.html',
 			controller:'ReportCtl'
 		})	
-		//05支付确认界面
-		.when('/ACinsure/',{
-			templateUrl:'CramSchool/ACinsure.html',
-			controller:'ACinsureCtl'
+		//05支付界面(圆圆版)
+		.when('/Pay/:OID/:SID',{   //SID为支付类型：1为购买补习班课程支付
+			templateUrl:'CramSchool/Pay.html',
+			controller:'PayCtl'
 		})			
 		
 		//07购物车
@@ -50,8 +55,8 @@
 			templateUrl:'CramSchool/ShoppingCart.html',
 			controller:'SCartCtl'
 		})	
-		//08补习班订单
-		.when('/Order/',{
+		//08补习班订单（圆圆版）
+		.when('/Order/:ID',{
 			templateUrl:'CramSchool/Order.html',
 			controller:'OrderCtl'
 		})
@@ -77,120 +82,189 @@
 		})		
 		
 	}])
-	//01培训班主页面
+	//01补习班列表页面（圆圆版）
 	.controller('CSchoolCtl',[
 		'$scope',
-		function($scope){			
-			//01地址选项卡tabs js
-			tabsfn('zoneBody','.zoneBody','.zoneBody01','tabItemactive');	
-			//02区域选项卡
-			tabsfn('regionBody','.regionBody','.regionBody01','tabItemactive');			
-			//03是否选择了默认城市
-			$scope.ifAreas='';	
-			$scope.ifAreasname='';
-		  	$.post("/p/getParentHome",
-	    		{},
-	        	function(data){		      
-			        $scope.ifAreas=data.content.parent_follow_area;
-			        if($scope.ifAreas){
-			        	$scope.ifAreasname=data.content.parent_follow_area_name;			        	 	 
-			        }else{
-			        	$scope.ifAreasname='深圳市';
-			        	$scope.ifAreas=440300;
-			        }			        
-					var page=1;	
-					var keyWord=$('#keyWords').val();
-					//刚进入页面默认无条件查询			
-					var dataArry={
-						'pageIndex':page,
-						'pageSize':count,
-						'areaId':$scope.ifAreas,
-						'keyWord':keyWord,
-					}
-					$('#CSchools').empty();
-					getcramschoollist(dataArry);
-			        $scope.$apply();
-		    });
-			
-			//搜索关键字筛选
-			$scope.search=function(){
-				var keyWord=$('#keyWords').val();
-				var areaid=$('#area_id').val();
-				$("#CSchools").empty();
-				page=1;
-				var dataArry={
-						'pageIndex':page,
-						'pageSize':count,
-						'areaId':areaid,
-						'keyWord':keyWord,  //关键字 补习班名称或老师名称					
-					}
-				$('#CSchools').empty();
-				getcramschoollist(dataArry);								
+		'$route',		
+		'$location',
+		'$routeParams',
+		function($scope,$route,$location,$routeParams){
+			//01返回上一页历史
+			$scope.goback=function(){
+				window.history.back();
 			}
-			//获取轮播图
-			$scope.inderBanner='';
-			$.ajax({
-				type:"post",
-				url:"/cramSchool/getSchoolBannerByCategoryType",
-				data:{
-					'categoryType':'补习班列表',
-				},
-				datatype:"json",
-				success:function(data){			
-					$scope.inderBanner=data.object;
-					console.log(data);
-					$scope.$apply();
-				}
-			});			
-			//等ng-repeat之后再往元素上面绑定事件
-			$scope.$on('ngRepeatFinished', function(ngRepeatFinishedEvent){				
-				//banner
-			    var swiper01 = new Swiper('.swiper-container', {
-			        pagination: '.swiper-pagination',
-			        paginationClickable: true,			
-			        grabCursor : true,
-			        touchRatio : 0.5,
-					autoplay : 3000,
-					loop : true,
-				});
-	
-		
-			})
-
-
-
-			//下拉加载更多
-			$(window).bind("scroll", function (){    
-				if ($(document).scrollTop() + $(window).height() == $(document).height()+5){
-					++page;
-					if(page == 2){
-						$("#CSchools").empty();
+			//02科目类型切换
+			var CSTab=document.getElementsByClassName('CSTab');			
+			for(var i=0; i<CSTab.length;i++){
+				CSTab[i].onclick=function(){
+					var indexx=$('.CSTab').index($(this));
+					for(var i=0; i<CSTab.length;i++){
+						$('.CSTab').removeClass('CSTab-Active');
 					}
-					var areaid=$('#area_id').val();
-					var keyWord=$('#keyWords').val();
-					var dataArry={
-							'pageIndex':page,
-							'pageSize':count,
-							'areaId':areaid,  //关键字 补习班名称或老师名称
-							'keyWord':keyWord,  //关键字 补习班名称或老师名称						
-						}
-					$.ajax({
+					$(this).addClass('CSTab-Active');
+				}
+			}
+			//03获取补习班列表函数   1学习科目   2琴棋书画  3舞蹈健身  
+			var pageIndex=1;    //页码
+			var pageSize=6;		//页大小
+			var keyWord='';     //关键词
+			$scope.schoolList=[];	//用于操作的数组
+			$scope.SearchHistory='';  //历史关键词			
+ 			$scope.getDataforList=function(SchoolType){	
+ 				keyWord=$('.search_input').val();
+ 				pageIndex=1;
+ 				$('.spinner').fadeIn();
+				$.ajax({					
+					type:"post",
+					url:"/cramSchool/getSchoolList",
+					data:{
+						'schoolTypeId':SchoolType,  //1学习科目   2琴棋书画  3舞蹈健身  
+						'keyWord':keyWord,
+						'pageIndex':pageIndex,  //课程ID
+						'pageSize':pageSize,						
+						},
+					datatype:"json",
+					success:function(data){
+						$scope.schoolList=data.object;
+						$('.spinner').fadeOut();
+						$scope.$apply();								
+					}
+				})				
+ 			}			
+			//04搜索蒙版出现
+			$scope.SearchFadein=function(){
+				$('.CramSchool').fadeOut();
+				//获取关键词
+				$.ajax({					
+					type:"post",
+					url:"/cramSchool/getSchoolSearchHistory",
+					data:{},
+					datatype:"json",
+					success:function(data){
+						$scope.SearchHistory=data.object;
+						$scope.$apply();								
+					}
+				})												
+				$('.school_search').fadeIn();
+			}
+			//05搜索蒙版消失
+			$scope.SearchFadeOut=function(){
+				$('.school_search').fadeOut();
+				$('.CramSchool').fadeIn();
+			}	
+ 			//06初进入默认获取学习科目		
+ 			$scope.getDataforList(1);			
+			//07提交搜索关
+			$scope.submitSearch=function(){
+				keyWord=$('.search_input').val();
+				pageIndex=1;
+				$('.spinner').fadeIn();
+				var SchoolType=$('.CSTab-Active').attr('data-SchoolType');
+				$.ajax({					
+					type:"post",
+					url:"/cramSchool/getSchoolList",
+					data:{
+						'schoolTypeId':SchoolType,  //1学习科目   2琴棋书画  3舞蹈健身  
+						'keyWord':keyWord,
+						'pageIndex':pageIndex,  //课程ID
+						'pageSize':pageSize,						
+						},
+					datatype:"json",
+					success:function(data){
+						$scope.schoolList=data.object;
+						$('.spinner').fadeOut();
+						$scope.$apply();								
+					}
+				})				
+				$scope.SearchFadeOut();
+			}
+			//08关键词触发搜索
+			$scope.SearchByHistory=function($event){				
+				var keyWord=$($event.target).html();
+				var SchoolType=$('.CSTab-Active').attr('data-SchoolType');
+				pageIndex=1;
+				$('.spinner').fadeIn();
+				$.ajax({					
+					type:"post",
+					url:"/cramSchool/getSchoolList",
+					data:{
+						'schoolTypeId':SchoolType,  //1学习科目   2琴棋书画  3舞蹈健身  
+						'keyWord':keyWord,
+						'pageIndex':pageIndex,  //课程ID
+						'pageSize':pageSize,						
+						},
+					datatype:"json",
+					success:function(data){
+						$scope.schoolList=data.object;
+						$('.spinner').fadeOut();
+						$scope.$apply();								
+					}
+				})							
+				$scope.SearchFadeOut();
+			}
+			//09删除搜索历史
+			$scope.DeleteSearch=function(){
+				$.ajax({
+					type:"post",
+					url:"/cramSchool/deleteSchoolSearchHistory",
+					data:{},
+					datatype:"json",
+					success:function(data){	
+						$scope.SearchHistory=data.object;
+						$scope.$apply();
+					}
+				});									
+			}			
+
+
+ 			
+		    //10 定时器8秒自动加载	
+		    setInterval(function(){
+				pageIndex++;
+				keyWord=$('.search_input').val();
+			    var SchoolType=$('.CSTab-Active').attr('data-SchoolType');
+				$.ajax({					
+					type:"post",
+					url:"/cramSchool/getSchoolList",
+					data:{
+						'schoolTypeId':SchoolType,  //1学习科目   2琴棋书画  3舞蹈健身  
+						'keyWord':keyWord,
+						'pageIndex':pageIndex,  //课程ID
+						'pageSize':pageSize,						
+						},
+					datatype:"json",
+					success:function(data){
+						$scope.schoolList=$scope.schoolList.concat(data.object);
+						$scope.$apply();								
+					}
+				})				
+		    },8000); 			
+
+
+			//11下拉加载更多
+			$(window).bind("scroll", function (){    
+				if ($(document).scrollTop() + $(window).height() == $(document).height()){
+					pageIndex++;
+					keyWord=$('.search_input').val();
+					$('.spinner').fadeIn();
+				    var SchoolType=$('.CSTab-Active').attr('data-SchoolType');
+					$.ajax({					
 						type:"post",
 						url:"/cramSchool/getSchoolList",
-						data:dataArry,
+						data:{
+							'schoolTypeId':SchoolType,  //1学习科目   2琴棋书画  3舞蹈健身  
+							'keyWord':keyWord,
+							'pageIndex':pageIndex,  //课程ID
+							'pageSize':pageSize,						
+							},
 						datatype:"json",
-						success:function(data){			
-							//数据源
-							listsplits(data.object);
-							$("#CSchools").show();
-							if(data.object.length == 0){
-								$("#getmorefalse").fadeIn();
-								setTimeout(function(){
-									$("#getmorefalse").fadeOut();
-								},650)
-							}
+						success:function(data){
+							$scope.schoolList=$scope.schoolList.concat(data.object);
+							$('.spinner').fadeOut();
+							$scope.$apply();								
 						}
-					});
+					})				    
+					
 
 				}   
 			});
@@ -200,392 +274,193 @@
 			
 	}])
 
-	//02培训班详情
+	//02补习班详情(圆圆版)
 	.controller('CdetailsCtl',[
 		'$scope',
 		'$route',		
 		'$location',
 		'$routeParams',
 		function($scope,$route,$location,$routeParams){	
-			//获取补习班ID
+			//01获取补习班ID
 			$scope.cramSchoolId=$routeParams.ID;
-			//选项卡tabsjs
-			tabsfn('CDtabs','.CDtabs','.CDtabs1','CDactive');
-			//子选项卡tabs js
-			tabsfn('tabBody','.tabBody','.tabBody01','cramdetailactive');
-			
-			$scope.stars='';
-			$scope.groups1='';		
-			//点击分组获取课程
-			$scope.groupcurri='';		
-			$scope.starslistA=[];
-			var starsI='';
-			//获取课程质量分数以及服务质量分数
-			$scope.quality_score='';
-			$scope.quality_score01='';
-			$scope.service_score='';
-			$scope.service_score01='';			
-			//获取状态			
-			$.ajax({
+			//02课程/评论tabs js
+			tabsfn('YY_tabA','.YY_tabA','.YY_tabA01','YYtabA-active');			
+			//03返回上一页历史
+			$scope.goback=function(){
+				window.history.back();
+			}	
+			//04获取补习班详细信息
+			$scope.schoolDetail='';
+			$.ajax({					
 				type:"post",
 				url:"/cramSchool/getCramSchoolById",
 				data:{
-					'schoolId':$scope.cramSchoolId,
-				},
-				datatype:"json",
-				success:function(data){	
-					$scope.starslistA=[];
-					console.log(data.object);
-					$scope.CramData=data.object;					
-					$scope.groups1=data.object.groups[0];
-					$scope.groups1.id=data.object.groups[0].id;
-					if($scope.CramData.eva_star*10%10 <=2 && $scope.CramData.eva_star*10%10 != 0){
-						$scope.stars='img/start2.png';
-
-					}else if($scope.CramData.eva_star*10%10 <=5 && $scope.CramData.eva_star*10%10 != 0){
-						$scope.stars='img/start5.png';
-					}else if($scope.CramData.eva_star*10%10 <=9 && $scope.CramData.eva_star*10%10 != 0){
-						$scope.stars='img/start8.png';
-					}else if($scope.CramData.eva_star == 5){
-						$scope.stars='img/start10.png';
-					}else{
-						$scope.stars='img/start0.png';
-					}
-					//课程质量和服务质量
-					$scope.quality_score=data.object.quality_score;
-					if($scope.quality_score*10%10 <= 2 && $scope.quality_score*10%10 != 0){
-						$scope.quality_score01='img/start2.png';
-					}else if($scope.quality_score*10%10 <= 5 && $scope.quality_score*10%10 != 0){
-						$scope.quality_score01='img/start5.png';
-					}else if($scope.quality_score*10%10 <= 9 && $scope.quality_score*10%10 != 0){
-						$scope.quality_score01='img/start8.png';
-					}else if($scope.quality_score == 5){
-						$scope.quality_score01='img/start10.png';
-					}else{
-						$scope.quality_score01='img/start0.png';
-					}			
-					$scope.service_score=data.object.service_score;	
-					if($scope.service_score*10%10 <= 2 && $scope.service_score*10%10 != 0){
-						$scope.service_score01='img/start2.png';
-					}else if($scope.service_score*10%10 <= 5 && $scope.service_score*10%10 != 0){
-						$scope.service_score01='img/start5.png';
-					}else if($scope.service_score*10%10 <= 9 && $scope.service_score*10%10 != 0){
-						$scope.service_score01='img/start8.png';
-					}else if($scope.service_score == 5){
-						$scope.service_score01='img/start10.png';
-					}else{
-						$scope.service_score01='img/start0.png';
-					}					
-					
-					
-					
-					
-					//第一次进来默认获取第一组课程		
-					$.ajax({
-						type:"post",
-						url:"/cramCourse/getCramCourse",
-						data:{
-							"schoolId": $scope.cramSchoolId,//课单ID
-							"groupId":$scope.groups1.id,//状态编码，见下表
-						},
-						datatype:"json",
-						success:function(data){								
-							$scope.groupcurri=data.object.list; 
-							for(var i=0;i<$scope.groupcurri.length;i++){
-								if($scope.groupcurri[i].composite_score*10%10 <=2 && $scope.groupcurri[i].composite_score*10%10 != 0){
-									starsI='img/start2.png';	
-								}else if($scope.groupcurri[i].composite_score*10%10 <=5 && $scope.groupcurri[i].composite_score*10%10 != 0){
-									starsI='img/start5.png';
-			
-								}else if($scope.groupcurri[i].composite_score*10%10 <=9 && $scope.groupcurri[i].composite_score*10%10 != 0){
-									starsI='img/start8.png';
-								}else if($scope.groupcurri[0].composite_score == 5){
-									starsI='img/start10.png';
-								}else{
-									starsI='img/start0.png';
-								}								
-								$scope.starslistA.push(starsI);
-								$scope.$apply();								
-							}
-
-						}
-					});					
-					
-					$scope.$apply();				
-				}
-			});				
-			
-		$scope.fgcurri=function(schoolId,groupID,$event){
-			var groupID=groupID;
-			var schoolId=schoolId;
-			$scope.starslistA=[];
-			$.ajax({
-				type:"post",
-				url:"/cramCourse/getCramCourse",
-				data:{
-					"schoolId": schoolId,//课单ID
-					"groupId":groupID,//状态编码，见下表
+					'schoolId':$scope.cramSchoolId,  //补习班ID
 				},
 				datatype:"json",
 				success:function(data){
-					$scope.groupcurri=data.object.list; 
-					for(var i=0;i<$scope.groupcurri.length;i++){
-						if($scope.groupcurri[i].composite_score*10%10 <=2 && $scope.groupcurri[i].composite_score*10%10 != 0){
-							starsI='img/start2.png';	
-						}else if($scope.groupcurri[i].composite_score*10%10 <=5 && $scope.groupcurri[i].composite_score*10%10 != 0){
-							starsI='img/start5.png';
-	
-						}else if($scope.groupcurri[i].composite_score*10%10 <=9 && $scope.groupcurri[i].composite_score*10%10 != 0){
-							starsI='img/start8.png';
-						}else if($scope.groupcurri[i].composite_score == 5){
-							starsI='img/start10.png';
-						}else{
-							starsI='img/start0.png';
-						}
-						
-						$scope.starslistA.push(starsI);
-						
-					}
-					$scope.$apply();
+					$scope.schoolDetail=data.object;
+					$scope.$apply();								
 				}
-			});		
-			$('.tabBody').removeClass('cramdetailactive');
-			$($event.target).addClass("cramdetailactive");
-
-		}
-		//跳转到课程详情
-		$scope.gocurriculum=function(curriID){
-			$location.path('/curriculum/'+curriID);
-		}			
-		//加入购物车	
-		$scope.count=0;
-		$scope.totalPrice=0;
-		//刚进来获取默认数据
-		$.ajax({
-			type:"post",
-			url:"/shoppingCart/getCarData",
-			data:{
-				'productType':1, //商品类型
-			},
-			datatype:"json",
-			success:function(data){
-				$scope.count=data.object.count;
-				$scope.totalPrice=data.object.totalPrice;
-				$scope.$apply();
-			}
-		});		
-		//加入购物车函数	
-		$scope.joinshoppingcart=function(goodstype,goodsID){
-			$('#BottomCart').fadeIn();
-			$.ajax({
+			})
+			//05获取补习班课程列表
+			$scope.LessionList='';
+			$.ajax({					
 				type:"post",
-				url:"/shoppingCart/addCart",
+				url:"/cramCourse/getCramCourseListBySchoolId",
 				data:{
-					'c.product_type':goodstype, //商品类型
-					'c.product_id':goodsID, //选中的商品id
-					'c.count':1, //选中的商品id
+					'schoolId':$scope.cramSchoolId,  //补习班ID
 				},
 				datatype:"json",
 				success:function(data){
-					$scope.count=data.object.count;
-					$scope.totalPrice=data.object.totalPrice;
-					$scope.$apply();
+					$scope.LessionList=data.object.list;
+					$scope.$apply();								
 				}
-			});				
-			
-		}
-		
-		//获取评论
-		var EvpageSize=20;
-		var EvpageIndex=1;
-		$scope.EvaluateList='';	
-		$scope.totalRow='';
-		$.ajax({
-			type:"post",
-			url:"/courseEvaluate/getEvaluateList",
-			data:{
-				'schoolId':$scope.cramSchoolId, //课程ID
-				'pageIndex': 1,
-				'pageSize':20,
-			},
-			datatype:"json",
-			success:function(data){	
-				$scope.totalRow=data.object.totalRow;
-				$scope.EvaluateList=data.object.list;
-				$scope.$apply();
-			}
-		});
-		
-		//补习班详情的信息详情膜态框展示
-		$scope.CCDfilmFadeIn=function(){
-			$('.cramClassfilm').fadeIn();
-		}
-		//补习班详情的信息详情膜态框隐藏
-		$scope.CCDfilmFadeOut=function(){
-			$('.cramClassfilm').fadeOut();
-		}		
-		
-		//下拉加载更多
-		$(window).bind("scroll", function () {    
-			if ($(document).scrollTop() + $(window).height() == $(document).height()){
-				EvpageSize+=20;
-				$.ajax({
+			})
+			//06获取评价列表
+			$scope.EvaluateList='';
+			$scope.getEvaluateList=function(){
+				$.ajax({					
 					type:"post",
 					url:"/courseEvaluate/getEvaluateList",
 					data:{
-						'schoolId':$scope.cramSchoolId, //课程ID
-						'pageIndex': EvpageIndex,
-						'pageSize':EvpageSize,
+						'schoolId':$scope.cramSchoolId,  //补习班ID
 					},
 					datatype:"json",
-					success:function(data){			
+					success:function(data){
 						$scope.EvaluateList=data.object.list;
-						$scope.$apply();
+						$scope.$apply();								
 					}
-				});
-				
-			}   
-		});	
+				})				
+			}
+
+
+
+
+
+
+
+
 			
 	}])	
-	
-	//03课程详情
+
+	//03补习班资料（圆圆版）
+	.controller('CDDetailCtl',[
+		'$scope',
+		'$route',		
+		'$location',
+		'$routeParams',
+		function($scope,$route,$location,$routeParams){	
+			//01获取补习班ID
+			$scope.cramSchoolId=$routeParams.ID;
+			//02返回上一页历史
+			$scope.goback=function(){
+				window.history.back();
+			}				
+			//03获取补习班详细信息
+			$scope.schoolDetail='';
+			$.ajax({					
+				type:"post",
+				url:"/cramSchool/getCramSchoolById",
+				data:{
+					'schoolId':$scope.cramSchoolId,  //补习班ID
+				},
+				datatype:"json",
+				success:function(data){
+					$scope.schoolDetail=data.object;
+					$scope.$apply();								
+				}
+			})
+
+			
+	}])	
+
+
+	//04课程详情（圆圆版）
 	.controller('curriculumCtl',[
 		'$scope',
 		'$route',		
 		'$location',
 		'$routeParams',
 		function($scope,$route,$location,$routeParams){
-			//获取课程ID
-			$scope.curriId=$routeParams.ID;
-			$scope.stars='';
-			//刚进入页面查询课程信息
-			$scope.curriobject='';			
-			$.ajax({
+			var Cid=$routeParams.ID;   //课程ID
+			//01返回上一页历史
+			$scope.goback=function(){
+				window.history.back();
+			}	
+			//02课程表消失
+			$scope.CSCardfadeOut=function(){
+				$('#ClassScheduleCard').fadeOut();
+				$('.subscribe').fadeOut();
+				$('.LessionDetails').fadeIn();
+			}
+			//03课程表展示
+			$scope.CSCardfadeIn=function(){
+				$('.LessionDetails').fadeOut();	
+				$('.subscribe').fadeOut();
+				$('#ClassScheduleCard').fadeIn();
+			}		
+			//04确定课程表
+			var ClassCard=[];
+			$scope.Determine=function(){
+				$scope.CSCardfadeOut();
+					
+			}
+			//05预约试听蒙版展现
+			$scope.subscribeFadeIn=function(){
+				$('.LessionDetails').fadeOut();	
+				$('#ClassScheduleCard').fadeOut();
+				$('.subscribe').fadeIn();				
+			}
+			//06发起预约
+			$scope.GoSubscribe=function(){
+				var SubData=$("#SubForm").serialize();
+				$.ajax({					
+					type:"post",
+					url:"/cramCourse/appointmentTryCourse",
+					data:SubData,
+					datatype:"json",
+					success:function(data){
+						alert(data.msg);
+						if(data.isSuccess){
+							$scope.CSCardfadeOut();	
+						}
+						$scope.$apply();								
+					}
+				})				
+
+							
+			}			
+			//06获取课程表
+			$scope.Schedule='';
+			$.ajax({					
 				type:"post",
-				url:"/cramCourse/getCourse",
+				url:"/cramCourse/getCalendarDate",
 				data:{
-					'courseId':$scope.curriId, //课程ID
+					'cramCourseId':Cid,  //课程ID
+					'days':90,
 				},
 				datatype:"json",
 				success:function(data){
-					$scope.curriobject=data.object;
-					if(data.object.composite_score*10%10 <=2 && data.object.composite_score*10%10 != 0){
-						$scope.stars='img/start2.png';
-
-					}else if(data.object.composite_score*10%10 <=5 && data.object.composite_score*10%10 != 0){
-						$scope.stars='img/start5.png';
-
-					}else if(data.object.composite_score*10%10 <=9 && data.object.composite_score*10%10 != 0){
-						$scope.stars='img/start8.png';
-					}else if(data.object.composite_score == 5){
-						$scope.stars='img/start10.png';
-					}else{
-						$scope.stars='img/start0.png';
-					}	
-					//是否收藏过
-					if(data.object.isFavorite){
-						$('.Collect').attr({class:"icon-Collect Collect"});
-					}else if(!data.object.isFavorite){
-						$('.Collect').attr({class:"icon-cramDe-c Collect"});
-					}
-					$scope.$apply();
-					wxShareCurrentPage($scope.curriobject.course_name,$scope.curriobject.introduction);
+					$scope.Schedule=data;
+					$scope.$apply();								
 				}
-			});	
-			$scope.paycurri=function(){
-				//课程ID缓存
-				localStorage.setItem("courseIdsArry",$scope.curriId);
-				$location.path('/Order/');
-			
-			}
-			
-			//点击收藏
-			$scope.Collect=function(){
-				//收藏
-				if($('.Collect').hasClass("icon-cramDe-c")){
-					$('.Collect').attr({class:"icon-Collect CollectCheck Collect"});
-					$.ajax({
-						type:"post",
-						url:"/favorite/addFavorite",
-						data:{
-							'goalId':$scope.curriId, //课程ID
-							'type': 1,
-							'url':window.location.href,
-						},
-						datatype:"json",
-						success:function(data){
-							
-						}
-					});						
-				}else if($('.Collect').hasClass("icon-Collect")){
-					$('.Collect').attr({class:"icon-cramDe-c Collect"});
-					//取消收藏
-					$.ajax({
-						type:"post",
-						url:"/favorite/cancelFavorite",
-						data:{
-							'goalId':$scope.curriId, //课程ID
-							'type': 1,    //类型1为课程
-						},
-						datatype:"json",
-						success:function(data){	
-							
-						}
-					});							
-					
-				}				
-				
-			}
-			
-			
-			
-			//获取评论
-			var EvpageSize=20;
-			var EvpageIndex=1;
-			$scope.EvaluateList='';	
-			$scope.totalRow='';
-			$.ajax({
+			})
+			//07获取课程基本信息
+			$scope.lessionDetail='';
+			$.ajax({					
 				type:"post",
-				url:"/courseEvaluate/getEvaluateList",
+				url:"/cramCourse/getCourse",
 				data:{
-					'cramCourseId':$scope.curriId, //课程ID
-					'pageIndex': 1,
-					'pageSize':20,
+					'courseId':Cid ,  //课程ID
 				},
 				datatype:"json",
-				success:function(data){		
-					$scope.totalRow=data.object.totalRow;
-					$scope.EvaluateList=data.object.list;
-					$scope.$apply();
+				success:function(data){
+					$scope.lessionDetail=data.object;
+					$scope.$apply();								
 				}
-			});			
-			//下拉加载更多
-			$(window).bind("scroll", function () {    
-				if ($(document).scrollTop() + $(window).height() == $(document).height()){
-					EvpageSize+=20;
-					$.ajax({
-						type:"post",
-						url:"/courseEvaluate/getEvaluateList",
-						data:{
-							'cramCourseId':$scope.curriId, //课程ID
-							'pageIndex': EvpageIndex,
-							'pageSize':EvpageSize,
-						},
-						datatype:"json",
-						success:function(data){			
-							$scope.EvaluateList=data.object.list;
-							$scope.$apply();
-						}
-					});
-					
-				}   
-			});				
-			
-			
-			
-			
-						
+			})
+		
 	}])	
 
 	//04举报
@@ -606,78 +481,70 @@
 	}])	
 
 	//05支付确认界面
-	.controller('ACinsureCtl',[
+	.controller('PayCtl',[
 		'$scope',
 		'$route',		
 		'$location',
 		'$routeParams',
 		function($scope,$route,$location,$routeParams){	
-			//订单编号缓存
-			var orderIdsArry=localStorage.getItem("orderIds");
-			//支付方式切换
-			var applystates=document.getElementsByClassName("AC-Text02");			
-			for(var i=0; i<applystates.length;i++){
-				applystates[i].onclick=function(){
-					var indexx=$(".AC-Text02").index($(this));
-					for(var i=0; i<applystates.length;i++){
-						$(".AC-Text02").removeClass("AC-active");
-						$(".icon-Uncheck").removeClass("AC-check");
+			//01获取支付入口类型ID，1是购买补习班课程支付 
+			var OIDs=$routeParams.OID;   //订单ID
+			var SIDs=$routeParams.SID;   //类型ID
+			//02支付类型选择
+			var CDtabs=document.getElementsByClassName('PayStyle');			
+			for(var i=0; i<CDtabs.length;i++){
+				CDtabs[i].onclick=function(){
+					var indexx=$('.PayStyle').index($(this));
+					for(var i=0; i<CDtabs.length;i++){
+						$('.icon-yuan06').removeClass('icon-yuan23');
 					}
-					$(this).addClass("AC-active");					
-					$(".icon-Uncheck").eq(indexx).addClass("AC-check");
-					
+					$('.icon-yuan06').eq(indexx).toggleClass('icon-yuan23');
 				}
 			}
-			
-			//获取草稿			
-			$scope.teacher_phone='';
-			$scope.balance='';
-			$scope.margin='';		
-			$.ajax({
-				type:"post",
-				url:"/order/getOrderAmount",
-				data:{
-					'orderIds':orderIdsArry,
-				},
-				datatype:"json",
-				success:function(data){
-					$scope.margin=data.object.amount;
-					$scope.balance=data.object.balance;
-					$scope.$apply();
-				}
-			});		
-			//选择支付方式
-			$scope.applyStyle=1;
-			$scope.applystateWaY=function(e){
-				$scope.applyStyle=e;
+			//03返回上一页历史
+			$scope.goback=function(){
+				window.history.back();
 			}
-			
-			//提交支付
-			
-			$scope.submitCrams=function(){
-				if($scope.applyStyle == 1){
-					window.location.href="/c/pay/payForOrder?orderIds="+orderIdsArry;
-				}else if($scope.applyStyle == 2){
-					$.ajax({					
-						type:"post",
-						url:"/order/balancePayOrder",
-						data:{
-							"orderIds": orderIdsArry,  //订单编号数组
-						},
-						datatype:"json",
-						success:function(data){
-							if(data.isSuccess){
-								$location.path('/paySuccess/'+orderIdsArry);								
-							}else if(!data.isSuccess){
-								$location.path('/payFail/');	
+			//04获取支付金额
+			$scope.payTotals = localStorage.getItem('payTotals');
+			//05支付动作
+			$scope.PayMenoy=function(){
+				var Pstyle=$('.icon-yuan23').attr('data-Pstyle');   //获取选择的支付方式
+				if(SIDs == 1){
+					if(Pstyle == 1){						
+						window.location.href="/c/pay/payForOrder?orderId="+OIDs;	
+					}else if(Pstyle == 2){						
+						$.ajax({
+							type:"post",
+							url:"/order/balancePayOrder",
+							data:{
+								'orderId':OIDs,
+							},
+							datatype:"json",
+							success:function(data){	
+								alert(data.msg);
+								if(data.isSuccess){
+									$location.path('/CSchool/');
+								}							
+								$scope.$apply();
 							}
-							$scope.$apply();								
-						}
-					})
-				}
+						});							
+						
+						
+					}
 
-		
+				}				
+				
+				
+				
+				
 			}
+			
+
+
+
+
+
 			
 			
 			
@@ -748,52 +615,91 @@
 		})
 
 	}])	
-	//08补习班订单
+	//08补习班订单（圆圆版）
 	.controller('OrderCtl',[		
 		'$scope',
 		'$route',		
 		'$location',
 		'$routeParams',
 		function($scope,$route,$location,$routeParams){
-			var courseIdsArry=localStorage.getItem("courseIdsArry");
-			$scope.orderlist='';
-			$scope.discountTotal='';
-			$scope.originalTotal='';
-			$scope.paymentAmount='';
-			$.ajax({
+			var Cid=$routeParams.ID;   //课程ID
+			//01返回上一页历史
+			$scope.goback=function(){
+				window.history.back();
+			}			
+
+			//03获取课程基本信息
+			$scope.CourseInfo='';
+			$scope.price='';
+			$.ajax({					
 				type:"post",
-				url:"/cramCourse/buyCourse",
+				url:"/cramCourse/getBuyCourseInfo",
 				data:{
-					'courseIds':courseIdsArry,
+					'courseId':Cid ,  //课程ID
 				},
 				datatype:"json",
-				success:function(data){	
-					$scope.orderlist=data.object.courses_list;
-					$scope.discountTotal=data.object.discountTotal;
-					$scope.originalTotal=data.object.originalTotal;
-					$scope.paymentAmount=data.object.paymentAmount;					
-					$scope.$apply();
+				success:function(data){
+					$scope.CourseInfo=data.object;
+					$scope.price=data.object.preferential_price;
+					console.log(data);
+					$scope.$apply();								
 				}
-			});			
-			
-			$scope.submitOrders=function(){
-				$.ajax({
-					type:"post",
-					url:"/order/submitOrderForCourse",
-					data:{
-						'courseIds':courseIdsArry,
-					},
-					datatype:"json",
-					success:function(data){	
-						if(data.isSuccess){
-							localStorage.setItem("orderIds",data.object);
-							$location.path('/ACinsure/');						
-						}else{
-							alert(data.msg);
-						}
+			})		
+			//获取当前用户名下所有子女信息记录
+			$scope.ChildrenList='';
+			$.ajax({					
+				type:"post",
+				url:"/childrenInfo/getChildrenList",
+				data:{},
+				datatype:"json",
+				success:function(data){
+					$scope.ChildrenList=data.object;
+					
+					$scope.$apply();								
+				}
+			})			
+			$scope.TotalNumber=0;
+			$scope.$on('ngRepeatFinished', function(ngRepeatFinishedEvent){				
+				//04点击孩子事件
+				var childList=document.getElementsByClassName('Student');
+				for(var i=0; i<childList.length;i++){
+					childList[i].onclick=function(){
+						var indexx=$('.Student').index($(this));				
+						$('.children_select_ioc').eq(indexx).toggleClass("icon-yuan20");
+						var childrenNumber=$('.icon-yuan20').length;
+						$scope.TotalNumber=childrenNumber*$scope.price;
 						$scope.$apply();
 					}
-				});				
+				}
+			})	
+			//05提交购买
+			$scope.PaySchool=function(LId){
+				var childarr=[];
+				var selectedChild=document.getElementsByClassName('icon-yuan20');
+				for(var i=0; i<selectedChild.length;i++){
+					childarr.push(selectedChild[i].getAttribute('data-childId'));
+				}	
+				
+				$.ajax({					
+					type:"post",
+					url:"/cramCourse/buyCourse_v2",
+					data:{
+						'crouseId':LId,  //课程ID
+						'childrenIds':childarr.toString(),  //孩子ID
+					},
+					datatype:"json",
+					success:function(data){
+						console.log(data);
+						if(data.isSuccess){   // /Pay/订单ID/支付类型   1为购买补习班课程类型  
+							localStorage.setItem('payTotals',data.object.amount);  //设置需要支付金额缓存，为下一个界面展示用
+							$location.path('/Pay/'+data.object.id+'/'+1);   
+						}else if(!data.isSuccess){
+							alert(data.msg);
+						}
+						$scope.$apply();								
+					}
+				})
+				
 			}
 			
 			

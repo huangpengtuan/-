@@ -1,0 +1,42 @@
+<!--创建分组-->
+<div>
+	<div class="CG01-H">
+		<div class="CG01-HL">创建分组</div>
+		<!--ng-click="CreateLis()"-->
+		<div class="CG01-HR"  ng-click="info.add()">
+			<i class="icon-jiahao"></i>
+		</div>
+		<div class="clearfix"></div>
+	</div>
+	<form id='CGdata'>
+		<ul class="CG02">
+			<li class="CG02-default" ng-repeat="domain in info.operate track by $index">
+				<div class="CG02-creatH">组{{$index + 1}}：</div>
+				<input type="text" class="CG02-creatI"  id="{{domain.id}}" ng-model="domain.groupName" value="" placeholder="请输入组名，限四个字以内" maxlength="4" onkeyup = "ValidateValue(this)"/>
+				<div class="CG02-HR" ng-click="info.delete($index,domain.id)">
+					<i class="icon-shenghao"></i>
+				</div>
+			</li>		
+		</ul>
+		
+		<div class="kedanSubmit AC-btn" ng-click="info.result()">
+			<a href="">
+				<button type="button" class="btn btnred">完成并新建课程</button>
+			</a>	
+		</div>		
+		
+	</form>
+	
+</div>
+
+
+
+
+	
+	
+	
+	
+	
+	
+	
+	
